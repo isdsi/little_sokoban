@@ -1,5 +1,13 @@
 extends Control
 
+const TEXTURE_HEART = preload("res://assets/heart.png")
+const TEXTURE_PLAYER_FACE = preload("res://assets/player_face.png")
+const TEXTURE_BOX_X = preload("res://assets/box_x.png")
+const TEXTURE_ARROW_UP = preload("res://assets/arrow_up.png")
+const TEXTURE_ARROW_DOWN = preload("res://assets/arrow_down.png")
+const TEXTURE_ARROW_LEFT = preload("res://assets/arrow_left.png")
+const TEXTURE_ARROW_RIGHT = preload("res://assets/arrow_right.png")
+
 # Sokoban Level 1 Map Layout (Imabayashi Original 1982)
 const LEVEL_LAYOUT = [
 	"    #####          ",
@@ -29,6 +37,7 @@ var undo_stack = []
 var box_nodes = []
 var player_node: Panel
 var board_container: Control
+var hearts_container: HBoxContainer
 
 # Controls & Animations
 var is_animating = false
@@ -68,6 +77,29 @@ func _ready():
 	# Configure StyleBoxes programmatically for visual excellence
 	setup_styles()
 	
+	# Configure D-pad arrow textures and clear text
+	$TouchControls/Dpad/Up.icon = TEXTURE_ARROW_UP
+	$TouchControls/Dpad/Up.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	$TouchControls/Dpad/Up.text = ""
+	$TouchControls/Dpad/Down.icon = TEXTURE_ARROW_DOWN
+	$TouchControls/Dpad/Down.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	$TouchControls/Dpad/Down.text = ""
+	$TouchControls/Dpad/Left.icon = TEXTURE_ARROW_LEFT
+	$TouchControls/Dpad/Left.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	$TouchControls/Dpad/Left.text = ""
+	$TouchControls/Dpad/Right.icon = TEXTURE_ARROW_RIGHT
+	$TouchControls/Dpad/Right.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	$TouchControls/Dpad/Right.text = ""
+	
+	# Initialize HUD hearts container
+	lives_label.text = "LIVES:"
+	hearts_container = HBoxContainer.new()
+	hearts_container.name = "HeartsContainer"
+	hearts_container.size = Vector2(150, 30)
+	$HUD.add_child(hearts_container)
+	# Position to the right of LivesLabel
+	hearts_container.position = lives_label.position + Vector2(80, 0)
+	
 	# Parse layout and initialize positions
 	parse_layout()
 	
@@ -95,8 +127,8 @@ func _ready():
 	$GameOverOverlay/VBox/RetryButton.pressed.connect(restart_full_game)
 	
 	# Setup button Xbox prompts
-	setup_button_xbox_prompt($HUD/Buttons/UndoButton, "Y", Color(0.98, 0.82, 0.08), "↺ UNDO")
-	setup_button_xbox_prompt($HUD/Buttons/RestartButton, "X", Color(0.25, 0.61, 1.0), "⟲ RESET")
+	setup_button_xbox_prompt($HUD/Buttons/UndoButton, "Y", Color(0.98, 0.82, 0.08), "UNDO")
+	setup_button_xbox_prompt($HUD/Buttons/RestartButton, "X", Color(0.25, 0.61, 1.0), "RESET")
 	setup_button_xbox_prompt($VictoryOverlay/VBox/RestartButton, "A", Color(0.29, 0.85, 0.38), "PLAY AGAIN")
 	setup_button_xbox_prompt($GameOverOverlay/VBox/RetryButton, "A", Color(0.29, 0.85, 0.38), "TRY AGAIN")
 	
@@ -266,13 +298,12 @@ func setup_board():
 	player_node.add_theme_stylebox_override("panel", player_style)
 	board_container.add_child(player_node)
 	
-	var player_face = Label.new()
-	player_face.text = "•◡•"
-	player_face.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	player_face.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	player_face.size = player_node.size
-	player_face.add_theme_color_override("font_color", Color.WHITE)
-	player_face.add_theme_font_size_override("font_size", 14)
+	var player_face = TextureRect.new()
+	player_face.texture = TEXTURE_PLAYER_FACE
+	player_face.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	player_face.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	player_face.size = Vector2(20, 20)
+	player_face.position = (player_node.size - player_face.size) / 2
 	player_node.add_child(player_face)
 	
 	# Instantiate Boxes
@@ -291,15 +322,14 @@ func setup_board():
 		board_container.add_child(box_tile)
 		box_nodes.append(box_tile)
 		
-		# Crate style X label
-		var x_label = Label.new()
-		x_label.text = "✖"
-		x_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		x_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-		x_label.size = box_tile.size
-		x_label.add_theme_color_override("font_color", Color(1, 1, 1, 0.4))
-		x_label.add_theme_font_size_override("font_size", 16)
-		box_tile.add_child(x_label)
+		# Crate style X mark
+		var x_mark = TextureRect.new()
+		x_mark.texture = TEXTURE_BOX_X
+		x_mark.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		x_mark.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		x_mark.size = Vector2(24, 24)
+		x_mark.position = (box_tile.size - x_mark.size) / 2
+		box_tile.add_child(x_mark)
 
 func _process(delta):
 	# Countdown timer
@@ -581,8 +611,16 @@ func update_hud():
 	score_label.text = "SCORE: %d" % score
 	time_label.text = "TIME: %ds" % int(time_remaining)
 	
-	# Render hearts representing remaining lives
-	var hearts = ""
-	for i in range(lives):
-		hearts += "❤ "
-	lives_label.text = "LIVES: %s" % hearts.strip_edges()
+	# Update hearts inside hearts_container
+	if hearts_container:
+		# Clear old heart icons
+		for child in hearts_container.get_children():
+			child.queue_free()
+		# Add new heart icons
+		for i in range(lives):
+			var heart_rect = TextureRect.new()
+			heart_rect.texture = TEXTURE_HEART
+			heart_rect.custom_minimum_size = Vector2(24, 24)
+			heart_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+			heart_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			hearts_container.add_child(heart_rect)

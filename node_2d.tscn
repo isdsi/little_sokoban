@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bmvqj4vyk3661"]
+[gd_scene format=3 uid="uid://bmvqj4vyk3661"]
 
-[ext_resource type="Script" path="res://sokoban_game.gd" id="1_8k2n3"]
+[ext_resource type="Script" uid="uid://b07vio0j8dbay" path="res://sokoban_game.gd" id="1_8k2n3"]
 
 [sub_resource type="Gradient" id="Gradient_q0d2m"]
 colors = PackedColorArray(0.05, 0.07, 0.12, 1, 0.12, 0.15, 0.22, 1)
@@ -11,41 +11,41 @@ fill_to = Vector2(0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_normal"]
 bg_color = Color(1, 1, 1, 0.08)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(1, 1, 1, 0.15)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hover"]
-bg_color = Color(1, 1, 1, 0.15)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 1, 1, 0.3)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pressed"]
 bg_color = Color(1, 1, 1, 0.04)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(1, 1, 1, 0.1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
-[node name="SokobanGame" type="Control"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hover"]
+bg_color = Color(1, 1, 1, 0.15)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.3)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="SokobanGame" type="Control" unique_id=768080872]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -54,7 +54,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8k2n3")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=1758764131]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -63,7 +63,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_m7c3o")
 
-[node name="HUD" type="Control" parent="."]
+[node name="HUD" type="Control" parent="." unique_id=190619008]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -72,18 +72,17 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="TitleLabel" type="Label" parent="HUD"]
+[node name="TitleLabel" type="Label" parent="HUD" unique_id=843546559]
 layout_mode = 0
 offset_left = 24.0
 offset_top = 20.0
 offset_right = 224.0
-offset_top = 20.0
 offset_bottom = 54.0
 theme_override_colors/font_color = Color(0.22, 0.75, 0.97, 1)
 theme_override_font_sizes/font_size = 24
 text = "SOKOBAN"
 
-[node name="ScoreLabel" type="Label" parent="HUD"]
+[node name="ScoreLabel" type="Label" parent="HUD" unique_id=266845950]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -98,7 +97,7 @@ theme_override_font_sizes/font_size = 24
 text = "SCORE: 0"
 horizontal_alignment = 1
 
-[node name="TimeLabel" type="Label" parent="HUD"]
+[node name="TimeLabel" type="Label" parent="HUD" unique_id=1705400169]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -113,7 +112,7 @@ theme_override_font_sizes/font_size = 24
 text = "TIME: 300s"
 horizontal_alignment = 2
 
-[node name="LivesLabel" type="Label" parent="HUD"]
+[node name="LivesLabel" type="Label" parent="HUD" unique_id=380684390]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -128,7 +127,7 @@ theme_override_font_sizes/font_size = 20
 text = "LIVES: ❤ ❤ ❤"
 vertical_alignment = 1
 
-[node name="Buttons" type="Control" parent="HUD"]
+[node name="Buttons" type="Control" parent="HUD" unique_id=83676545]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -139,28 +138,28 @@ offset_right = 224.0
 offset_bottom = -50.0
 grow_vertical = 0
 
-[node name="UndoButton" type="Button" parent="HUD/Buttons"]
+[node name="UndoButton" type="Button" parent="HUD/Buttons" unique_id=1194393394]
 layout_mode = 0
 offset_right = 90.0
 offset_bottom = 36.0
-theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
 theme_override_font_sizes/font_size = 14
-text = "↺ UNDO"
+theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+text = "UNDO"
 
-[node name="RestartButton" type="Button" parent="HUD/Buttons"]
+[node name="RestartButton" type="Button" parent="HUD/Buttons" unique_id=1377510406]
 layout_mode = 0
 offset_left = 102.0
 offset_right = 192.0
 offset_bottom = 36.0
-theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
 theme_override_font_sizes/font_size = 14
-text = "⟲ RESET"
+theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+text = "RESET"
 
-[node name="TouchControls" type="Control" parent="."]
+[node name="TouchControls" type="Control" parent="." unique_id=726207713]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -174,7 +173,7 @@ offset_bottom = -20.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="Dpad" type="Control" parent="TouchControls"]
+[node name="Dpad" type="Control" parent="TouchControls" unique_id=483571089]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -182,51 +181,51 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Up" type="Button" parent="TouchControls/Dpad"]
+[node name="Up" type="Button" parent="TouchControls/Dpad" unique_id=1154304417]
 layout_mode = 0
 offset_left = 56.0
 offset_top = 8.0
 offset_right = 96.0
 offset_bottom = 48.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
 text = "▲"
 
-[node name="Down" type="Button" parent="TouchControls/Dpad"]
+[node name="Down" type="Button" parent="TouchControls/Dpad" unique_id=666311437]
 layout_mode = 0
 offset_left = 56.0
 offset_top = 102.0
 offset_right = 96.0
 offset_bottom = 142.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
 text = "▼"
 
-[node name="Left" type="Button" parent="TouchControls/Dpad"]
+[node name="Left" type="Button" parent="TouchControls/Dpad" unique_id=787927756]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 55.0
 offset_right = 48.0
 offset_bottom = 95.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
 text = "◀"
 
-[node name="Right" type="Button" parent="TouchControls/Dpad"]
+[node name="Right" type="Button" parent="TouchControls/Dpad" unique_id=1985244980]
 layout_mode = 0
 offset_left = 102.0
 offset_top = 55.0
 offset_right = 142.0
 offset_bottom = 95.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
 text = "▶"
 
-[node name="VictoryOverlay" type="ColorRect" parent="."]
+[node name="VictoryOverlay" type="ColorRect" parent="." unique_id=1575381106]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -236,7 +235,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.04, 0.05, 0.08, 0.85)
 
-[node name="VBox" type="VBoxContainer" parent="VictoryOverlay"]
+[node name="VBox" type="VBoxContainer" parent="VictoryOverlay" unique_id=1223229409]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -252,36 +251,36 @@ grow_vertical = 2
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="Title" type="Label" parent="VictoryOverlay/VBox"]
+[node name="Title" type="Label" parent="VictoryOverlay/VBox" unique_id=112236264]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.06, 0.7, 0.38, 1)
 theme_override_font_sizes/font_size = 36
 text = "CONGRATULATIONS!"
 horizontal_alignment = 1
 
-[node name="Subtitle" type="Label" parent="VictoryOverlay/VBox"]
+[node name="Subtitle" type="Label" parent="VictoryOverlay/VBox" unique_id=1430556479]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "Sokoban Level 1 Cleared!"
 horizontal_alignment = 1
 
-[node name="ScoreLabel" type="Label" parent="VictoryOverlay/VBox"]
+[node name="ScoreLabel" type="Label" parent="VictoryOverlay/VBox" unique_id=594232736]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.98, 0.75, 0.14, 1)
 theme_override_font_sizes/font_size = 16
 text = "Score: 600"
 horizontal_alignment = 1
 
-[node name="RestartButton" type="Button" parent="VictoryOverlay/VBox"]
+[node name="RestartButton" type="Button" parent="VictoryOverlay/VBox" unique_id=1607342263]
 custom_minimum_size = Vector2(160, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
 text = "PLAY AGAIN"
 
-[node name="GameOverOverlay" type="ColorRect" parent="."]
+[node name="GameOverOverlay" type="ColorRect" parent="." unique_id=503399559]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -291,7 +290,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.08, 0.02, 0.02, 0.9)
 
-[node name="VBox" type="VBoxContainer" parent="GameOverOverlay"]
+[node name="VBox" type="VBoxContainer" parent="GameOverOverlay" unique_id=254323191]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -307,20 +306,18 @@ grow_vertical = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Title" type="Label" parent="GameOverOverlay/VBox"]
+[node name="Title" type="Label" parent="GameOverOverlay/VBox" unique_id=1863091752]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.96, 0.25, 0.37, 1)
 theme_override_font_sizes/font_size = 48
 text = "GAME OVER"
 horizontal_alignment = 1
 
-[node name="RetryButton" type="Button" parent="GameOverOverlay/VBox"]
+[node name="RetryButton" type="Button" parent="GameOverOverlay/VBox" unique_id=1919178686]
 custom_minimum_size = Vector2(160, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
 text = "TRY AGAIN"
-
-

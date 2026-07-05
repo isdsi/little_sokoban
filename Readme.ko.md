@@ -46,10 +46,78 @@ Godot 4 엔진 기반으로 개발된 클래식 **소코반 1스테이지(Sokoba
 
 ## 실행 방법
 
+### 1. 소스 코드에서 실행 (Godot 에디터)
+
 1. [Godot Engine 4.x](https://godotengine.org/)를 설치합니다.
-2. Godot 에디터를 실행한 후 이 프로젝트 폴더를 열어줍니다.
+2. Godot 에디터를 실행한 후 이 프로젝트 폴더를 불러와 열어줍니다.
 3. `F5` 키를 누르거나 우측 상단의 플레이 버튼을 클릭하여 `node_2d.tscn` 메인 씬을 실행합니다.
+
+### 2. 빌드된 실행 파일로 실행 (플랫폼별)
+
+#### Windows
+- `build/windows/` 폴더로 이동하여 `little_sokoban.exe` 파일을 더블 클릭하여 실행합니다.
+
+#### macOS
+- `build/macos/little_sokoban.zip` 압축 파일을 해제한 뒤 생성된 `.app` 실행 파일을 구동합니다.
+
+#### Web (웹 브라우저)
+웹 빌드 버전을 크롬 등 브라우저에서 실행하려면 CORS 보안 정책 우회를 위해 반드시 로컬 HTTP 웹 서버를 통해 구동해야 합니다.
+
+1. 터미널(PowerShell 또는 CMD)을 열고 웹 빌드 디렉터리로 이동합니다.
+   ```bash
+   cd build/web
+   ```
+2. 별도의 스크립트 파일 작성 없이, 파이썬 내장 HTTP 서버 모듈을 실행합니다.
+   ```bash
+   python -m http.server 8000
+   ```
+3. 크롬 브라우저를 열고 `http://localhost:8000` 주소로 접속합니다.
+
+> [!NOTE]
+> 만약 브라우저 콘솔에 `SharedArrayBuffer` 오류가 발생하며 게임이 구동되지 않는다면(Godot 4 멀티스레드 빌드 특징), 파이썬 스크립트 파일 생성 없이 아래와 같이 단일 행 터미널 명령어를 입력하여 보안 헤더가 적용된 서버를 바로 실행할 수 있습니다.
+> ```bash
+> python -c "from http.server import HTTPServer, SimpleHTTPRequestHandler; GodotHandler = type('GodotHandler', (SimpleHTTPRequestHandler,), {'end_headers': lambda self: [self.send_header('Cross-Origin-Opener-Policy', 'same-origin'), self.send_header('Cross-Origin-Embedder-Policy', 'require-corp'), SimpleHTTPRequestHandler.end_headers(self)]}); print('Serving on http://localhost:8000'); HTTPServer(('localhost', 8000), GodotHandler).serve_forever()"
+> ```
+
+#### Android
+- 빌드된 `build/android/little_sokoban.apk` 파일을 Android 기기 또는 에뮬레이터에 설치하여 실행합니다.
+
+#### iOS
+- macOS에서 `build/ios/little_sokoban.xcodeproj` 프로젝트 파일을 Xcode로 열어 프로젝트를 빌드한 후, iOS 시뮬레이터나 연결된 기기에 앱을 올려 실행합니다.
+
+## CLI 빌드/내보내기 명령
+
+Godot 커맨드 라인 인터페이스(CLI)를 사용해 게임을 빌드할 수 있습니다. 명령어를 실행하기 전, Godot 에디터의 프로젝트 내보내기 설정(프로젝트 -> 내보내기)에서 각 플랫폼별 내보내기 프리셋을 먼저 등록해 주어야 합니다 (`export_presets.cfg` 파일 생성 필요).
+
+먼저, 빌드 산출물을 저장할 디렉토리를 생성합니다:
+```bash
+mkdir -p build/web build/android build/ios build/windows build/macos
+```
+
+그 다음 아래의 수출 명령어를 실행합니다 (`godot` 환경 변수가 등록되지 않은 경우 Godot 실행 파일의 절대 경로를 입력해 주세요):
+
+- **Windows Desktop (`.exe`)**:
+  ```bash
+  godot --headless --export-release "Windows Desktop" build/windows/little_sokoban.exe
+  ```
+- **macOS Desktop (`.zip` / `.app`)**:
+  ```bash
+  godot --headless --export-release "macOS" build/macos/little_sokoban.zip
+  ```
+- **Web (웹 브라우저용 `index.html`)**:
+  ```bash
+  godot --headless --export-release "Web" build/web/index.html
+  ```
+- **Android (`.apk`)**:
+  ```bash
+  godot --headless --export-release "Android" build/android/little_sokoban.apk
+  ```
+- **iOS (`Xcode 프로젝트`)**:
+  ```bash
+  godot --headless --export-release "iOS" build/ios/little_sokoban.xcodeproj
+  ```
 
 ## 라이센스 (License)
 
 본 프로젝트는 [MIT License](LICENSE) 하에 배포됩니다. 자유롭게 수정 및 배포하실 수 있습니다.
+
