@@ -1,0 +1,326 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmvqj4vyk3661"]
+
+[ext_resource type="Script" path="res://sokoban_game.gd" id="1_8k2n3"]
+
+[sub_resource type="Gradient" id="Gradient_q0d2m"]
+colors = PackedColorArray(0.05, 0.07, 0.12, 1, 0.12, 0.15, 0.22, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m7c3o"]
+gradient = SubResource("Gradient_q0d2m")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_normal"]
+bg_color = Color(1, 1, 1, 0.08)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.15)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hover"]
+bg_color = Color(1, 1, 1, 0.15)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pressed"]
+bg_color = Color(1, 1, 1, 0.04)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.1)
+
+[node name="SokobanGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8k2n3")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_m7c3o")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TitleLabel" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 20.0
+offset_right = 224.0
+offset_top = 20.0
+offset_bottom = 54.0
+theme_override_colors/font_color = Color(0.22, 0.75, 0.97, 1)
+theme_override_font_sizes/font_size = 24
+text = "SOKOBAN"
+
+[node name="ScoreLabel" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 20.0
+offset_right = 100.0
+offset_bottom = 54.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.98, 0.75, 0.14, 1)
+theme_override_font_sizes/font_size = 24
+text = "SCORE: 0"
+horizontal_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -224.0
+offset_top = 20.0
+offset_right = -24.0
+offset_bottom = 54.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.93, 0.28, 0.54, 1)
+theme_override_font_sizes/font_size = 24
+text = "TIME: 300s"
+horizontal_alignment = 2
+
+[node name="LivesLabel" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -48.0
+offset_right = 274.0
+offset_bottom = -20.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.96, 0.25, 0.37, 1)
+theme_override_font_sizes/font_size = 20
+text = "LIVES: ❤ ❤ ❤"
+vertical_alignment = 1
+
+[node name="Buttons" type="Control" parent="HUD"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -100.0
+offset_right = 224.0
+offset_bottom = -50.0
+grow_vertical = 0
+
+[node name="UndoButton" type="Button" parent="HUD/Buttons"]
+layout_mode = 0
+offset_right = 90.0
+offset_bottom = 36.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+theme_override_font_sizes/font_size = 14
+text = "↺ UNDO"
+
+[node name="RestartButton" type="Button" parent="HUD/Buttons"]
+layout_mode = 0
+offset_left = 102.0
+offset_right = 192.0
+offset_bottom = 36.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+theme_override_font_sizes/font_size = 14
+text = "⟲ RESET"
+
+[node name="TouchControls" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -170.0
+offset_top = -170.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Dpad" type="Control" parent="TouchControls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Up" type="Button" parent="TouchControls/Dpad"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 8.0
+offset_right = 96.0
+offset_bottom = 48.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+text = "▲"
+
+[node name="Down" type="Button" parent="TouchControls/Dpad"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 102.0
+offset_right = 96.0
+offset_bottom = 142.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+text = "▼"
+
+[node name="Left" type="Button" parent="TouchControls/Dpad"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 55.0
+offset_right = 48.0
+offset_bottom = 95.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+text = "◀"
+
+[node name="Right" type="Button" parent="TouchControls/Dpad"]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 55.0
+offset_right = 142.0
+offset_bottom = 95.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+text = "▶"
+
+[node name="VictoryOverlay" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.05, 0.08, 0.85)
+
+[node name="VBox" type="VBoxContainer" parent="VictoryOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Title" type="Label" parent="VictoryOverlay/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.06, 0.7, 0.38, 1)
+theme_override_font_sizes/font_size = 36
+text = "CONGRATULATIONS!"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="VictoryOverlay/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Sokoban Level 1 Cleared!"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="VictoryOverlay/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.75, 0.14, 1)
+theme_override_font_sizes/font_size = 16
+text = "Score: 600"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="VictoryOverlay/VBox"]
+custom_minimum_size = Vector2(160, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+text = "PLAY AGAIN"
+
+[node name="GameOverOverlay" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08, 0.02, 0.02, 0.9)
+
+[node name="VBox" type="VBoxContainer" parent="GameOverOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Title" type="Label" parent="GameOverOverlay/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.25, 0.37, 1)
+theme_override_font_sizes/font_size = 48
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="RetryButton" type="Button" parent="GameOverOverlay/VBox"]
+custom_minimum_size = Vector2(160, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+text = "TRY AGAIN"
+
+
