@@ -1,8 +1,7 @@
 extends Control
 
-const TEXTURE_HEART = preload("res://assets/heart.png")
-const TEXTURE_PLAYER_FACE = preload("res://assets/player_face.png")
-const TEXTURE_BOX_X = preload("res://assets/box_x.png")
+const TEXTURE_HEART = preload("res://assets/default/heart.png")
+const TEXTURE_BOX_X = preload("res://assets/default/box_x.png")
 const TEXTURE_ARROW_UP = preload("res://assets/arrow_up.png")
 const TEXTURE_ARROW_DOWN = preload("res://assets/arrow_down.png")
 const TEXTURE_ARROW_LEFT = preload("res://assets/arrow_left.png")
@@ -274,15 +273,6 @@ func setup_board():
 	player_node.position = Vector2(player_pos) * cell_size + Vector2((cell_size - p_size)/2, (cell_size - p_size)/2)
 	player_node.add_theme_stylebox_override("panel", player_style)
 	board_container.add_child(player_node)
-	
-	var player_face = TextureRect.new()
-	player_face.texture = TEXTURE_PLAYER_FACE
-	player_face.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	player_face.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	var pf_size = p_size * (20.0 / 34.0)
-	player_face.size = Vector2(pf_size, pf_size)
-	player_face.position = (player_node.size - player_face.size) / 2
-	player_node.add_child(player_face)
 	
 	# Instantiate Boxes
 	box_nodes.clear()
