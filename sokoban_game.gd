@@ -1,29 +1,18 @@
 extends Control
 
-const TEXTURE_HEART = preload("res://assets/heart.png")
-const TEXTURE_PLAYER_FACE = preload("res://assets/player_face.png")
-const TEXTURE_BOX_X = preload("res://assets/box_x.png")
+var texture_heart: Texture2D
+var texture_box_x: Texture2D
+var current_theme = "default"
+var menu_callback: Callable
 const TEXTURE_ARROW_UP = preload("res://assets/arrow_up.png")
 const TEXTURE_ARROW_DOWN = preload("res://assets/arrow_down.png")
 const TEXTURE_ARROW_LEFT = preload("res://assets/arrow_left.png")
 const TEXTURE_ARROW_RIGHT = preload("res://assets/arrow_right.png")
 
-# Sokoban Level 1 Map Layout (Imabayashi Original 1982)
-const LEVEL_LAYOUT = [
-	"    #####          ",
-	"    #   #          ",
-	"    #$  #          ",
-	"  ###  $##         ",
-	"  #  $ $ #         ",
-	"### # ## #   ######",
-	"#   # ## #####  ..#",
-	"# $  $          ..#",
-	"##### ### #@##  ..#",
-	"    #     #########",
-	"    #######        "
-]
+var current_level_idx = 0
+var current_layout = []
 
-const CELL_SIZE = 44
+var cell_size = 44.0
 var cols = 19
 var rows = 11
 
@@ -57,17 +46,18 @@ var victory = false
 var astar = AStarGrid2D.new()
 
 # Styleboxes for dynamic rendering
-var wall_style = StyleBoxFlat.new()
-var floor_style = StyleBoxFlat.new()
-var goal_style = StyleBoxFlat.new()
-var box_style = StyleBoxFlat.new()
-var box_on_goal_style = StyleBoxFlat.new()
-var player_style = StyleBoxFlat.new()
+var wall_style = StyleBoxTexture.new()
+var floor_style = StyleBoxTexture.new()
+var goal_style = StyleBoxTexture.new()
+var box_style = StyleBoxTexture.new()
+var box_on_goal_style = StyleBoxTexture.new()
+var player_style = StyleBoxTexture.new()
 
 # HUD Nodes (will be linked from the scene)
 @onready var score_label = $HUD/ScoreLabel
 @onready var time_label = $HUD/TimeLabel
 @onready var lives_label = $HUD/LivesLabel
+@onready var title_label = $HUD/TitleLabel
 
 @onready var victory_overlay = $VictoryOverlay
 @onready var victory_score_label = $VictoryOverlay/VBox/ScoreLabel
@@ -100,18 +90,26 @@ func _ready():
 	# Position to the right of LivesLabel
 	hearts_container.position = lives_label.position + Vector2(80, 0)
 	
-	# Parse layout and initialize positions
-	parse_layout()
-	
 	# Setup AStarGrid2D
-	astar.region = Rect2i(0, 0, cols, rows)
-	astar.cell_size = Vector2(CELL_SIZE, CELL_SIZE)
 	astar.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
-	astar.update()
 	
-	# Setup visual board
-	setup_board()
+	# Load Stage 1
+	load_level(0)
 	
+	# Resize buttons container and create Menu button
+	$HUD/Buttons.size = Vector2(300, 50)
+	var undo_btn = $HUD/Buttons/UndoButton
+	var menu_btn = Button.new()
+	menu_btn.name = "MenuButton"
+	menu_btn.size = Vector2(90, 36)
+	menu_btn.position = Vector2(204, 0)
+	menu_btn.add_theme_font_size_override("font_size", 14)
+	menu_btn.add_theme_stylebox_override("normal", undo_btn.get_theme_stylebox("normal"))
+	menu_btn.add_theme_stylebox_override("pressed", undo_btn.get_theme_stylebox("pressed"))
+	menu_btn.add_theme_stylebox_override("hover", undo_btn.get_theme_stylebox("hover"))
+	menu_btn.pressed.connect(open_menu_dialog)
+	$HUD/Buttons.add_child(menu_btn)
+
 	# Connect UI buttons
 	$HUD/Buttons/UndoButton.pressed.connect(undo)
 	$HUD/Buttons/RestartButton.pressed.connect(reset_level)
@@ -123,13 +121,14 @@ func _ready():
 	$TouchControls/Dpad/Right.pressed.connect(func(): handle_direction_input(Vector2i.RIGHT))
 	
 	# Connect Overlays
-	$VictoryOverlay/VBox/RestartButton.pressed.connect(restart_full_game)
+	$VictoryOverlay/VBox/RestartButton.pressed.connect(load_next_level)
 	$GameOverOverlay/VBox/RetryButton.pressed.connect(restart_full_game)
 	
 	# Setup button Xbox prompts
 	setup_button_xbox_prompt($HUD/Buttons/UndoButton, "Y", Color(0.98, 0.82, 0.08), "UNDO")
 	setup_button_xbox_prompt($HUD/Buttons/RestartButton, "X", Color(0.25, 0.61, 1.0), "RESET")
-	setup_button_xbox_prompt($VictoryOverlay/VBox/RestartButton, "A", Color(0.29, 0.85, 0.38), "PLAY AGAIN")
+	setup_button_xbox_prompt(menu_btn, "M", Color(0.93, 0.28, 0.54), "MENU")
+	setup_button_xbox_prompt($VictoryOverlay/VBox/RestartButton, "A", Color(0.29, 0.85, 0.38), "NEXT STAGE")
 	setup_button_xbox_prompt($GameOverOverlay/VBox/RetryButton, "A", Color(0.29, 0.85, 0.38), "TRY AGAIN")
 	
 	# Prevent UI buttons from capturing keyboard/gamepad focus
@@ -174,59 +173,54 @@ func disable_all_button_focus(node: Node):
 	for child in node.get_children():
 		disable_all_button_focus(child)
 
+func load_theme_texture(theme_name: String, filename: String) -> Texture2D:
+	var path = "res://assets/" + theme_name + "/" + filename
+	if ResourceLoader.exists(path):
+		return load(path)
+	else:
+		return load("res://assets/default/" + filename)
+
 func setup_styles():
-	# Tech Wall
-	wall_style.bg_color = Color(0.28, 0.33, 0.42)
-	wall_style.set_corner_radius_all(6)
-	wall_style.border_width_left = 2
-	wall_style.border_width_top = 2
-	wall_style.border_color = Color(0.38, 0.45, 0.56)
+	wall_style.texture = load_theme_texture(current_theme, "wall.png")
+	floor_style.texture = load_theme_texture(current_theme, "floor.png")
+	goal_style.texture = load_theme_texture(current_theme, "goal.png")
+	box_style.texture = load_theme_texture(current_theme, "box.png")
+	box_on_goal_style.texture = load_theme_texture(current_theme, "box_on_goal.png")
+	player_style.texture = load_theme_texture(current_theme, "player.png")
+	texture_heart = load_theme_texture(current_theme, "heart.png")
+	texture_box_x = load_theme_texture(current_theme, "box_x.png")
+
+func load_level(idx: int):
+	current_level_idx = idx
+	var raw_layout = LevelsData.LEVELS[current_level_idx]
+	rows = raw_layout.size()
+	cols = 0
+	for line in raw_layout:
+		cols = max(cols, line.length())
 	
-	# Floor Grid
-	floor_style.bg_color = Color(0.12, 0.15, 0.20)
-	floor_style.border_width_left = 1
-	floor_style.border_width_top = 1
-	floor_style.border_width_right = 1
-	floor_style.border_width_bottom = 1
-	floor_style.border_color = Color(0.16, 0.20, 0.26)
+	# Calculate dynamic cell size to fit 880x480 screen area
+	var max_w = 880.0
+	var max_h = 480.0
+	var scale_x = max_w / cols
+	var scale_y = max_h / rows
+	cell_size = floor(min(44.0, min(scale_x, scale_y)))
 	
-	# Glowing Goal (Gold Ring)
-	goal_style.bg_color = Color(0.96, 0.77, 0.19, 0.25)
-	goal_style.border_width_left = 3
-	goal_style.border_width_top = 3
-	goal_style.border_width_right = 3
-	goal_style.border_width_bottom = 3
-	goal_style.border_color = Color(0.96, 0.77, 0.19, 0.8)
-	goal_style.set_corner_radius_all(10)
+	current_layout.clear()
+	for line in raw_layout:
+		var padded_line = line
+		while padded_line.length() < cols:
+			padded_line += " "
+		current_layout.append(padded_line)
 	
-	# Normal Box (Amber Box)
-	box_style.bg_color = Color(0.85, 0.55, 0.15)
-	box_style.set_corner_radius_all(6)
-	box_style.border_width_left = 3
-	box_style.border_width_top = 3
-	box_style.border_width_right = 3
-	box_style.border_width_bottom = 3
-	box_style.border_color = Color(0.95, 0.7, 0.3)
+	parse_layout()
 	
-	# Placed Box (Glowing Emerald Green Box)
-	box_on_goal_style.bg_color = Color(0.06, 0.7, 0.38)
-	box_on_goal_style.set_corner_radius_all(6)
-	box_on_goal_style.border_width_left = 3
-	box_on_goal_style.border_width_top = 3
-	box_on_goal_style.border_width_right = 3
-	box_on_goal_style.border_width_bottom = 3
-	box_on_goal_style.border_color = Color(0.2, 0.85, 0.5)
-	box_on_goal_style.shadow_color = Color(0.06, 0.7, 0.38, 0.45)
-	box_on_goal_style.shadow_size = 10
+	# Update AStarGrid2D
+	astar.region = Rect2i(0, 0, cols, rows)
+	astar.cell_size = Vector2(cell_size, cell_size)
+	astar.update()
 	
-	# Glowing Player (Pink circular bot)
-	player_style.bg_color = Color(0.93, 0.28, 0.54)
-	player_style.set_corner_radius_all(17)
-	player_style.border_width_left = 2
-	player_style.border_width_top = 2
-	player_style.border_color = Color(0.98, 0.5, 0.7)
-	player_style.shadow_color = Color(0.93, 0.28, 0.54, 0.4)
-	player_style.shadow_size = 8
+	setup_board()
+	update_hud()
 
 func parse_layout():
 	box_positions.clear()
@@ -234,7 +228,7 @@ func parse_layout():
 	goals.clear()
 	
 	for r in range(rows):
-		var line = LEVEL_LAYOUT[r]
+		var line = current_layout[r]
 		for c in range(cols):
 			var cell = line[c]
 			var pos = Vector2i(c, r)
@@ -247,72 +241,97 @@ func parse_layout():
 					box_positions.append(pos)
 				"@":
 					player_pos = pos
+				"*":
+					goals[pos] = true
+					box_positions.append(pos)
+				"+":
+					goals[pos] = true
+					player_pos = pos
+
+func get_inside_cells() -> Dictionary:
+	var inside = {}
+	if current_layout.is_empty():
+		return inside
+		
+	var queue = [player_pos]
+	var visited = {}
+	visited[player_pos] = true
+	
+	while not queue.is_empty():
+		var curr = queue.pop_front()
+		inside[curr] = true
+		
+		for dir in [Vector2i.UP, Vector2i.DOWN, Vector2i.LEFT, Vector2i.RIGHT]:
+			var neighbor = curr + dir
+			if neighbor.x >= 0 and neighbor.x < cols and neighbor.y >= 0 and neighbor.y < rows:
+				if not visited.has(neighbor) and current_layout[neighbor.y][neighbor.x] != "#":
+					visited[neighbor] = true
+					queue.append(neighbor)
+	return inside
 
 func setup_board():
 	if board_container:
 		board_container.queue_free()
 		
 	board_container = Control.new()
-	board_container.size = Vector2(cols * CELL_SIZE, rows * CELL_SIZE)
-	board_container.position = (Vector2(1152, 648) - board_container.size) / 2
-	board_container.position.y -= 25 # offset up for visual balance
+	board_container.size = Vector2(cols * cell_size, rows * cell_size)
+	var target_pos = (Vector2(1152, 648) - board_container.size) / 2
+	board_container.position = Vector2i(target_pos.x, target_pos.y - 25)
 	add_child(board_container)
 	move_child(board_container, 1) # Draw behind HUD and overlays (so overlays render on top of the board)
 	# Make sure board container receives input for clicking
 	board_container.mouse_filter = Control.MOUSE_FILTER_PASS
 	
+	var inside_cells = get_inside_cells()
+	
 	# Instantiating tiles
 	for r in range(rows):
 		for c in range(cols):
-			var cell = LEVEL_LAYOUT[r][c]
+			var cell = current_layout[r][c]
 			var pos = Vector2i(c, r)
 			
-			if cell != " ":
+			if inside_cells.has(pos):
 				# Floor
 				var floor_tile = Panel.new()
-				floor_tile.size = Vector2(CELL_SIZE, CELL_SIZE)
-				floor_tile.position = Vector2(c, r) * CELL_SIZE
+				floor_tile.size = Vector2(cell_size, cell_size)
+				floor_tile.position = Vector2(c, r) * cell_size
 				floor_tile.add_theme_stylebox_override("panel", floor_style)
 				board_container.add_child(floor_tile)
 				
 			if cell == "#":
 				# Wall
 				var wall_tile = Panel.new()
-				wall_tile.size = Vector2(CELL_SIZE - 2, CELL_SIZE - 2)
-				wall_tile.position = Vector2(c, r) * CELL_SIZE + Vector2(1, 1)
+				wall_tile.size = Vector2(cell_size, cell_size)
+				wall_tile.position = Vector2(c, r) * cell_size
 				wall_tile.add_theme_stylebox_override("panel", wall_style)
 				board_container.add_child(wall_tile)
 				
-			elif cell == ".":
+			elif cell == "." or cell == "*" or cell == "+":
 				# Goal
+				var goal_tile_size = cell_size * (20.0 / 44.0)
 				var goal_tile = Panel.new()
-				goal_tile.size = Vector2(20, 20)
-				goal_tile.position = Vector2(c, r) * CELL_SIZE + Vector2((CELL_SIZE - 20)/2, (CELL_SIZE - 20)/2)
+				goal_tile.size = Vector2(goal_tile_size, goal_tile_size)
+				goal_tile.position = (Vector2(c, r) * cell_size + Vector2((cell_size - goal_tile_size)/2, (cell_size - goal_tile_size)/2)).round()
 				goal_tile.add_theme_stylebox_override("panel", goal_style)
 				board_container.add_child(goal_tile)
 				
 	# Instantiate Player
+	var p_size = cell_size * (34.0 / 44.0)
 	player_node = Panel.new()
-	player_node.size = Vector2(34, 34)
-	player_node.position = Vector2(player_pos) * CELL_SIZE + Vector2((CELL_SIZE - 34)/2, (CELL_SIZE - 34)/2)
+	player_node.size = Vector2(p_size, p_size)
+	player_node.position = (Vector2(player_pos) * cell_size + Vector2((cell_size - p_size)/2, (cell_size - p_size)/2)).round()
 	player_node.add_theme_stylebox_override("panel", player_style)
 	board_container.add_child(player_node)
-	
-	var player_face = TextureRect.new()
-	player_face.texture = TEXTURE_PLAYER_FACE
-	player_face.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	player_face.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	player_face.size = Vector2(20, 20)
-	player_face.position = (player_node.size - player_face.size) / 2
-	player_node.add_child(player_face)
 	
 	# Instantiate Boxes
 	box_nodes.clear()
 	for i in range(box_positions.size()):
 		var b_pos = box_positions[i]
 		var box_tile = Panel.new()
-		box_tile.size = Vector2(CELL_SIZE - 6, CELL_SIZE - 6)
-		box_tile.position = Vector2(b_pos) * CELL_SIZE + Vector2(3, 3)
+		var b_size = cell_size * (38.0 / 44.0)
+		box_tile.size = Vector2(b_size, b_size)
+		var box_offset = (cell_size - b_size) / 2
+		box_tile.position = (Vector2(b_pos) * cell_size + Vector2(box_offset, box_offset)).round()
 		
 		if goals.has(b_pos):
 			box_tile.add_theme_stylebox_override("panel", box_on_goal_style)
@@ -324,11 +343,11 @@ func setup_board():
 		
 		# Crate style X mark
 		var x_mark = TextureRect.new()
-		x_mark.texture = TEXTURE_BOX_X
+		x_mark.texture = texture_box_x
 		x_mark.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		x_mark.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		x_mark.size = Vector2(24, 24)
-		x_mark.position = (box_tile.size - x_mark.size) / 2
+		x_mark.size = Vector2(b_size, b_size)
+		x_mark.position = Vector2(0, 0)
 		box_tile.add_child(x_mark)
 
 func _process(delta):
@@ -357,7 +376,247 @@ func handle_direction_input(dir: Vector2i):
 	path_to_walk.clear()
 	try_move(dir)
 
+func open_debug_goto_dialog():
+	if has_node("DebugGotoPopup"):
+		return
+		
+	var popup = Control.new()
+	popup.name = "DebugGotoPopup"
+	popup.size = Vector2(250, 80)
+	popup.position = (Vector2(1152, 648) - popup.size) / 2
+	add_child(popup)
+	
+	var bg_panel = Panel.new()
+	bg_panel.size = popup.size
+	var panel_style = StyleBoxFlat.new()
+	panel_style.bg_color = Color(0.08, 0.1, 0.15, 0.95)
+	panel_style.set_corner_radius_all(10)
+	panel_style.border_width_left = 2
+	panel_style.border_width_top = 2
+	panel_style.border_width_right = 2
+	panel_style.border_width_bottom = 2
+	panel_style.border_color = Color(0.22, 0.75, 0.97, 0.8)
+	panel_style.shadow_color = Color(0, 0, 0, 0.5)
+	panel_style.shadow_size = 15
+	bg_panel.add_theme_stylebox_override("panel", panel_style)
+	popup.add_child(bg_panel)
+	
+	var vbox = VBoxContainer.new()
+	vbox.size = popup.size - Vector2(20, 20)
+	vbox.position = Vector2(10, 10)
+	popup.add_child(vbox)
+	
+	var label = Label.new()
+	label.text = "GOTO STAGE (1-50):"
+	label.add_theme_color_override("font_color", Color(0.22, 0.75, 0.97))
+	label.add_theme_font_size_override("font_size", 12)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	vbox.add_child(label)
+	
+	var line_edit = LineEdit.new()
+	line_edit.placeholder_text = "Enter stage num..."
+	line_edit.alignment = HORIZONTAL_ALIGNMENT_CENTER
+	line_edit.max_length = 2
+	vbox.add_child(line_edit)
+	
+	line_edit.grab_focus.call_deferred()
+	
+	line_edit.text_submitted.connect(func(new_text: String):
+		var num = new_text.to_int()
+		if num >= 1 and num <= 50:
+			load_level(num - 1)
+			victory_overlay.visible = false
+			game_over_overlay.visible = false
+			victory = false
+			game_over = false
+		popup.queue_free()
+	)
+	
+	line_edit.gui_input.connect(func(ie: InputEvent):
+		if ie is InputEventKey and ie.pressed:
+			if ie.keycode == KEY_ESCAPE:
+				popup.queue_free()
+	)
+
+func open_menu_dialog():
+	if has_node("SokobanMenu"):
+		get_node("SokobanMenu").queue_free()
+		return
+		
+	var menu = Control.new()
+	menu.name = "SokobanMenu"
+	menu.size = Vector2(300, 240)
+	menu.position = (Vector2(1152, 648) - menu.size) / 2
+	add_child(menu)
+	
+	var bg_panel = Panel.new()
+	bg_panel.size = menu.size
+	var panel_style = StyleBoxFlat.new()
+	panel_style.bg_color = Color(0.08, 0.1, 0.15, 0.95)
+	panel_style.set_corner_radius_all(12)
+	panel_style.border_width_left = 2
+	panel_style.border_width_top = 2
+	panel_style.border_width_right = 2
+	panel_style.border_width_bottom = 2
+	panel_style.border_color = Color(0.93, 0.28, 0.54, 0.8)
+	panel_style.shadow_color = Color(0, 0, 0, 0.6)
+	panel_style.shadow_size = 20
+	bg_panel.add_theme_stylebox_override("panel", panel_style)
+	menu.add_child(bg_panel)
+	
+	var vbox = VBoxContainer.new()
+	vbox.name = "VBox"
+	vbox.size = menu.size - Vector2(40, 40)
+	vbox.position = Vector2(20, 20)
+	vbox.add_theme_constant_override("separation", 12)
+	menu.add_child(vbox)
+	
+	var title = Label.new()
+	title.name = "Title"
+	title.text = "SOKOBAN MENU"
+	title.add_theme_color_override("font_color", Color(0.93, 0.28, 0.54))
+	title.add_theme_font_size_override("font_size", 18)
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	vbox.add_child(title)
+	
+	var content_area = VBoxContainer.new()
+	content_area.name = "ContentArea"
+	content_area.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	content_area.add_theme_constant_override("separation", 10)
+	vbox.add_child(content_area)
+	
+	menu_callback = func():
+		for child in content_area.get_children():
+			child.queue_free()
+			
+		var theme_btn = Button.new()
+		theme_btn.text = "Theme"
+		theme_btn.custom_minimum_size = Vector2(0, 36)
+		content_area.add_child(theme_btn)
+		
+		var license_btn = Button.new()
+		license_btn.text = "License"
+		license_btn.custom_minimum_size = Vector2(0, 36)
+		content_area.add_child(license_btn)
+		
+		var close_btn = Button.new()
+		close_btn.text = "Close"
+		close_btn.custom_minimum_size = Vector2(0, 36)
+		content_area.add_child(close_btn)
+		
+		var base_btn = $HUD/Buttons/UndoButton
+		for btn in [theme_btn, license_btn, close_btn]:
+			btn.add_theme_stylebox_override("normal", base_btn.get_theme_stylebox("normal"))
+			btn.add_theme_stylebox_override("pressed", base_btn.get_theme_stylebox("pressed"))
+			btn.add_theme_stylebox_override("hover", base_btn.get_theme_stylebox("hover"))
+			btn.focus_mode = Control.FOCUS_NONE
+			
+		close_btn.pressed.connect(func(): menu.queue_free())
+		
+		theme_btn.pressed.connect(func():
+			for child in content_area.get_children():
+				child.queue_free()
+				
+			var def_btn = Button.new()
+			def_btn.text = "Default" + (" (Active)" if current_theme == "default" else "")
+			def_btn.custom_minimum_size = Vector2(0, 36)
+			content_area.add_child(def_btn)
+			
+			var kenney_btn = Button.new()
+			kenney_btn.text = "Kenney" + (" (Active)" if current_theme == "kenney" else "")
+			kenney_btn.custom_minimum_size = Vector2(0, 36)
+			content_area.add_child(kenney_btn)
+			
+			var back_btn = Button.new()
+			back_btn.text = "Back"
+			back_btn.custom_minimum_size = Vector2(0, 36)
+			content_area.add_child(back_btn)
+			
+			for btn in [def_btn, kenney_btn, back_btn]:
+				btn.add_theme_stylebox_override("normal", base_btn.get_theme_stylebox("normal"))
+				btn.add_theme_stylebox_override("pressed", base_btn.get_theme_stylebox("pressed"))
+				btn.add_theme_stylebox_override("hover", base_btn.get_theme_stylebox("hover"))
+				btn.focus_mode = Control.FOCUS_NONE
+				
+			back_btn.pressed.connect(menu_callback)
+			
+			def_btn.pressed.connect(func():
+				current_theme = "default"
+				setup_styles()
+				setup_board()
+				update_hud()
+				menu.queue_free()
+			)
+			
+			kenney_btn.pressed.connect(func():
+				current_theme = "kenney"
+				setup_styles()
+				setup_board()
+				update_hud()
+				menu.queue_free()
+			)
+		)
+		
+		license_btn.pressed.connect(func():
+			menu.size = Vector2(400, 320)
+			menu.position = (Vector2(1152, 648) - menu.size) / 2
+			bg_panel.size = menu.size
+			vbox.size = menu.size - Vector2(40, 40)
+			
+			for child in content_area.get_children():
+				child.queue_free()
+				
+			var scroll = ScrollContainer.new()
+			scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+			content_area.add_child(scroll)
+			
+			var text_lbl = Label.new()
+			text_lbl.text = "LICENSE INFORMATION\n\n" \
+				+ "XSokoban Map Data:\n" \
+				+ "Public Domain / Benchmark Set\n\n" \
+				+ "Kenney Sokoban Assets:\n" \
+				+ "CC0 1.0 Universal\n" \
+				+ "Free to use in personal/commercial work\n\n" \
+				+ "Little Sokoban Game:\n" \
+				+ "MIT License\n" \
+				+ "Copyright (c) 2026 Ringos"
+			text_lbl.add_theme_font_size_override("font_size", 12)
+			text_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			scroll.add_child(text_lbl)
+			
+			var back_btn = Button.new()
+			back_btn.text = "Back"
+			back_btn.custom_minimum_size = Vector2(0, 36)
+			content_area.add_child(back_btn)
+			
+			back_btn.add_theme_stylebox_override("normal", base_btn.get_theme_stylebox("normal"))
+			back_btn.add_theme_stylebox_override("pressed", base_btn.get_theme_stylebox("pressed"))
+			back_btn.add_theme_stylebox_override("hover", base_btn.get_theme_stylebox("hover"))
+			back_btn.focus_mode = Control.FOCUS_NONE
+			
+			back_btn.pressed.connect(func():
+				menu.size = Vector2(300, 240)
+				menu.position = (Vector2(1152, 648) - menu.size) / 2
+				bg_panel.size = menu.size
+				vbox.size = menu.size - Vector2(40, 40)
+				menu_callback.call()
+			)
+		)
+		
+	menu_callback.call()
+
 func _unhandled_input(event):
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_ESCAPE or event.keycode == KEY_M:
+			if not has_node("DebugGotoPopup"):
+				open_menu_dialog()
+				return
+				
+	if OS.is_debug_build() and event is InputEventKey and event.pressed:
+		if event.keycode == KEY_G:
+			open_debug_goto_dialog()
+			return
+			
 	if is_animating or victory or game_over:
 		return
 		
@@ -381,7 +640,7 @@ func _input(event):
 	# Release UI focus if keyboard or gamepad input is detected
 	if event is InputEventKey or event is InputEventJoypadButton or event is InputEventJoypadMotion:
 		var focused = get_viewport().gui_get_focus_owner()
-		if focused:
+		if focused and not focused is LineEdit:
 			focused.release_focus()
 			
 	# Xbox Controller actions mapping
@@ -423,7 +682,7 @@ func _input(event):
 					# Short click -> pathfind!
 					if swipe_dist.length() < 10.0 and board_container:
 						var local_click = board_container.get_local_mouse_position()
-						var grid_click = Vector2i(local_click / CELL_SIZE)
+						var grid_click = Vector2i(local_click / cell_size)
 						# Ensure inside layout boundaries
 						if grid_click.x >= 0 and grid_click.x < cols and grid_click.y >= 0 and grid_click.y < rows:
 							pathfind_to(grid_click)
@@ -494,14 +753,16 @@ func animate_move(player_target: Vector2i, box_idx: int = -1, box_target: Vector
 	var tween = create_tween()
 	
 	# Interpolate player
-	var p_offset = (CELL_SIZE - 34) / 2
-	var player_pixel_pos = Vector2(player_target) * CELL_SIZE + Vector2(p_offset, p_offset)
+	var p_size = cell_size * (34.0 / 44.0)
+	var p_offset = (cell_size - p_size) / 2
+	var player_pixel_pos = (Vector2(player_target) * cell_size + Vector2(p_offset, p_offset)).round()
 	tween.tween_property(player_node, "position", player_pixel_pos, 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	
 	# Interpolate box in parallel
 	if box_idx != -1:
-		var b_offset = 3
-		var box_pixel_pos = Vector2(box_target) * CELL_SIZE + Vector2(b_offset, b_offset)
+		var b_size = cell_size * (38.0 / 44.0)
+		var b_offset = (cell_size - b_size) / 2
+		var box_pixel_pos = (Vector2(box_target) * cell_size + Vector2(b_offset, b_offset)).round()
 		var tween_box = create_tween()
 		tween_box.tween_property(box_nodes[box_idx], "position", box_pixel_pos, 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 		
@@ -572,6 +833,13 @@ func check_victory():
 		walking = false
 		path_to_walk.clear()
 		victory_score_label.text = "Score: %d | Time Left: %ds" % [score, int(time_remaining)]
+		
+		# Set text in the next stage button dynamically
+		if current_level_idx < 49:
+			setup_button_xbox_prompt($VictoryOverlay/VBox/RestartButton, "A", Color(0.29, 0.85, 0.38), "NEXT STAGE")
+		else:
+			setup_button_xbox_prompt($VictoryOverlay/VBox/RestartButton, "A", Color(0.29, 0.85, 0.38), "PLAY AGAIN")
+			
 		victory_overlay.visible = true
 
 func lose_life():
@@ -588,14 +856,7 @@ func lose_life():
 
 func reset_level():
 	# Soft reset of positions, does not reset score/lives
-	parse_layout()
-	setup_board()
-	undo_stack.clear()
-	time_remaining = 300.0
-	walking = false
-	path_to_walk.clear()
-	is_animating = false
-	update_hud()
+	load_level(current_level_idx)
 
 func restart_full_game():
 	# Hard reset back to initial setup
@@ -605,11 +866,22 @@ func restart_full_game():
 	victory = false
 	victory_overlay.visible = false
 	game_over_overlay.visible = false
-	reset_level()
+	load_level(0)
+
+func load_next_level():
+	victory_overlay.visible = false
+	if current_level_idx < 49:
+		load_level(current_level_idx + 1)
+	else:
+		restart_full_game()
 
 func update_hud():
 	score_label.text = "SCORE: %d" % score
 	time_label.text = "TIME: %ds" % int(time_remaining)
+	
+	# Update stage indicator title
+	if title_label:
+		title_label.text = "SOKOBAN - STAGE %d / 50" % (current_level_idx + 1)
 	
 	# Update hearts inside hearts_container
 	if hearts_container:
@@ -619,7 +891,7 @@ func update_hud():
 		# Add new heart icons
 		for i in range(lives):
 			var heart_rect = TextureRect.new()
-			heart_rect.texture = TEXTURE_HEART
+			heart_rect.texture = texture_heart
 			heart_rect.custom_minimum_size = Vector2(24, 24)
 			heart_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 			heart_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
