@@ -177,7 +177,7 @@ func load_level(idx: int):
 	var max_h = 480.0
 	var scale_x = max_w / cols
 	var scale_y = max_h / rows
-	cell_size = min(44.0, min(scale_x, scale_y))
+	cell_size = floor(min(44.0, min(scale_x, scale_y)))
 	
 	current_layout.clear()
 	for line in raw_layout:
@@ -222,18 +222,41 @@ func parse_layout():
 					goals[pos] = true
 					player_pos = pos
 
+func get_inside_cells() -> Dictionary:
+	var inside = {}
+	if current_layout.is_empty():
+		return inside
+		
+	var queue = [player_pos]
+	var visited = {}
+	visited[player_pos] = true
+	
+	while not queue.is_empty():
+		var curr = queue.pop_front()
+		inside[curr] = true
+		
+		for dir in [Vector2i.UP, Vector2i.DOWN, Vector2i.LEFT, Vector2i.RIGHT]:
+			var neighbor = curr + dir
+			if neighbor.x >= 0 and neighbor.x < cols and neighbor.y >= 0 and neighbor.y < rows:
+				if not visited.has(neighbor) and current_layout[neighbor.y][neighbor.x] != "#":
+					visited[neighbor] = true
+					queue.append(neighbor)
+	return inside
+
 func setup_board():
 	if board_container:
 		board_container.queue_free()
 		
 	board_container = Control.new()
 	board_container.size = Vector2(cols * cell_size, rows * cell_size)
-	board_container.position = (Vector2(1152, 648) - board_container.size) / 2
-	board_container.position.y -= 25 # offset up for visual balance
+	var target_pos = (Vector2(1152, 648) - board_container.size) / 2
+	board_container.position = Vector2i(target_pos.x, target_pos.y - 25)
 	add_child(board_container)
 	move_child(board_container, 1) # Draw behind HUD and overlays (so overlays render on top of the board)
 	# Make sure board container receives input for clicking
 	board_container.mouse_filter = Control.MOUSE_FILTER_PASS
+	
+	var inside_cells = get_inside_cells()
 	
 	# Instantiating tiles
 	for r in range(rows):
@@ -241,7 +264,7 @@ func setup_board():
 			var cell = current_layout[r][c]
 			var pos = Vector2i(c, r)
 			
-			if cell != " ":
+			if inside_cells.has(pos):
 				# Floor
 				var floor_tile = Panel.new()
 				floor_tile.size = Vector2(cell_size, cell_size)
@@ -262,7 +285,7 @@ func setup_board():
 				var goal_tile_size = cell_size * (20.0 / 44.0)
 				var goal_tile = Panel.new()
 				goal_tile.size = Vector2(goal_tile_size, goal_tile_size)
-				goal_tile.position = Vector2(c, r) * cell_size + Vector2((cell_size - goal_tile_size)/2, (cell_size - goal_tile_size)/2)
+				goal_tile.position = (Vector2(c, r) * cell_size + Vector2((cell_size - goal_tile_size)/2, (cell_size - goal_tile_size)/2)).round()
 				goal_tile.add_theme_stylebox_override("panel", goal_style)
 				board_container.add_child(goal_tile)
 				
@@ -270,7 +293,7 @@ func setup_board():
 	var p_size = cell_size * (34.0 / 44.0)
 	player_node = Panel.new()
 	player_node.size = Vector2(p_size, p_size)
-	player_node.position = Vector2(player_pos) * cell_size + Vector2((cell_size - p_size)/2, (cell_size - p_size)/2)
+	player_node.position = (Vector2(player_pos) * cell_size + Vector2((cell_size - p_size)/2, (cell_size - p_size)/2)).round()
 	player_node.add_theme_stylebox_override("panel", player_style)
 	board_container.add_child(player_node)
 	
@@ -282,7 +305,7 @@ func setup_board():
 		var b_size = cell_size * (38.0 / 44.0)
 		box_tile.size = Vector2(b_size, b_size)
 		var box_offset = (cell_size - b_size) / 2
-		box_tile.position = Vector2(b_pos) * cell_size + Vector2(box_offset, box_offset)
+		box_tile.position = (Vector2(b_pos) * cell_size + Vector2(box_offset, box_offset)).round()
 		
 		if goals.has(b_pos):
 			box_tile.add_theme_stylebox_override("panel", box_on_goal_style)
@@ -297,9 +320,8 @@ func setup_board():
 		x_mark.texture = TEXTURE_BOX_X
 		x_mark.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		x_mark.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		var xm_size = b_size * (24.0 / 38.0)
-		x_mark.size = Vector2(xm_size, xm_size)
-		x_mark.position = (box_tile.size - x_mark.size) / 2
+		x_mark.size = Vector2(b_size, b_size)
+		x_mark.position = Vector2(0, 0)
 		box_tile.add_child(x_mark)
 
 func _process(delta):
@@ -534,14 +556,14 @@ func animate_move(player_target: Vector2i, box_idx: int = -1, box_target: Vector
 	# Interpolate player
 	var p_size = cell_size * (34.0 / 44.0)
 	var p_offset = (cell_size - p_size) / 2
-	var player_pixel_pos = Vector2(player_target) * cell_size + Vector2(p_offset, p_offset)
+	var player_pixel_pos = (Vector2(player_target) * cell_size + Vector2(p_offset, p_offset)).round()
 	tween.tween_property(player_node, "position", player_pixel_pos, 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	
 	# Interpolate box in parallel
 	if box_idx != -1:
 		var b_size = cell_size * (38.0 / 44.0)
 		var b_offset = (cell_size - b_size) / 2
-		var box_pixel_pos = Vector2(box_target) * cell_size + Vector2(b_offset, b_offset)
+		var box_pixel_pos = (Vector2(box_target) * cell_size + Vector2(b_offset, b_offset)).round()
 		var tween_box = create_tween()
 		tween_box.tween_property(box_nodes[box_idx], "position", box_pixel_pos, 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 		
