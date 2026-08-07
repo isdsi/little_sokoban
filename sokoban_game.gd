@@ -1,7 +1,9 @@
 extends Control
 
-const TEXTURE_HEART = preload("res://assets/default/heart.png")
-const TEXTURE_BOX_X = preload("res://assets/default/box_x.png")
+var texture_heart: Texture2D
+var texture_box_x: Texture2D
+var current_theme = "default"
+var menu_callback: Callable
 const TEXTURE_ARROW_UP = preload("res://assets/arrow_up.png")
 const TEXTURE_ARROW_DOWN = preload("res://assets/arrow_down.png")
 const TEXTURE_ARROW_LEFT = preload("res://assets/arrow_left.png")
@@ -94,6 +96,20 @@ func _ready():
 	# Load Stage 1
 	load_level(0)
 	
+	# Resize buttons container and create Menu button
+	$HUD/Buttons.size = Vector2(300, 50)
+	var undo_btn = $HUD/Buttons/UndoButton
+	var menu_btn = Button.new()
+	menu_btn.name = "MenuButton"
+	menu_btn.size = Vector2(90, 36)
+	menu_btn.position = Vector2(204, 0)
+	menu_btn.add_theme_font_size_override("font_size", 14)
+	menu_btn.add_theme_stylebox_override("normal", undo_btn.get_theme_stylebox("normal"))
+	menu_btn.add_theme_stylebox_override("pressed", undo_btn.get_theme_stylebox("pressed"))
+	menu_btn.add_theme_stylebox_override("hover", undo_btn.get_theme_stylebox("hover"))
+	menu_btn.pressed.connect(open_menu_dialog)
+	$HUD/Buttons.add_child(menu_btn)
+
 	# Connect UI buttons
 	$HUD/Buttons/UndoButton.pressed.connect(undo)
 	$HUD/Buttons/RestartButton.pressed.connect(reset_level)
@@ -111,6 +127,7 @@ func _ready():
 	# Setup button Xbox prompts
 	setup_button_xbox_prompt($HUD/Buttons/UndoButton, "Y", Color(0.98, 0.82, 0.08), "UNDO")
 	setup_button_xbox_prompt($HUD/Buttons/RestartButton, "X", Color(0.25, 0.61, 1.0), "RESET")
+	setup_button_xbox_prompt(menu_btn, "M", Color(0.93, 0.28, 0.54), "MENU")
 	setup_button_xbox_prompt($VictoryOverlay/VBox/RestartButton, "A", Color(0.29, 0.85, 0.38), "NEXT STAGE")
 	setup_button_xbox_prompt($GameOverOverlay/VBox/RetryButton, "A", Color(0.29, 0.85, 0.38), "TRY AGAIN")
 	
@@ -156,13 +173,22 @@ func disable_all_button_focus(node: Node):
 	for child in node.get_children():
 		disable_all_button_focus(child)
 
+func load_theme_texture(theme_name: String, filename: String) -> Texture2D:
+	var path = "res://assets/" + theme_name + "/" + filename
+	if ResourceLoader.exists(path):
+		return load(path)
+	else:
+		return load("res://assets/default/" + filename)
+
 func setup_styles():
-	wall_style.texture = preload("res://assets/default/wall.png")
-	floor_style.texture = preload("res://assets/default/floor.png")
-	goal_style.texture = preload("res://assets/default/goal.png")
-	box_style.texture = preload("res://assets/default/box.png")
-	box_on_goal_style.texture = preload("res://assets/default/box_on_goal.png")
-	player_style.texture = preload("res://assets/default/player.png")
+	wall_style.texture = load_theme_texture(current_theme, "wall.png")
+	floor_style.texture = load_theme_texture(current_theme, "floor.png")
+	goal_style.texture = load_theme_texture(current_theme, "goal.png")
+	box_style.texture = load_theme_texture(current_theme, "box.png")
+	box_on_goal_style.texture = load_theme_texture(current_theme, "box_on_goal.png")
+	player_style.texture = load_theme_texture(current_theme, "player.png")
+	texture_heart = load_theme_texture(current_theme, "heart.png")
+	texture_box_x = load_theme_texture(current_theme, "box_x.png")
 
 func load_level(idx: int):
 	current_level_idx = idx
@@ -317,7 +343,7 @@ func setup_board():
 		
 		# Crate style X mark
 		var x_mark = TextureRect.new()
-		x_mark.texture = TEXTURE_BOX_X
+		x_mark.texture = texture_box_x
 		x_mark.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		x_mark.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		x_mark.size = Vector2(b_size, b_size)
@@ -412,7 +438,180 @@ func open_debug_goto_dialog():
 				popup.queue_free()
 	)
 
+func open_menu_dialog():
+	if has_node("SokobanMenu"):
+		get_node("SokobanMenu").queue_free()
+		return
+		
+	var menu = Control.new()
+	menu.name = "SokobanMenu"
+	menu.size = Vector2(300, 240)
+	menu.position = (Vector2(1152, 648) - menu.size) / 2
+	add_child(menu)
+	
+	var bg_panel = Panel.new()
+	bg_panel.size = menu.size
+	var panel_style = StyleBoxFlat.new()
+	panel_style.bg_color = Color(0.08, 0.1, 0.15, 0.95)
+	panel_style.set_corner_radius_all(12)
+	panel_style.border_width_left = 2
+	panel_style.border_width_top = 2
+	panel_style.border_width_right = 2
+	panel_style.border_width_bottom = 2
+	panel_style.border_color = Color(0.93, 0.28, 0.54, 0.8)
+	panel_style.shadow_color = Color(0, 0, 0, 0.6)
+	panel_style.shadow_size = 20
+	bg_panel.add_theme_stylebox_override("panel", panel_style)
+	menu.add_child(bg_panel)
+	
+	var vbox = VBoxContainer.new()
+	vbox.name = "VBox"
+	vbox.size = menu.size - Vector2(40, 40)
+	vbox.position = Vector2(20, 20)
+	vbox.add_theme_constant_override("separation", 12)
+	menu.add_child(vbox)
+	
+	var title = Label.new()
+	title.name = "Title"
+	title.text = "SOKOBAN MENU"
+	title.add_theme_color_override("font_color", Color(0.93, 0.28, 0.54))
+	title.add_theme_font_size_override("font_size", 18)
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	vbox.add_child(title)
+	
+	var content_area = VBoxContainer.new()
+	content_area.name = "ContentArea"
+	content_area.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	content_area.add_theme_constant_override("separation", 10)
+	vbox.add_child(content_area)
+	
+	menu_callback = func():
+		for child in content_area.get_children():
+			child.queue_free()
+			
+		var theme_btn = Button.new()
+		theme_btn.text = "Theme"
+		theme_btn.custom_minimum_size = Vector2(0, 36)
+		content_area.add_child(theme_btn)
+		
+		var license_btn = Button.new()
+		license_btn.text = "License"
+		license_btn.custom_minimum_size = Vector2(0, 36)
+		content_area.add_child(license_btn)
+		
+		var close_btn = Button.new()
+		close_btn.text = "Close"
+		close_btn.custom_minimum_size = Vector2(0, 36)
+		content_area.add_child(close_btn)
+		
+		var base_btn = $HUD/Buttons/UndoButton
+		for btn in [theme_btn, license_btn, close_btn]:
+			btn.add_theme_stylebox_override("normal", base_btn.get_theme_stylebox("normal"))
+			btn.add_theme_stylebox_override("pressed", base_btn.get_theme_stylebox("pressed"))
+			btn.add_theme_stylebox_override("hover", base_btn.get_theme_stylebox("hover"))
+			btn.focus_mode = Control.FOCUS_NONE
+			
+		close_btn.pressed.connect(func(): menu.queue_free())
+		
+		theme_btn.pressed.connect(func():
+			for child in content_area.get_children():
+				child.queue_free()
+				
+			var def_btn = Button.new()
+			def_btn.text = "Default" + (" (Active)" if current_theme == "default" else "")
+			def_btn.custom_minimum_size = Vector2(0, 36)
+			content_area.add_child(def_btn)
+			
+			var kenney_btn = Button.new()
+			kenney_btn.text = "Kenney" + (" (Active)" if current_theme == "kenney" else "")
+			kenney_btn.custom_minimum_size = Vector2(0, 36)
+			content_area.add_child(kenney_btn)
+			
+			var back_btn = Button.new()
+			back_btn.text = "Back"
+			back_btn.custom_minimum_size = Vector2(0, 36)
+			content_area.add_child(back_btn)
+			
+			for btn in [def_btn, kenney_btn, back_btn]:
+				btn.add_theme_stylebox_override("normal", base_btn.get_theme_stylebox("normal"))
+				btn.add_theme_stylebox_override("pressed", base_btn.get_theme_stylebox("pressed"))
+				btn.add_theme_stylebox_override("hover", base_btn.get_theme_stylebox("hover"))
+				btn.focus_mode = Control.FOCUS_NONE
+				
+			back_btn.pressed.connect(menu_callback)
+			
+			def_btn.pressed.connect(func():
+				current_theme = "default"
+				setup_styles()
+				setup_board()
+				update_hud()
+				menu.queue_free()
+			)
+			
+			kenney_btn.pressed.connect(func():
+				current_theme = "kenney"
+				setup_styles()
+				setup_board()
+				update_hud()
+				menu.queue_free()
+			)
+		)
+		
+		license_btn.pressed.connect(func():
+			menu.size = Vector2(400, 320)
+			menu.position = (Vector2(1152, 648) - menu.size) / 2
+			bg_panel.size = menu.size
+			vbox.size = menu.size - Vector2(40, 40)
+			
+			for child in content_area.get_children():
+				child.queue_free()
+				
+			var scroll = ScrollContainer.new()
+			scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+			content_area.add_child(scroll)
+			
+			var text_lbl = Label.new()
+			text_lbl.text = "LICENSE INFORMATION\n\n" \
+				+ "XSokoban Map Data:\n" \
+				+ "Public Domain / Benchmark Set\n\n" \
+				+ "Kenney Sokoban Assets:\n" \
+				+ "CC0 1.0 Universal\n" \
+				+ "Free to use in personal/commercial work\n\n" \
+				+ "Little Sokoban Game:\n" \
+				+ "MIT License\n" \
+				+ "Copyright (c) 2026 Ringos"
+			text_lbl.add_theme_font_size_override("font_size", 12)
+			text_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			scroll.add_child(text_lbl)
+			
+			var back_btn = Button.new()
+			back_btn.text = "Back"
+			back_btn.custom_minimum_size = Vector2(0, 36)
+			content_area.add_child(back_btn)
+			
+			back_btn.add_theme_stylebox_override("normal", base_btn.get_theme_stylebox("normal"))
+			back_btn.add_theme_stylebox_override("pressed", base_btn.get_theme_stylebox("pressed"))
+			back_btn.add_theme_stylebox_override("hover", base_btn.get_theme_stylebox("hover"))
+			back_btn.focus_mode = Control.FOCUS_NONE
+			
+			back_btn.pressed.connect(func():
+				menu.size = Vector2(300, 240)
+				menu.position = (Vector2(1152, 648) - menu.size) / 2
+				bg_panel.size = menu.size
+				vbox.size = menu.size - Vector2(40, 40)
+				menu_callback.call()
+			)
+		)
+		
+	menu_callback.call()
+
 func _unhandled_input(event):
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_ESCAPE or event.keycode == KEY_M:
+			if not has_node("DebugGotoPopup"):
+				open_menu_dialog()
+				return
+				
 	if OS.is_debug_build() and event is InputEventKey and event.pressed:
 		if event.keycode == KEY_G:
 			open_debug_goto_dialog()
@@ -692,7 +891,7 @@ func update_hud():
 		# Add new heart icons
 		for i in range(lives):
 			var heart_rect = TextureRect.new()
-			heart_rect.texture = TEXTURE_HEART
+			heart_rect.texture = texture_heart
 			heart_rect.custom_minimum_size = Vector2(24, 24)
 			heart_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 			heart_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED

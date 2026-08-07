@@ -23,6 +23,14 @@ A classic **Sokoban Level 1** game project built with the Godot 4 engine. It rep
    - **Layering Correction**: Overlays render on top of the stage walls, ensuring menus are fully legible and not obscured.
    - **Animations**: Moving entities animate smoothly via Tweens.
 
+## In-game Themes
+
+You can dynamically switch between themes using the `MENU` button at the bottom of the screen (or by pressing `M` or `Escape` keys).
+
+| Default Theme (Modern Style) | Kenney Theme (Classic Cartoon Style) |
+|:---:|:---:|
+| ![Default Theme](images/default.png) | ![Kenney Theme](images/kenney.png) |
+
 ## Stage Configurations (Original Level 1–50)
 
 This project features the complete set of **all 50 original classic Sokoban stages** designed by Hiroyuki Imabayashi. The full stage data is stored and managed within the [levels_data.gd](file:///d:/source/repos/little_sokoban/levels_data.gd) file, which is loaded dynamically as the player progresses. (Source: [XSokoban.xsb](https://raw.githubusercontent.com/x-hgg-x/sokoban-go/master/levels/XSokoban.xsb) from [x-hgg-x/sokoban-go](https://github.com/x-hgg-x/sokoban-go) repository)

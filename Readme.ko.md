@@ -23,6 +23,14 @@ Godot 4 엔진 기반으로 개발된 클래식 **소코반 1스테이지(Sokoba
    - **레이어 개선**: 승리 및 게임 오버 오버레이 화면이 스테이지 벽 상단에 완벽하게 덮이도록 드로우 인덱스를 제어하여 텍스트 가독성을 확보했습니다.
    - **애니메이션**: 플레이어의 한 보폭 및 상자가 밀릴 때 Tween 애니메이션 효과가 적용되어 부드러운 움직임을 제공합니다.
 
+## 인게임 테마 (In-game Themes)
+
+게임 화면 하단의 `MENU` 버튼(또는 `M`, `Escape` 키)을 통해 실시간으로 인게임 테마를 전환할 수 있습니다.
+
+| Default 테마 (기본 모던 스타일) | Kenney 테마 (아기자기한 클래식 스타일) |
+|:---:|:---:|
+| ![Default Theme](images/default.png) | ![Kenney Theme](images/kenney.png) |
+
 ## 스테이지 구성 (오리지널 1~50스테이지)
 
 이 프로젝트는 1982년 히로유키 이마바야시가 설계한 **오리지널 클래식 소코반 50개 스테이지 전체**를 수록하고 있습니다. 전체 맵 구성 정보는 [levels_data.gd](file:///d:/source/repos/little_sokoban/levels_data.gd) 파일에서 일괄 관리되며, 게임 진행에 따라 동적으로 로드됩니다. (출처: [x-hgg-x/sokoban-go](https://github.com/x-hgg-x/sokoban-go) 저장소의 [XSokoban.xsb](https://raw.githubusercontent.com/x-hgg-x/sokoban-go/master/levels/XSokoban.xsb) 파일)
