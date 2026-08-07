@@ -45,12 +45,12 @@ var victory = false
 var astar = AStarGrid2D.new()
 
 # Styleboxes for dynamic rendering
-var wall_style = StyleBoxFlat.new()
-var floor_style = StyleBoxFlat.new()
-var goal_style = StyleBoxFlat.new()
-var box_style = StyleBoxFlat.new()
-var box_on_goal_style = StyleBoxFlat.new()
-var player_style = StyleBoxFlat.new()
+var wall_style = StyleBoxTexture.new()
+var floor_style = StyleBoxTexture.new()
+var goal_style = StyleBoxTexture.new()
+var box_style = StyleBoxTexture.new()
+var box_on_goal_style = StyleBoxTexture.new()
+var player_style = StyleBoxTexture.new()
 
 # HUD Nodes (will be linked from the scene)
 @onready var score_label = $HUD/ScoreLabel
@@ -158,58 +158,12 @@ func disable_all_button_focus(node: Node):
 		disable_all_button_focus(child)
 
 func setup_styles():
-	# Tech Wall
-	wall_style.bg_color = Color(0.28, 0.33, 0.42)
-	wall_style.set_corner_radius_all(6)
-	wall_style.border_width_left = 2
-	wall_style.border_width_top = 2
-	wall_style.border_color = Color(0.38, 0.45, 0.56)
-	
-	# Floor Grid
-	floor_style.bg_color = Color(0.12, 0.15, 0.20)
-	floor_style.border_width_left = 1
-	floor_style.border_width_top = 1
-	floor_style.border_width_right = 1
-	floor_style.border_width_bottom = 1
-	floor_style.border_color = Color(0.16, 0.20, 0.26)
-	
-	# Glowing Goal (Gold Ring)
-	goal_style.bg_color = Color(0.96, 0.77, 0.19, 0.25)
-	goal_style.border_width_left = 3
-	goal_style.border_width_top = 3
-	goal_style.border_width_right = 3
-	goal_style.border_width_bottom = 3
-	goal_style.border_color = Color(0.96, 0.77, 0.19, 0.8)
-	goal_style.set_corner_radius_all(10)
-	
-	# Normal Box (Amber Box)
-	box_style.bg_color = Color(0.85, 0.55, 0.15)
-	box_style.set_corner_radius_all(6)
-	box_style.border_width_left = 3
-	box_style.border_width_top = 3
-	box_style.border_width_right = 3
-	box_style.border_width_bottom = 3
-	box_style.border_color = Color(0.95, 0.7, 0.3)
-	
-	# Placed Box (Glowing Emerald Green Box)
-	box_on_goal_style.bg_color = Color(0.06, 0.7, 0.38)
-	box_on_goal_style.set_corner_radius_all(6)
-	box_on_goal_style.border_width_left = 3
-	box_on_goal_style.border_width_top = 3
-	box_on_goal_style.border_width_right = 3
-	box_on_goal_style.border_width_bottom = 3
-	box_on_goal_style.border_color = Color(0.2, 0.85, 0.5)
-	box_on_goal_style.shadow_color = Color(0.06, 0.7, 0.38, 0.45)
-	box_on_goal_style.shadow_size = 10
-	
-	# Glowing Player (Pink circular bot)
-	player_style.bg_color = Color(0.93, 0.28, 0.54)
-	player_style.set_corner_radius_all(17)
-	player_style.border_width_left = 2
-	player_style.border_width_top = 2
-	player_style.border_color = Color(0.98, 0.5, 0.7)
-	player_style.shadow_color = Color(0.93, 0.28, 0.54, 0.4)
-	player_style.shadow_size = 8
+	wall_style.texture = preload("res://assets/default/wall.png")
+	floor_style.texture = preload("res://assets/default/floor.png")
+	goal_style.texture = preload("res://assets/default/goal.png")
+	box_style.texture = preload("res://assets/default/box.png")
+	box_on_goal_style.texture = preload("res://assets/default/box_on_goal.png")
+	player_style.texture = preload("res://assets/default/player.png")
 
 func load_level(idx: int):
 	current_level_idx = idx
@@ -299,9 +253,8 @@ func setup_board():
 			if cell == "#":
 				# Wall
 				var wall_tile = Panel.new()
-				var border_offset = max(1.0, cell_size * (1.0 / 44.0))
-				wall_tile.size = Vector2(cell_size - border_offset * 2, cell_size - border_offset * 2)
-				wall_tile.position = Vector2(c, r) * cell_size + Vector2(border_offset, border_offset)
+				wall_tile.size = Vector2(cell_size, cell_size)
+				wall_tile.position = Vector2(c, r) * cell_size
 				wall_tile.add_theme_stylebox_override("panel", wall_style)
 				board_container.add_child(wall_tile)
 				
