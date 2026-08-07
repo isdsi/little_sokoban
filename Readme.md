@@ -89,6 +89,12 @@ To run the Web build, you must run a local HTTP server inside the `build/web` fo
 
 You can build the game using the Godot command-line interface. Before exporting, ensure you have configured the corresponding export presets in the Godot Editor (Project -> Export), which creates the `export_presets.cfg` file.
 
+Additionally, you must have the **Export Templates** installed for your Godot version. If you are building on a clean machine or in a new environment, you can run the provided PowerShell setup script to automatically download and install the matching export templates:
+
+```powershell
+./install_templates.ps1
+```
+
 First, create the output directories:
 ```bash
 mkdir -p build/web build/android build/ios build/windows build/macos

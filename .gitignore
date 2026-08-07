@@ -37,4 +37,4 @@ Thumbs.db
 # 개인 설정 및 로컬 데이터 (팀원 간 공유 방지)
 # ==========================================
 .import/
-export_presets.cfg
+# export_presets.cfg

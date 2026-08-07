@@ -89,6 +89,12 @@ Godot 4 엔진 기반으로 개발된 클래식 **소코반 1스테이지(Sokoba
 
 Godot 커맨드 라인 인터페이스(CLI)를 사용해 게임을 빌드할 수 있습니다. 명령어를 실행하기 전, Godot 에디터의 프로젝트 내보내기 설정(프로젝트 -> 내보내기)에서 각 플랫폼별 내보내기 프리셋을 먼저 등록해 주어야 합니다 (`export_presets.cfg` 파일 생성 필요).
 
+또한, 빌드를 위해 필요한 **내보내기 템플릿(Export Templates)**이 설치되어 있어야 합니다. 처음 빌드하거나 템플릿이 존재하지 않는 개발 환경에서는 제공되는 PowerShell 스크립트를 실행하여 현재 실행 중인 Godot 에디터 버전에 맞는 템플릿을 자동으로 설치할 수 있습니다:
+
+```powershell
+./install_templates.ps1
+```
+
 먼저, 빌드 산출물을 저장할 디렉토리를 생성합니다:
 ```bash
 mkdir -p build/web build/android build/ios build/windows build/macos
