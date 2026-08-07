@@ -23,8 +23,20 @@ A classic **Sokoban Level 1** game project built with the Godot 4 engine. It rep
    - **Layering Correction**: Overlays render on top of the stage walls, ensuring menus are fully legible and not obscured.
    - **Animations**: Moving entities animate smoothly via Tweens.
 
-## Stage Map Layout (Original Level 1)
+## Stage Configurations (Original Level 1–50)
 
+This project features the complete set of **all 50 original classic Sokoban stages** designed by Hiroyuki Imabayashi. The full stage data is stored and managed within the [levels_data.gd](file:///d:/source/repos/little_sokoban/levels_data.gd) file, which is loaded dynamically as the player progresses. (Source: [XSokoban.xsb](https://raw.githubusercontent.com/x-hgg-x/sokoban-go/master/levels/XSokoban.xsb) from [x-hgg-x/sokoban-go](https://github.com/x-hgg-x/sokoban-go) repository)
+
+### Map Character Rules (Standard XSB)
+- `#`: Wall
+- ` ` (space): Floor
+- `.`: Goal (Storage target location)
+- `$`: Cargo Box
+- `@`: Player starting position
+- `*`: Cargo Box on Goal
+- `+`: Player on Goal
+
+### Representative Map Layout (Level 1 Example)
 ```text
     #####
     #   #
@@ -38,11 +50,6 @@ A classic **Sokoban Level 1** game project built with the Godot 4 engine. It rep
     #     #########
     #######
 ```
-- `#` : Wall
-- ` ` : Floor
-- `.` : Goal (Storage target location)
-- `$` : Cargo Box
-- `@` : Player starting position
 
 ## How to Run
 

@@ -8,22 +8,10 @@ const TEXTURE_ARROW_DOWN = preload("res://assets/arrow_down.png")
 const TEXTURE_ARROW_LEFT = preload("res://assets/arrow_left.png")
 const TEXTURE_ARROW_RIGHT = preload("res://assets/arrow_right.png")
 
-# Sokoban Level 1 Map Layout (Imabayashi Original 1982)
-const LEVEL_LAYOUT = [
-	"    #####          ",
-	"    #   #          ",
-	"    #$  #          ",
-	"  ###  $##         ",
-	"  #  $ $ #         ",
-	"### # ## #   ######",
-	"#   # ## #####  ..#",
-	"# $  $          ..#",
-	"##### ### #@##  ..#",
-	"    #     #########",
-	"    #######        "
-]
+var current_level_idx = 0
+var current_layout = []
 
-const CELL_SIZE = 44
+var cell_size = 44.0
 var cols = 19
 var rows = 11
 
@@ -68,6 +56,7 @@ var player_style = StyleBoxFlat.new()
 @onready var score_label = $HUD/ScoreLabel
 @onready var time_label = $HUD/TimeLabel
 @onready var lives_label = $HUD/LivesLabel
+@onready var title_label = $HUD/TitleLabel
 
 @onready var victory_overlay = $VictoryOverlay
 @onready var victory_score_label = $VictoryOverlay/VBox/ScoreLabel
@@ -100,17 +89,11 @@ func _ready():
 	# Position to the right of LivesLabel
 	hearts_container.position = lives_label.position + Vector2(80, 0)
 	
-	# Parse layout and initialize positions
-	parse_layout()
-	
 	# Setup AStarGrid2D
-	astar.region = Rect2i(0, 0, cols, rows)
-	astar.cell_size = Vector2(CELL_SIZE, CELL_SIZE)
 	astar.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
-	astar.update()
 	
-	# Setup visual board
-	setup_board()
+	# Load Stage 1
+	load_level(0)
 	
 	# Connect UI buttons
 	$HUD/Buttons/UndoButton.pressed.connect(undo)
@@ -123,13 +106,13 @@ func _ready():
 	$TouchControls/Dpad/Right.pressed.connect(func(): handle_direction_input(Vector2i.RIGHT))
 	
 	# Connect Overlays
-	$VictoryOverlay/VBox/RestartButton.pressed.connect(restart_full_game)
+	$VictoryOverlay/VBox/RestartButton.pressed.connect(load_next_level)
 	$GameOverOverlay/VBox/RetryButton.pressed.connect(restart_full_game)
 	
 	# Setup button Xbox prompts
 	setup_button_xbox_prompt($HUD/Buttons/UndoButton, "Y", Color(0.98, 0.82, 0.08), "UNDO")
 	setup_button_xbox_prompt($HUD/Buttons/RestartButton, "X", Color(0.25, 0.61, 1.0), "RESET")
-	setup_button_xbox_prompt($VictoryOverlay/VBox/RestartButton, "A", Color(0.29, 0.85, 0.38), "PLAY AGAIN")
+	setup_button_xbox_prompt($VictoryOverlay/VBox/RestartButton, "A", Color(0.29, 0.85, 0.38), "NEXT STAGE")
 	setup_button_xbox_prompt($GameOverOverlay/VBox/RetryButton, "A", Color(0.29, 0.85, 0.38), "TRY AGAIN")
 	
 	# Prevent UI buttons from capturing keyboard/gamepad focus
@@ -228,13 +211,45 @@ func setup_styles():
 	player_style.shadow_color = Color(0.93, 0.28, 0.54, 0.4)
 	player_style.shadow_size = 8
 
+func load_level(idx: int):
+	current_level_idx = idx
+	var raw_layout = LevelsData.LEVELS[current_level_idx]
+	rows = raw_layout.size()
+	cols = 0
+	for line in raw_layout:
+		cols = max(cols, line.length())
+	
+	# Calculate dynamic cell size to fit 880x480 screen area
+	var max_w = 880.0
+	var max_h = 480.0
+	var scale_x = max_w / cols
+	var scale_y = max_h / rows
+	cell_size = min(44.0, min(scale_x, scale_y))
+	
+	current_layout.clear()
+	for line in raw_layout:
+		var padded_line = line
+		while padded_line.length() < cols:
+			padded_line += " "
+		current_layout.append(padded_line)
+	
+	parse_layout()
+	
+	# Update AStarGrid2D
+	astar.region = Rect2i(0, 0, cols, rows)
+	astar.cell_size = Vector2(cell_size, cell_size)
+	astar.update()
+	
+	setup_board()
+	update_hud()
+
 func parse_layout():
 	box_positions.clear()
 	walls.clear()
 	goals.clear()
 	
 	for r in range(rows):
-		var line = LEVEL_LAYOUT[r]
+		var line = current_layout[r]
 		for c in range(cols):
 			var cell = line[c]
 			var pos = Vector2i(c, r)
@@ -247,13 +262,19 @@ func parse_layout():
 					box_positions.append(pos)
 				"@":
 					player_pos = pos
+				"*":
+					goals[pos] = true
+					box_positions.append(pos)
+				"+":
+					goals[pos] = true
+					player_pos = pos
 
 func setup_board():
 	if board_container:
 		board_container.queue_free()
 		
 	board_container = Control.new()
-	board_container.size = Vector2(cols * CELL_SIZE, rows * CELL_SIZE)
+	board_container.size = Vector2(cols * cell_size, rows * cell_size)
 	board_container.position = (Vector2(1152, 648) - board_container.size) / 2
 	board_container.position.y -= 25 # offset up for visual balance
 	add_child(board_container)
@@ -264,37 +285,40 @@ func setup_board():
 	# Instantiating tiles
 	for r in range(rows):
 		for c in range(cols):
-			var cell = LEVEL_LAYOUT[r][c]
+			var cell = current_layout[r][c]
 			var pos = Vector2i(c, r)
 			
 			if cell != " ":
 				# Floor
 				var floor_tile = Panel.new()
-				floor_tile.size = Vector2(CELL_SIZE, CELL_SIZE)
-				floor_tile.position = Vector2(c, r) * CELL_SIZE
+				floor_tile.size = Vector2(cell_size, cell_size)
+				floor_tile.position = Vector2(c, r) * cell_size
 				floor_tile.add_theme_stylebox_override("panel", floor_style)
 				board_container.add_child(floor_tile)
 				
 			if cell == "#":
 				# Wall
 				var wall_tile = Panel.new()
-				wall_tile.size = Vector2(CELL_SIZE - 2, CELL_SIZE - 2)
-				wall_tile.position = Vector2(c, r) * CELL_SIZE + Vector2(1, 1)
+				var border_offset = max(1.0, cell_size * (1.0 / 44.0))
+				wall_tile.size = Vector2(cell_size - border_offset * 2, cell_size - border_offset * 2)
+				wall_tile.position = Vector2(c, r) * cell_size + Vector2(border_offset, border_offset)
 				wall_tile.add_theme_stylebox_override("panel", wall_style)
 				board_container.add_child(wall_tile)
 				
-			elif cell == ".":
+			elif cell == "." or cell == "*" or cell == "+":
 				# Goal
+				var goal_tile_size = cell_size * (20.0 / 44.0)
 				var goal_tile = Panel.new()
-				goal_tile.size = Vector2(20, 20)
-				goal_tile.position = Vector2(c, r) * CELL_SIZE + Vector2((CELL_SIZE - 20)/2, (CELL_SIZE - 20)/2)
+				goal_tile.size = Vector2(goal_tile_size, goal_tile_size)
+				goal_tile.position = Vector2(c, r) * cell_size + Vector2((cell_size - goal_tile_size)/2, (cell_size - goal_tile_size)/2)
 				goal_tile.add_theme_stylebox_override("panel", goal_style)
 				board_container.add_child(goal_tile)
 				
 	# Instantiate Player
+	var p_size = cell_size * (34.0 / 44.0)
 	player_node = Panel.new()
-	player_node.size = Vector2(34, 34)
-	player_node.position = Vector2(player_pos) * CELL_SIZE + Vector2((CELL_SIZE - 34)/2, (CELL_SIZE - 34)/2)
+	player_node.size = Vector2(p_size, p_size)
+	player_node.position = Vector2(player_pos) * cell_size + Vector2((cell_size - p_size)/2, (cell_size - p_size)/2)
 	player_node.add_theme_stylebox_override("panel", player_style)
 	board_container.add_child(player_node)
 	
@@ -302,7 +326,8 @@ func setup_board():
 	player_face.texture = TEXTURE_PLAYER_FACE
 	player_face.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	player_face.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	player_face.size = Vector2(20, 20)
+	var pf_size = p_size * (20.0 / 34.0)
+	player_face.size = Vector2(pf_size, pf_size)
 	player_face.position = (player_node.size - player_face.size) / 2
 	player_node.add_child(player_face)
 	
@@ -311,8 +336,10 @@ func setup_board():
 	for i in range(box_positions.size()):
 		var b_pos = box_positions[i]
 		var box_tile = Panel.new()
-		box_tile.size = Vector2(CELL_SIZE - 6, CELL_SIZE - 6)
-		box_tile.position = Vector2(b_pos) * CELL_SIZE + Vector2(3, 3)
+		var b_size = cell_size * (38.0 / 44.0)
+		box_tile.size = Vector2(b_size, b_size)
+		var box_offset = (cell_size - b_size) / 2
+		box_tile.position = Vector2(b_pos) * cell_size + Vector2(box_offset, box_offset)
 		
 		if goals.has(b_pos):
 			box_tile.add_theme_stylebox_override("panel", box_on_goal_style)
@@ -327,7 +354,8 @@ func setup_board():
 		x_mark.texture = TEXTURE_BOX_X
 		x_mark.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		x_mark.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		x_mark.size = Vector2(24, 24)
+		var xm_size = b_size * (24.0 / 38.0)
+		x_mark.size = Vector2(xm_size, xm_size)
 		x_mark.position = (box_tile.size - x_mark.size) / 2
 		box_tile.add_child(x_mark)
 
@@ -357,7 +385,74 @@ func handle_direction_input(dir: Vector2i):
 	path_to_walk.clear()
 	try_move(dir)
 
+func open_debug_goto_dialog():
+	if has_node("DebugGotoPopup"):
+		return
+		
+	var popup = Control.new()
+	popup.name = "DebugGotoPopup"
+	popup.size = Vector2(250, 80)
+	popup.position = (Vector2(1152, 648) - popup.size) / 2
+	add_child(popup)
+	
+	var bg_panel = Panel.new()
+	bg_panel.size = popup.size
+	var panel_style = StyleBoxFlat.new()
+	panel_style.bg_color = Color(0.08, 0.1, 0.15, 0.95)
+	panel_style.set_corner_radius_all(10)
+	panel_style.border_width_left = 2
+	panel_style.border_width_top = 2
+	panel_style.border_width_right = 2
+	panel_style.border_width_bottom = 2
+	panel_style.border_color = Color(0.22, 0.75, 0.97, 0.8)
+	panel_style.shadow_color = Color(0, 0, 0, 0.5)
+	panel_style.shadow_size = 15
+	bg_panel.add_theme_stylebox_override("panel", panel_style)
+	popup.add_child(bg_panel)
+	
+	var vbox = VBoxContainer.new()
+	vbox.size = popup.size - Vector2(20, 20)
+	vbox.position = Vector2(10, 10)
+	popup.add_child(vbox)
+	
+	var label = Label.new()
+	label.text = "GOTO STAGE (1-50):"
+	label.add_theme_color_override("font_color", Color(0.22, 0.75, 0.97))
+	label.add_theme_font_size_override("font_size", 12)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	vbox.add_child(label)
+	
+	var line_edit = LineEdit.new()
+	line_edit.placeholder_text = "Enter stage num..."
+	line_edit.alignment = HORIZONTAL_ALIGNMENT_CENTER
+	line_edit.max_length = 2
+	vbox.add_child(line_edit)
+	
+	line_edit.grab_focus.call_deferred()
+	
+	line_edit.text_submitted.connect(func(new_text: String):
+		var num = new_text.to_int()
+		if num >= 1 and num <= 50:
+			load_level(num - 1)
+			victory_overlay.visible = false
+			game_over_overlay.visible = false
+			victory = false
+			game_over = false
+		popup.queue_free()
+	)
+	
+	line_edit.gui_input.connect(func(ie: InputEvent):
+		if ie is InputEventKey and ie.pressed:
+			if ie.keycode == KEY_ESCAPE:
+				popup.queue_free()
+	)
+
 func _unhandled_input(event):
+	if OS.is_debug_build() and event is InputEventKey and event.pressed:
+		if event.keycode == KEY_G:
+			open_debug_goto_dialog()
+			return
+			
 	if is_animating or victory or game_over:
 		return
 		
@@ -381,7 +476,7 @@ func _input(event):
 	# Release UI focus if keyboard or gamepad input is detected
 	if event is InputEventKey or event is InputEventJoypadButton or event is InputEventJoypadMotion:
 		var focused = get_viewport().gui_get_focus_owner()
-		if focused:
+		if focused and not focused is LineEdit:
 			focused.release_focus()
 			
 	# Xbox Controller actions mapping
@@ -423,7 +518,7 @@ func _input(event):
 					# Short click -> pathfind!
 					if swipe_dist.length() < 10.0 and board_container:
 						var local_click = board_container.get_local_mouse_position()
-						var grid_click = Vector2i(local_click / CELL_SIZE)
+						var grid_click = Vector2i(local_click / cell_size)
 						# Ensure inside layout boundaries
 						if grid_click.x >= 0 and grid_click.x < cols and grid_click.y >= 0 and grid_click.y < rows:
 							pathfind_to(grid_click)
@@ -494,14 +589,16 @@ func animate_move(player_target: Vector2i, box_idx: int = -1, box_target: Vector
 	var tween = create_tween()
 	
 	# Interpolate player
-	var p_offset = (CELL_SIZE - 34) / 2
-	var player_pixel_pos = Vector2(player_target) * CELL_SIZE + Vector2(p_offset, p_offset)
+	var p_size = cell_size * (34.0 / 44.0)
+	var p_offset = (cell_size - p_size) / 2
+	var player_pixel_pos = Vector2(player_target) * cell_size + Vector2(p_offset, p_offset)
 	tween.tween_property(player_node, "position", player_pixel_pos, 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	
 	# Interpolate box in parallel
 	if box_idx != -1:
-		var b_offset = 3
-		var box_pixel_pos = Vector2(box_target) * CELL_SIZE + Vector2(b_offset, b_offset)
+		var b_size = cell_size * (38.0 / 44.0)
+		var b_offset = (cell_size - b_size) / 2
+		var box_pixel_pos = Vector2(box_target) * cell_size + Vector2(b_offset, b_offset)
 		var tween_box = create_tween()
 		tween_box.tween_property(box_nodes[box_idx], "position", box_pixel_pos, 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 		
@@ -572,6 +669,13 @@ func check_victory():
 		walking = false
 		path_to_walk.clear()
 		victory_score_label.text = "Score: %d | Time Left: %ds" % [score, int(time_remaining)]
+		
+		# Set text in the next stage button dynamically
+		if current_level_idx < 49:
+			setup_button_xbox_prompt($VictoryOverlay/VBox/RestartButton, "A", Color(0.29, 0.85, 0.38), "NEXT STAGE")
+		else:
+			setup_button_xbox_prompt($VictoryOverlay/VBox/RestartButton, "A", Color(0.29, 0.85, 0.38), "PLAY AGAIN")
+			
 		victory_overlay.visible = true
 
 func lose_life():
@@ -588,14 +692,7 @@ func lose_life():
 
 func reset_level():
 	# Soft reset of positions, does not reset score/lives
-	parse_layout()
-	setup_board()
-	undo_stack.clear()
-	time_remaining = 300.0
-	walking = false
-	path_to_walk.clear()
-	is_animating = false
-	update_hud()
+	load_level(current_level_idx)
 
 func restart_full_game():
 	# Hard reset back to initial setup
@@ -605,11 +702,22 @@ func restart_full_game():
 	victory = false
 	victory_overlay.visible = false
 	game_over_overlay.visible = false
-	reset_level()
+	load_level(0)
+
+func load_next_level():
+	victory_overlay.visible = false
+	if current_level_idx < 49:
+		load_level(current_level_idx + 1)
+	else:
+		restart_full_game()
 
 func update_hud():
 	score_label.text = "SCORE: %d" % score
 	time_label.text = "TIME: %ds" % int(time_remaining)
+	
+	# Update stage indicator title
+	if title_label:
+		title_label.text = "SOKOBAN - STAGE %d / 50" % (current_level_idx + 1)
 	
 	# Update hearts inside hearts_container
 	if hearts_container:
