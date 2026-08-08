@@ -36,11 +36,20 @@ var swipe_start_pos = Vector2()
 var min_swipe_length = 50.0
 
 # Gameplay stats
+var total_score = 0
+var current_level_score = 0
 var score = 0
 var time_remaining = 300.0
 var lives = 3
 var game_over = false
 var victory = false
+var current_menu_layer = "main"
+
+# Async callbacks & pending high scores variables to prevent lambda capture garbage collection bugs
+var _leaderboard_callback: Callable
+var _pending_highscore_name: String
+var _pending_highscore_score: int
+var _pending_highscore_level: int
 
 # Pathfinding
 var astar = AStarGrid2D.new()
@@ -93,8 +102,13 @@ func _ready():
 	# Setup AStarGrid2D
 	astar.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	
-	# Load Stage 1
-	load_level(0)
+	# Load Save Game if exists
+	if not load_game_state():
+		current_level_idx = 0
+		total_score = 0
+		lives = 3
+		
+	load_level(current_level_idx)
 	
 	# Resize buttons container and create Menu button
 	$HUD/Buttons.size = Vector2(300, 50)
@@ -122,12 +136,12 @@ func _ready():
 	
 	# Connect Overlays
 	$VictoryOverlay/VBox/RestartButton.pressed.connect(load_next_level)
-	$GameOverOverlay/VBox/RetryButton.pressed.connect(restart_full_game)
+	$GameOverOverlay/VBox/RetryButton.pressed.connect(func(): open_highscore_entry_dialog())
 	
 	# Setup button Xbox prompts
 	setup_button_xbox_prompt($HUD/Buttons/UndoButton, "Y", Color(0.98, 0.82, 0.08), "UNDO")
 	setup_button_xbox_prompt($HUD/Buttons/RestartButton, "X", Color(0.25, 0.61, 1.0), "RESET")
-	setup_button_xbox_prompt(menu_btn, "M", Color(0.93, 0.28, 0.54), "MENU")
+	setup_button_xbox_prompt(menu_btn, "START", Color(0.93, 0.28, 0.54), "MENU")
 	setup_button_xbox_prompt($VictoryOverlay/VBox/RestartButton, "A", Color(0.29, 0.85, 0.38), "NEXT STAGE")
 	setup_button_xbox_prompt($GameOverOverlay/VBox/RetryButton, "A", Color(0.29, 0.85, 0.38), "TRY AGAIN")
 	
@@ -153,18 +167,20 @@ func setup_button_xbox_prompt(btn: Button, xbox_char: String, xbox_color: Color,
 	btn.add_child(hbox)
 	hbox.set_anchors_preset(Control.PRESET_FULL_RECT)
 	
+	var font_size = 12 if xbox_char.length() > 1 else 14
+	
 	# Left Label (Xbox Prompt)
 	var prompt_lbl = Label.new()
 	prompt_lbl.text = "[%s]" % xbox_char
 	prompt_lbl.add_theme_color_override("font_color", xbox_color)
-	prompt_lbl.add_theme_font_size_override("font_size", 14)
+	prompt_lbl.add_theme_font_size_override("font_size", font_size)
 	hbox.add_child(prompt_lbl)
 	
 	# Right Label (Action Text)
 	var action_lbl = Label.new()
 	action_lbl.text = " %s" % action_text
 	action_lbl.add_theme_color_override("font_color", Color.WHITE)
-	action_lbl.add_theme_font_size_override("font_size", 14)
+	action_lbl.add_theme_font_size_override("font_size", font_size)
 	hbox.add_child(action_lbl)
 
 func disable_all_button_focus(node: Node):
@@ -192,6 +208,22 @@ func setup_styles():
 
 func load_level(idx: int):
 	current_level_idx = idx
+	
+	# Reset level-specific gameplay state
+	victory = false
+	game_over = false
+	time_remaining = 300.0 
+	undo_stack.clear()
+	walking = false
+	path_to_walk.clear()
+	is_animating = false
+	
+	# Hide overlay screens if they exist
+	if has_node("VictoryOverlay"):
+		$VictoryOverlay.visible = false
+	if has_node("GameOverOverlay"):
+		$GameOverOverlay.visible = false
+		
 	var raw_layout = LevelsData.LEVELS[current_level_idx]
 	rows = raw_layout.size()
 	cols = 0
@@ -220,7 +252,9 @@ func load_level(idx: int):
 	astar.update()
 	
 	setup_board()
+	update_score()
 	update_hud()
+	save_game_state()
 
 func parse_layout():
 	box_positions.clear()
@@ -351,8 +385,8 @@ func setup_board():
 		box_tile.add_child(x_mark)
 
 func _process(delta):
-	# Countdown timer
-	if not game_over and not victory:
+	# Countdown timer (paused when menu or popup overlays are open)
+	if not game_over and not victory and not has_node("SokobanMenu") and not has_node("DebugGotoPopup") and not has_node("HighscoreEntryPopup"):
 		time_remaining -= delta
 		if time_remaining <= 0:
 			time_remaining = 0
@@ -440,9 +474,30 @@ func open_debug_goto_dialog():
 
 func open_menu_dialog():
 	if has_node("SokobanMenu"):
-		get_node("SokobanMenu").queue_free()
 		return
 		
+	current_menu_layer = "main"
+	
+	# Create Blur Overlay programmatically
+	var blur_overlay = ColorRect.new()
+	blur_overlay.name = "BlurOverlay"
+	blur_overlay.size = Vector2(1152, 648)
+	var shader = Shader.new()
+	shader.code = "shader_type canvas_item;\n" \
+		+ "uniform float lod: hint_range(0.0, 5.0) = 2.5;\n" \
+		+ "uniform sampler2D screen_texture : hint_screen_texture, filter_linear_mipmap;\n" \
+		+ "void fragment() {\n" \
+		+ "    vec4 color = textureLod(screen_texture, SCREEN_UV, lod);\n" \
+		+ "    color.rgb *= 0.7;\n" \
+		+ "    COLOR = color;\n" \
+		+ "}"
+	var mat = ShaderMaterial.new()
+	mat.shader = shader
+	blur_overlay.material = mat
+	add_child(blur_overlay)
+	# Move behind the menu (which will be added next)
+	move_child(blur_overlay, get_child_count() - 2)
+	
 	var menu = Control.new()
 	menu.name = "SokobanMenu"
 	menu.size = Vector2(300, 240)
@@ -486,6 +541,7 @@ func open_menu_dialog():
 	vbox.add_child(content_area)
 	
 	menu_callback = func():
+		current_menu_layer = "main"
 		for child in content_area.get_children():
 			child.queue_free()
 			
@@ -493,6 +549,11 @@ func open_menu_dialog():
 		theme_btn.text = "Theme"
 		theme_btn.custom_minimum_size = Vector2(0, 36)
 		content_area.add_child(theme_btn)
+		
+		var leaderboard_btn = Button.new()
+		leaderboard_btn.text = "Leaderboard"
+		leaderboard_btn.custom_minimum_size = Vector2(0, 36)
+		content_area.add_child(leaderboard_btn)
 		
 		var license_btn = Button.new()
 		license_btn.text = "License"
@@ -505,15 +566,21 @@ func open_menu_dialog():
 		content_area.add_child(close_btn)
 		
 		var base_btn = $HUD/Buttons/UndoButton
-		for btn in [theme_btn, license_btn, close_btn]:
+		for btn in [theme_btn, leaderboard_btn, license_btn, close_btn]:
 			btn.add_theme_stylebox_override("normal", base_btn.get_theme_stylebox("normal"))
 			btn.add_theme_stylebox_override("pressed", base_btn.get_theme_stylebox("pressed"))
 			btn.add_theme_stylebox_override("hover", base_btn.get_theme_stylebox("hover"))
-			btn.focus_mode = Control.FOCUS_NONE
+			btn.add_theme_stylebox_override("focus", base_btn.get_theme_stylebox("hover"))
+			btn.focus_mode = Control.FOCUS_ALL
 			
-		close_btn.pressed.connect(func(): menu.queue_free())
+		close_btn.pressed.connect(func():
+			menu.queue_free()
+			if has_node("BlurOverlay"):
+				get_node("BlurOverlay").queue_free()
+		)
 		
 		theme_btn.pressed.connect(func():
+			current_menu_layer = "theme"
 			for child in content_area.get_children():
 				child.queue_free()
 				
@@ -536,7 +603,8 @@ func open_menu_dialog():
 				btn.add_theme_stylebox_override("normal", base_btn.get_theme_stylebox("normal"))
 				btn.add_theme_stylebox_override("pressed", base_btn.get_theme_stylebox("pressed"))
 				btn.add_theme_stylebox_override("hover", base_btn.get_theme_stylebox("hover"))
-				btn.focus_mode = Control.FOCUS_NONE
+				btn.add_theme_stylebox_override("focus", base_btn.get_theme_stylebox("hover"))
+				btn.focus_mode = Control.FOCUS_ALL
 				
 			back_btn.pressed.connect(menu_callback)
 			
@@ -546,6 +614,8 @@ func open_menu_dialog():
 				setup_board()
 				update_hud()
 				menu.queue_free()
+				if has_node("BlurOverlay"):
+					get_node("BlurOverlay").queue_free()
 			)
 			
 			kenney_btn.pressed.connect(func():
@@ -554,10 +624,57 @@ func open_menu_dialog():
 				setup_board()
 				update_hud()
 				menu.queue_free()
+				if has_node("BlurOverlay"):
+					get_node("BlurOverlay").queue_free()
 			)
+			def_btn.grab_focus.call_deferred()
+		)
+		
+		leaderboard_btn.pressed.connect(func():
+			current_menu_layer = "leaderboard"
+			menu.size = Vector2(300, 320)
+			menu.position = (Vector2(1152, 648) - menu.size) / 2
+			bg_panel.size = menu.size
+			vbox.size = menu.size - Vector2(40, 40)
+			
+			for child in content_area.get_children():
+				child.queue_free()
+				
+			var scroll = ScrollContainer.new()
+			scroll.name = "Scroll"
+			scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+			content_area.add_child(scroll)
+			
+			var score_list = VBoxContainer.new()
+			score_list.name = "ScoreList"
+			score_list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			scroll.add_child(score_list)
+			
+			var loading_lbl = Label.new()
+			loading_lbl.text = "Loading Leaderboard..."
+			loading_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			loading_lbl.add_theme_font_size_override("font_size", 14)
+			score_list.add_child(loading_lbl)
+			
+			get_leaderboard_data(Callable(self, "_on_leaderboard_loaded"))
+			
+			var back_btn = Button.new()
+			back_btn.text = "Back"
+			back_btn.custom_minimum_size = Vector2(0, 36)
+			content_area.add_child(back_btn)
+			
+			back_btn.add_theme_stylebox_override("normal", base_btn.get_theme_stylebox("normal"))
+			back_btn.add_theme_stylebox_override("pressed", base_btn.get_theme_stylebox("pressed"))
+			back_btn.add_theme_stylebox_override("hover", base_btn.get_theme_stylebox("hover"))
+			back_btn.add_theme_stylebox_override("focus", base_btn.get_theme_stylebox("hover"))
+			back_btn.focus_mode = Control.FOCUS_ALL
+			
+			back_btn.pressed.connect(menu_callback)
+			back_btn.grab_focus.call_deferred()
 		)
 		
 		license_btn.pressed.connect(func():
+			current_menu_layer = "license"
 			menu.size = Vector2(400, 320)
 			menu.position = (Vector2(1152, 648) - menu.size) / 2
 			bg_panel.size = menu.size
@@ -592,7 +709,8 @@ func open_menu_dialog():
 			back_btn.add_theme_stylebox_override("normal", base_btn.get_theme_stylebox("normal"))
 			back_btn.add_theme_stylebox_override("pressed", base_btn.get_theme_stylebox("pressed"))
 			back_btn.add_theme_stylebox_override("hover", base_btn.get_theme_stylebox("hover"))
-			back_btn.focus_mode = Control.FOCUS_NONE
+			back_btn.add_theme_stylebox_override("focus", base_btn.get_theme_stylebox("hover"))
+			back_btn.focus_mode = Control.FOCUS_ALL
 			
 			back_btn.pressed.connect(func():
 				menu.size = Vector2(300, 240)
@@ -601,23 +719,66 @@ func open_menu_dialog():
 				vbox.size = menu.size - Vector2(40, 40)
 				menu_callback.call()
 			)
+			back_btn.grab_focus.call_deferred()
 		)
+		theme_btn.grab_focus.call_deferred()
 		
 	menu_callback.call()
 
+func handle_menu_back():
+	if not has_node("SokobanMenu"):
+		return
+		
+	var menu = get_node("SokobanMenu")
+	if current_menu_layer == "main":
+		menu.queue_free()
+		if has_node("BlurOverlay"):
+			get_node("BlurOverlay").queue_free()
+	elif current_menu_layer == "theme" or current_menu_layer == "leaderboard" or current_menu_layer == "license":
+		var bg_panel = menu.get_child(0)
+		var vbox = menu.get_node("VBox")
+		menu.size = Vector2(300, 240)
+		menu.position = (Vector2(1152, 648) - menu.size) / 2
+		bg_panel.size = menu.size
+		vbox.size = menu.size - Vector2(40, 40)
+		current_menu_layer = "main"
+		menu_callback.call()
+
 func _unhandled_input(event):
+	if has_node("HighscoreEntryPopup"):
+		if event is InputEventKey and event.pressed:
+			if event.keycode == KEY_ESCAPE:
+				var popup = get_node("HighscoreEntryPopup")
+				var final_score = total_score + current_level_score
+				save_highscore_entry("PLAYER", final_score, current_level_idx + 1)
+				popup.queue_free()
+				restart_full_game()
+				return
+
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_ESCAPE or event.keycode == KEY_M:
 			if not has_node("DebugGotoPopup"):
-				open_menu_dialog()
+				if has_node("SokobanMenu"):
+					if event.keycode == KEY_ESCAPE:
+						handle_menu_back()
+					else:
+						get_node("SokobanMenu").queue_free()
+						if has_node("BlurOverlay"):
+							get_node("BlurOverlay").queue_free()
+				else:
+					open_menu_dialog()
 				return
 				
 	if OS.is_debug_build() and event is InputEventKey and event.pressed:
 		if event.keycode == KEY_G:
 			open_debug_goto_dialog()
 			return
+		elif event.keycode == KEY_T:
+			time_remaining = max(0.0, time_remaining - 10.0)
+			update_hud()
+			return
 			
-	if is_animating or victory or game_over:
+	if is_animating or victory or game_over or has_node("SokobanMenu") or has_node("DebugGotoPopup") or has_node("HighscoreEntryPopup"):
 		return
 		
 	if event.is_action_pressed("ui_left"):
@@ -630,11 +791,47 @@ func _unhandled_input(event):
 		handle_direction_input(Vector2i.DOWN)
 
 func _input(event):
+	if has_node("HighscoreEntryPopup"):
+		if event is InputEventJoypadButton and event.pressed:
+			if event.button_index == JOY_BUTTON_B:
+				var popup = get_node("HighscoreEntryPopup")
+				var final_score = total_score + current_level_score
+				save_highscore_entry("PLAYER", final_score, current_level_idx + 1)
+				popup.queue_free()
+				restart_full_game()
+				get_viewport().set_input_as_handled()
+			elif event.button_index == JOY_BUTTON_A:
+				var focused = get_viewport().gui_get_focus_owner()
+				if focused and focused is Button:
+					focused.pressed.emit()
+				elif focused and focused is LineEdit:
+					var popup = get_node("HighscoreEntryPopup")
+					if popup.has_node("VBox/OK"):
+						popup.get_node("VBox/OK").pressed.emit()
+				get_viewport().set_input_as_handled()
+		return
+
 	if game_over or victory:
 		# Process joypad confirm buttons even when game is over or won
 		if event is InputEventJoypadButton and event.pressed:
 			if event.button_index == JOY_BUTTON_A:
-				restart_full_game()
+				if victory:
+					load_next_level()
+				else:
+					restart_full_game()
+		return
+		
+	if has_node("SokobanMenu") or has_node("DebugGotoPopup"):
+		# Allow B gamepad button to go back/close menu and A button to confirm selection
+		if event is InputEventJoypadButton and event.pressed:
+			if event.button_index == JOY_BUTTON_B:
+				handle_menu_back()
+				get_viewport().set_input_as_handled()
+			elif event.button_index == JOY_BUTTON_A:
+				var focused = get_viewport().gui_get_focus_owner()
+				if focused and focused is Button:
+					focused.pressed.emit()
+					get_viewport().set_input_as_handled()
 		return
 		
 	# Release UI focus if keyboard or gamepad input is detected
@@ -650,6 +847,8 @@ func _input(event):
 				undo()
 			JOY_BUTTON_X:
 				reset_level()
+			JOY_BUTTON_START:
+				open_menu_dialog()
 		
 	# Drag/Swipe gesture logic for touch/mouse
 	if event is InputEventScreenTouch:
@@ -819,7 +1018,272 @@ func update_score():
 	for pos in box_positions:
 		if goals.has(pos):
 			active_goals += 1
-	score = active_goals * 100
+	current_level_score = active_goals * 100
+	score = max(score, total_score + current_level_score)
+
+func save_game_state():
+	var config = ConfigFile.new()
+	config.set_value("save", "current_level_idx", current_level_idx)
+	config.set_value("save", "total_score", total_score)
+	config.set_value("save", "lives", lives)
+	config.save("user://savegame.cfg")
+
+func load_game_state() -> bool:
+	var config = ConfigFile.new()
+	var err = config.load("user://savegame.cfg")
+	if err == OK:
+		current_level_idx = config.get_value("save", "current_level_idx", 0)
+		total_score = config.get_value("save", "total_score", 0)
+		lives = config.get_value("save", "lives", 3)
+		score = total_score
+		return true
+	return false
+
+func delete_save_game():
+	if FileAccess.file_exists("user://savegame.cfg"):
+		var dir = DirAccess.open("user://")
+		if dir:
+			dir.remove("savegame.cfg")
+
+func open_highscore_entry_dialog():
+	if has_node("HighscoreEntryPopup"):
+		return
+		
+	var popup = Control.new()
+	popup.name = "HighscoreEntryPopup"
+	popup.size = Vector2(300, 180)
+	popup.position = (Vector2(1152, 648) - popup.size) / 2
+	add_child(popup)
+	
+	var bg_panel = Panel.new()
+	bg_panel.size = popup.size
+	var panel_style = StyleBoxFlat.new()
+	panel_style.bg_color = Color(0.08, 0.1, 0.15, 0.95)
+	panel_style.set_corner_radius_all(10)
+	panel_style.border_width_left = 2
+	panel_style.border_width_top = 2
+	panel_style.border_width_right = 2
+	panel_style.border_width_bottom = 2
+	panel_style.border_color = Color(0.98, 0.75, 0.14, 0.8) # Gold
+	panel_style.shadow_color = Color(0, 0, 0, 0.5)
+	panel_style.shadow_size = 15
+	bg_panel.add_theme_stylebox_override("panel", panel_style)
+	popup.add_child(bg_panel)
+	
+	var vbox = VBoxContainer.new()
+	vbox.name = "VBox"
+	vbox.size = popup.size - Vector2(30, 30)
+	vbox.position = Vector2(15, 15)
+	vbox.add_theme_constant_override("separation", 10)
+	popup.add_child(vbox)
+	
+	var title = Label.new()
+	title.text = "NEW HIGH SCORE!"
+	title.add_theme_color_override("font_color", Color(0.98, 0.75, 0.14))
+	title.add_theme_font_size_override("font_size", 16)
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	vbox.add_child(title)
+	
+	var final_score = total_score + current_level_score
+	var score_lbl = Label.new()
+	score_lbl.text = "Final Score: %d" % final_score
+	score_lbl.add_theme_color_override("font_color", Color.WHITE)
+	score_lbl.add_theme_font_size_override("font_size", 14)
+	score_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	vbox.add_child(score_lbl)
+	
+	var line_edit = LineEdit.new()
+	line_edit.placeholder_text = "Enter your name..."
+	line_edit.alignment = HORIZONTAL_ALIGNMENT_CENTER
+	line_edit.max_length = 10
+	vbox.add_child(line_edit)
+	
+	var ok_btn = Button.new()
+	ok_btn.name = "OK"
+	ok_btn.text = "OK"
+	ok_btn.custom_minimum_size = Vector2(80, 32)
+	ok_btn.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	vbox.add_child(ok_btn)
+	
+	var base_btn = $HUD/Buttons/UndoButton
+	ok_btn.add_theme_stylebox_override("normal", base_btn.get_theme_stylebox("normal"))
+	ok_btn.add_theme_stylebox_override("pressed", base_btn.get_theme_stylebox("pressed"))
+	ok_btn.add_theme_stylebox_override("hover", base_btn.get_theme_stylebox("hover"))
+	ok_btn.add_theme_stylebox_override("focus", base_btn.get_theme_stylebox("hover"))
+	ok_btn.focus_mode = Control.FOCUS_ALL
+	
+	line_edit.grab_focus.call_deferred()
+	
+	var submit_action = func():
+		var name_text = line_edit.text.strip_edges()
+		if name_text.is_empty():
+			name_text = "PLAYER"
+		save_highscore_entry(name_text, final_score, current_level_idx + 1)
+		popup.queue_free()
+		restart_full_game()
+		
+	ok_btn.pressed.connect(submit_action)
+	line_edit.text_submitted.connect(func(_t): submit_action.call())
+
+func save_highscore_entry(player_name: String, final_score: int, level_num: int):
+	_pending_highscore_name = player_name
+	_pending_highscore_score = final_score
+	_pending_highscore_level = level_num
+	
+	var http = HTTPRequest.new()
+	http.timeout = 3.0 # Set a 3-second timeout limit to avoid infinite loading hangs
+	add_child(http)
+	http.request_completed.connect(self._on_submit_request_completed.bind(http))
+	
+	var url = "http://127.0.0.1:5000/api/scores"
+	var headers = ["Content-Type: application/json"]
+	var data = {
+		"level_id": level_num,
+		"player_name": player_name,
+		"score": final_score,
+		"time_spent": 300.0 - time_remaining
+	}
+	var query = JSON.stringify(data)
+	var err = http.request(url, headers, HTTPClient.METHOD_POST, query)
+	if err != OK:
+		http.queue_free()
+		save_highscore_entry_locally(_pending_highscore_name, _pending_highscore_score, _pending_highscore_level)
+
+func _on_submit_request_completed(result, response_code, headers, body, http: HTTPRequest):
+	if is_instance_valid(http):
+		http.queue_free()
+		
+	var success = false
+	if result == HTTPRequest.RESULT_SUCCESS and (response_code == 200 or response_code == 201):
+		success = true
+		
+	if not success:
+		save_highscore_entry_locally(_pending_highscore_name, _pending_highscore_score, _pending_highscore_level)
+	else:
+		delete_save_game()
+
+func save_highscore_entry_locally(player_name: String, final_score: int, level_num: int):
+	var config = ConfigFile.new()
+	config.load("user://leaderboard.cfg")
+	
+	var entries = []
+	if config.has_section("leaderboard"):
+		var names = config.get_value("leaderboard", "names", [])
+		var scores = config.get_value("leaderboard", "scores", [])
+		var stages = config.get_value("leaderboard", "stages", [])
+		for i in range(names.size()):
+			var st = stages[i] if i < stages.size() else 1
+			entries.append({"name": names[i], "score": scores[i], "stage": st})
+			
+	entries.append({"name": player_name, "score": final_score, "stage": level_num})
+	entries.sort_custom(func(a, b): return a["score"] > b["score"])
+	
+	if entries.size() > 10:
+		entries.resize(10)
+		
+	var new_names = []
+	var new_scores = []
+	var new_stages = []
+	for entry in entries:
+		new_names.append(entry["name"])
+		new_scores.append(entry["score"])
+		new_stages.append(entry["stage"])
+		
+	config.set_value("leaderboard", "names", new_names)
+	config.set_value("leaderboard", "scores", new_scores)
+	config.set_value("leaderboard", "stages", new_stages)
+	config.save("user://leaderboard.cfg")
+	delete_save_game()
+
+func get_leaderboard_data(callback: Callable):
+	_leaderboard_callback = callback
+	var http = HTTPRequest.new()
+	http.timeout = 3.0 # Set a 3-second timeout limit to avoid infinite loading hangs
+	add_child(http)
+	http.request_completed.connect(self._on_leaderboard_request_completed.bind(http))
+	var url = "http://127.0.0.1:5000/api/scores"
+	var err = http.request(url)
+	if err != OK:
+		http.queue_free()
+		if _leaderboard_callback.is_valid():
+			_leaderboard_callback.call(get_local_leaderboard_data())
+
+func _on_leaderboard_request_completed(result, response_code, headers, body, http: HTTPRequest):
+	if is_instance_valid(http):
+		http.queue_free()
+		
+	var success = false
+	var entries = []
+	if result == HTTPRequest.RESULT_SUCCESS and response_code == 200:
+		var json = JSON.new()
+		if json.parse(body.get_string_from_utf8()) == OK:
+			var res = json.get_data()
+			if res is Dictionary and res.has("top_scores"):
+				success = true
+				for item in res["top_scores"]:
+					var st = item.get("level_id", 1)
+					entries.append({
+						"name": item["player_name"],
+						"score": item["score"],
+						"stage": st
+					})
+					
+	if _leaderboard_callback.is_valid():
+		if success:
+			_leaderboard_callback.call(entries)
+		else:
+			_leaderboard_callback.call(get_local_leaderboard_data())
+
+func _on_leaderboard_loaded(entries: Array):
+	if not has_node("SokobanMenu/VBox/ContentArea/Scroll/ScoreList"):
+		return
+	var score_list = get_node("SokobanMenu/VBox/ContentArea/Scroll/ScoreList")
+	
+	for child in score_list.get_children():
+		child.queue_free()
+		
+	if entries.is_empty():
+		var no_score_lbl = Label.new()
+		no_score_lbl.text = "No High Scores Yet"
+		no_score_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		no_score_lbl.add_theme_font_size_override("font_size", 14)
+		score_list.add_child(no_score_lbl)
+	else:
+		for i in range(entries.size()):
+			var item = entries[i]
+			var row = HBoxContainer.new()
+			row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			score_list.add_child(row)
+			
+			var name_lbl = Label.new()
+			var stage_text = " (Stage %d)" % item["stage"]
+			name_lbl.text = "%d. %s%s" % [i + 1, item["name"], stage_text]
+			name_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			name_lbl.add_theme_font_size_override("font_size", 14)
+			row.add_child(name_lbl)
+			
+			var score_lbl = Label.new()
+			score_lbl.text = str(item["score"])
+			score_lbl.add_theme_font_size_override("font_size", 14)
+			score_lbl.add_theme_color_override("font_color", Color(0.98, 0.75, 0.14)) # Gold
+			row.add_child(score_lbl)
+
+func get_local_leaderboard_data() -> Array:
+	var config = ConfigFile.new()
+	config.load("user://leaderboard.cfg")
+	var names = config.get_value("leaderboard", "names", [])
+	var scores = config.get_value("leaderboard", "scores", [])
+	var stages = config.get_value("leaderboard", "stages", [])
+	
+	var entries = []
+	for i in range(names.size()):
+		var st = stages[i] if i < stages.size() else 1
+		entries.append({
+			"name": names[i],
+			"score": scores[i],
+			"stage": st
+		})
+	return entries
 
 func check_victory():
 	# Game won when all boxes are on goals
@@ -861,19 +1325,25 @@ func reset_level():
 func restart_full_game():
 	# Hard reset back to initial setup
 	lives = 3
+	total_score = 0
+	current_level_score = 0
 	score = 0
 	game_over = false
 	victory = false
 	victory_overlay.visible = false
 	game_over_overlay.visible = false
+	delete_save_game()
 	load_level(0)
 
 func load_next_level():
 	victory_overlay.visible = false
 	if current_level_idx < 49:
+		total_score += current_level_score
 		load_level(current_level_idx + 1)
 	else:
-		restart_full_game()
+		total_score += current_level_score
+		current_level_score = 0
+		open_highscore_entry_dialog()
 
 func update_hud():
 	score_label.text = "SCORE: %d" % score
