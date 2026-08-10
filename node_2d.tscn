@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bmvqj4vyk3661"]
 
-[ext_resource type="Script" uid="uid://b07vio0j8dbay" path="res://sokoban_game.gd" id="1_8k2n3"]
+[ext_resource type="Script" path="res://sokoban_game.gd" id="1_8k2n3"]
 
 [sub_resource type="Gradient" id="Gradient_q0d2m"]
 colors = PackedColorArray(0.05, 0.07, 0.12, 1, 0.12, 0.15, 0.22, 1)
