@@ -77,7 +77,13 @@ var player_style = StyleBoxTexture.new()
 @onready var game_over_overlay = $GameOverOverlay
 
 func _ready():
-	if OS.has_feature("editor") or OS.is_debug_build():
+	if OS.has_feature("web"):
+		var hostname = JavaScriptBridge.eval("window.location.hostname")
+		if hostname == "localhost" or hostname == "127.0.0.1" or hostname == "dev.local":
+			api_host = HOST_LOCAL
+		else:
+			api_host = HOST_PROD
+	elif OS.has_feature("editor") or OS.is_debug_build():
 		api_host = HOST_LOCAL
 	else:
 		api_host = HOST_PROD
