@@ -45,8 +45,8 @@ var game_over = false
 var victory = false
 var current_menu_layer = "main"
 
-const HOST_PROD = "https://opengamestudio.duckdns.org:8500"
-const HOST_LOCAL = "http://dev.local:5000"
+const HOST_PROD = "https://opengamestudio.duckdns.org:8443"
+const HOST_LOCAL = "http://dev.local:8000"
 var api_host: String = HOST_PROD
 
 # Async callbacks & pending high scores variables to prevent lambda capture garbage collection bugs
