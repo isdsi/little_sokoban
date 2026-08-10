@@ -46,7 +46,7 @@ var victory = false
 var current_menu_layer = "main"
 
 const HOST_PROD = "https://opengamestudio.duckdns.org:8500"
-const HOST_LOCAL = "https://127.0.0.1:5000"
+const HOST_LOCAL = "http://127.0.0.1:5000"
 var api_host: String = HOST_PROD
 
 # Async callbacks & pending high scores variables to prevent lambda capture garbage collection bugs
@@ -1147,16 +1147,18 @@ func save_highscore_entry(player_name: String, final_score: int, level_num: int)
 	var url = api_host + "/api/scores"
 	var headers = ["Content-Type: application/json"]
 	var data = {
+		"game_path": "little_sokoban",
 		"level_id": level_num,
 		"player_name": player_name,
 		"score": final_score,
 		"time_spent": 300.0 - time_remaining
 	}
 	var query = JSON.stringify(data)
+	print("[Leaderboard API] POST - Host: %s, Path: /api/scores" % api_host)
 	var err = http.request(url, headers, HTTPClient.METHOD_POST, query)
 	if err != OK:
 		http.queue_free()
-		save_highscore_entry_locally(_pending_highscore_name, _pending_highscore_score, _pending_highscore_level)
+		delete_save_game()
 
 func _on_submit_request_completed(result, response_code, headers, body, http: HTTPRequest):
 	if is_instance_valid(http):
@@ -1167,41 +1169,8 @@ func _on_submit_request_completed(result, response_code, headers, body, http: HT
 		success = true
 		
 	if not success:
-		save_highscore_entry_locally(_pending_highscore_name, _pending_highscore_score, _pending_highscore_level)
-	else:
-		delete_save_game()
-
-func save_highscore_entry_locally(player_name: String, final_score: int, level_num: int):
-	var config = ConfigFile.new()
-	config.load("user://leaderboard.cfg")
+		print("[Leaderboard API] Failed to submit score. Server response code: ", response_code)
 	
-	var entries = []
-	if config.has_section("leaderboard"):
-		var names = config.get_value("leaderboard", "names", [])
-		var scores = config.get_value("leaderboard", "scores", [])
-		var stages = config.get_value("leaderboard", "stages", [])
-		for i in range(names.size()):
-			var st = stages[i] if i < stages.size() else 1
-			entries.append({"name": names[i], "score": scores[i], "stage": st})
-			
-	entries.append({"name": player_name, "score": final_score, "stage": level_num})
-	entries.sort_custom(func(a, b): return a["score"] > b["score"])
-	
-	if entries.size() > 10:
-		entries.resize(10)
-		
-	var new_names = []
-	var new_scores = []
-	var new_stages = []
-	for entry in entries:
-		new_names.append(entry["name"])
-		new_scores.append(entry["score"])
-		new_stages.append(entry["stage"])
-		
-	config.set_value("leaderboard", "names", new_names)
-	config.set_value("leaderboard", "scores", new_scores)
-	config.set_value("leaderboard", "stages", new_stages)
-	config.save("user://leaderboard.cfg")
 	delete_save_game()
 
 func get_leaderboard_data(callback: Callable):
@@ -1210,12 +1179,13 @@ func get_leaderboard_data(callback: Callable):
 	http.timeout = 3.0 # Set a 3-second timeout limit to avoid infinite loading hangs
 	add_child(http)
 	http.request_completed.connect(self._on_leaderboard_request_completed.bind(http))
-	var url = api_host + "/api/scores"
+	var url = api_host + "/api/scores?game_path=little_sokoban"
+	print("[Leaderboard API] GET - Host: %s, Path: /api/scores?game_path=little_sokoban" % api_host)
 	var err = http.request(url)
 	if err != OK:
 		http.queue_free()
 		if _leaderboard_callback.is_valid():
-			_leaderboard_callback.call(get_local_leaderboard_data())
+			_leaderboard_callback.call([])
 
 func _on_leaderboard_request_completed(result, response_code, headers, body, http: HTTPRequest):
 	if is_instance_valid(http):
@@ -1241,7 +1211,8 @@ func _on_leaderboard_request_completed(result, response_code, headers, body, htt
 		if success:
 			_leaderboard_callback.call(entries)
 		else:
-			_leaderboard_callback.call(get_local_leaderboard_data())
+			print("[Leaderboard API] Failed to fetch leaderboard. Server response code: ", response_code)
+			_leaderboard_callback.call([])
 
 func _on_leaderboard_loaded(entries: Array):
 	if not has_node("SokobanMenu/VBox/ContentArea/Scroll/ScoreList"):
@@ -1276,23 +1247,6 @@ func _on_leaderboard_loaded(entries: Array):
 			score_lbl.add_theme_font_size_override("font_size", 14)
 			score_lbl.add_theme_color_override("font_color", Color(0.98, 0.75, 0.14)) # Gold
 			row.add_child(score_lbl)
-
-func get_local_leaderboard_data() -> Array:
-	var config = ConfigFile.new()
-	config.load("user://leaderboard.cfg")
-	var names = config.get_value("leaderboard", "names", [])
-	var scores = config.get_value("leaderboard", "scores", [])
-	var stages = config.get_value("leaderboard", "stages", [])
-	
-	var entries = []
-	for i in range(names.size()):
-		var st = stages[i] if i < stages.size() else 1
-		entries.append({
-			"name": names[i],
-			"score": scores[i],
-			"stage": st
-		})
-	return entries
 
 func check_victory():
 	# Game won when all boxes are on goals
