@@ -46,7 +46,7 @@ var victory = false
 var current_menu_layer = "main"
 
 const HOST_PROD = "https://opengamestudio.duckdns.org:8500"
-const HOST_LOCAL = "http://127.0.0.1:5000"
+const HOST_LOCAL = "http://dev.local:5000"
 var api_host: String = HOST_PROD
 
 # Async callbacks & pending high scores variables to prevent lambda capture garbage collection bugs
@@ -107,6 +107,22 @@ func _ready():
 	$HUD.add_child(hearts_container)
 	# Position to the right of LivesLabel
 	hearts_container.position = lives_label.position + Vector2(80, 0)
+	
+	# Add version label under SOKOBAN - STAGE
+	var version_lbl = Label.new()
+	version_lbl.name = "VersionLabel"
+	
+	var version_str = "v0.3-dev"
+	if FileAccess.file_exists("res://version.txt"):
+		var file = FileAccess.open("res://version.txt", FileAccess.READ)
+		if file:
+			version_str = file.get_as_text().strip_edges()
+		
+	version_lbl.text = version_str
+	version_lbl.add_theme_font_size_override("font_size", 10)
+	version_lbl.add_theme_color_override("font_color", Color(0.5, 0.6, 0.7, 0.8)) # Subtle blue-grey color
+	$HUD.add_child(version_lbl)
+	version_lbl.position = $HUD/TitleLabel.position + Vector2(2, 32)
 	
 	# Setup AStarGrid2D
 	astar.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
