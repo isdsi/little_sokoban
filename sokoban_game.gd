@@ -45,6 +45,10 @@ var game_over = false
 var victory = false
 var current_menu_layer = "main"
 
+const HOST_PROD = "https://opengamestudio.duckdns.org:8500"
+const HOST_LOCAL = "https://127.0.0.1:5000"
+var api_host: String = HOST_PROD
+
 # Async callbacks & pending high scores variables to prevent lambda capture garbage collection bugs
 var _leaderboard_callback: Callable
 var _pending_highscore_name: String
@@ -73,6 +77,11 @@ var player_style = StyleBoxTexture.new()
 @onready var game_over_overlay = $GameOverOverlay
 
 func _ready():
+	if OS.has_feature("editor") or OS.is_debug_build():
+		api_host = HOST_LOCAL
+	else:
+		api_host = HOST_PROD
+		
 	# Configure StyleBoxes programmatically for visual excellence
 	setup_styles()
 	
@@ -1135,7 +1144,7 @@ func save_highscore_entry(player_name: String, final_score: int, level_num: int)
 	add_child(http)
 	http.request_completed.connect(self._on_submit_request_completed.bind(http))
 	
-	var url = "http://127.0.0.1:5000/api/scores"
+	var url = api_host + "/api/scores"
 	var headers = ["Content-Type: application/json"]
 	var data = {
 		"level_id": level_num,
@@ -1201,7 +1210,7 @@ func get_leaderboard_data(callback: Callable):
 	http.timeout = 3.0 # Set a 3-second timeout limit to avoid infinite loading hangs
 	add_child(http)
 	http.request_completed.connect(self._on_leaderboard_request_completed.bind(http))
-	var url = "http://127.0.0.1:5000/api/scores"
+	var url = api_host + "/api/scores"
 	var err = http.request(url)
 	if err != OK:
 		http.queue_free()
