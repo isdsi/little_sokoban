@@ -79,10 +79,10 @@ var player_style = StyleBoxTexture.new()
 func _ready():
 	if OS.has_feature("web"):
 		var hostname = JavaScriptBridge.eval("window.location.hostname")
-		if hostname == "localhost" or hostname == "127.0.0.1" or hostname == "dev.local":
-			api_host = HOST_LOCAL
-		else:
+		if hostname and "opengames" in hostname:
 			api_host = HOST_PROD
+		else:
+			api_host = HOST_LOCAL
 	elif OS.has_feature("editor") or OS.is_debug_build():
 		api_host = HOST_LOCAL
 	else:
