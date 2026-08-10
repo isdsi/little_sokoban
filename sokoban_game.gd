@@ -45,7 +45,7 @@ var game_over = false
 var victory = false
 var current_menu_layer = "main"
 
-const HOST_PROD = "https://opengamestudio.duckdns.org:8443"
+const HOST_PROD = "https://opengamestudios.duckdns.org:8443"
 const HOST_LOCAL = "http://dev.local:8000"
 var api_host: String = HOST_PROD
 
