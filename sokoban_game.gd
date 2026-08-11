@@ -78,15 +78,7 @@ var player_style = StyleBoxTexture.new()
 
 func _ready():
 	if OS.has_feature("web"):
-		var hostname = JavaScriptBridge.eval("window.location.hostname")
-		if hostname and "opengames" in hostname:
-			api_host = HOST_PROD
-		else:
-			api_host = HOST_LOCAL
-	elif OS.has_feature("editor") or OS.is_debug_build():
-		api_host = HOST_LOCAL
-	else:
-		api_host = HOST_PROD
+		api_host = JavaScriptBridge.eval("window.location.origin")
 		
 	# Configure StyleBoxes programmatically for visual excellence
 	setup_styles()
