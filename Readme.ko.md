@@ -33,7 +33,7 @@ Godot 4 엔진 기반으로 개발된 클래식 **소코반 1스테이지(Sokoba
 
 ## 스테이지 구성 (오리지널 1~50스테이지)
 
-이 프로젝트는 1982년 히로유키 이마바야시가 설계한 **오리지널 클래식 소코반 50개 스테이지 전체**를 수록하고 있습니다. 전체 맵 구성 정보는 [levels_data.gd](file:///d:/source/repos/little_sokoban/levels_data.gd) 파일에서 일괄 관리되며, 게임 진행에 따라 동적으로 로드됩니다. (출처: [x-hgg-x/sokoban-go](https://github.com/x-hgg-x/sokoban-go) 저장소의 [XSokoban.xsb](https://raw.githubusercontent.com/x-hgg-x/sokoban-go/master/levels/XSokoban.xsb) 파일)
+이 프로젝트는 1982년 히로유키 이마바야시가 설계한 **오리지널 클래식 소코반 50개 스테이지 전체**를 수록하고 있습니다. 전체 맵 구성 정보는 [levels_data.gd](./levels_data.gd) 파일에서 일괄 관리되며, 게임 진행에 따라 동적으로 로드됩니다. (출처: [x-hgg-x/sokoban-go](https://github.com/x-hgg-x/sokoban-go) 저장소의 [XSokoban.xsb](https://raw.githubusercontent.com/x-hgg-x/sokoban-go/master/levels/XSokoban.xsb) 파일)
 
 ### 맵 문자 규칙 (XSB 표준)
 - `#`: 벽 (Wall)
@@ -57,6 +57,39 @@ Godot 4 엔진 기반으로 개발된 클래식 **소코반 1스테이지(Sokoba
 ##### ### #@##  ..#
     #     #########
     #######
+```
+
+## 레벨 및 해답 컴파일 파이프라인 (Level & Solution Pipeline)
+
+이 프로젝트는 데이터 기반 설계(Data-Driven Design)를 채택하고 있습니다. 소코반 원천 레벨 데이터 파일(`.sok`)을 Godot 게임과 테스트 러너에서 즉시 사용할 수 있는 리소스로 빌드하는 파이썬 유틸리티 스크립트가 포함되어 있습니다.
+
+- **원천 데이터**: [`levels_data.sok`](./levels_data.sok) (50개 오리지널 스테이지 레이아웃 및 최적의 해결 경로 수록)
+- **컴파일 스크립트**: [`convert_sok.py`](./convert_sok.py)
+- **생성되는 파일**:
+  - [`levels_data.gd`](./levels_data.gd): Godot에서 게임 구동 시 로드되는 맵 데이터 스크립트
+  - [`levels_data_solution.json`](./levels_data_solution.json): 테스트 자동화 시 사용되는 최적 해답 키 입력을 매핑한 JSON 데이터
+
+### 맵 컴파일 방법
+SOK 원천 데이터를 수정하거나 새로운 레벨 팩을 컴파일하려면 터미널에 아래 명령을 실행합니다:
+```bash
+python convert_sok.py levels_data.sok
+```
+*주: 스크립트 실행 시 기존 해답 데이터를 유실하지 않기 위해, 새로운 솔루션이 누락된 레벨에 대해서는 기존 `levels_data_solution.json`에 보관된 솔루션을 안전하게 보존(Merge)하는 논리가 내장되어 있습니다.*
+
+## 테스트 자동화 (Test Automation)
+
+게임 내 동작의 신뢰성을 담보하기 위해 Godot 4의 자체 가상 입력 주입 API(`Input.parse_input_event`)를 사용한 **테스트 자동화 시스템**이 구현되어 있습니다.
+
+- **GDScript 테스트 러너**: [`test_runner.gd`](./test_runner.gd) (Godot 씬 내부에서 가상 키 입력을 통해 테스트를 순차 진행)
+- **파이썬 테스트 래퍼**: [`test_runner.py`](./test_runner.py) (Godot 엔진을 Headless 혹은 Headful 모드로 자동 시작하고 최종 성공 여부 및 로그 수집)
+
+테스트 자동화 아키텍처 및 상세한 구동 방법(시나리오 설명, 모니터 모드 및 Docker 구동)에 대해서는 [테스트 자동화 명세서 (test_runner.ko.md)](./test_runner.ko.md)를 참고해 주시기 바랍니다.
+
+### 테스트 실행 예시
+터미널에서 아래와 같이 시나리오와 모니터링 환경을 지정하여 테스트를 실행할 수 있습니다:
+```bash
+# 5단계 레벨부터 시작하여 화면을 보며 자동 플레이 검증 (시나리오 1)
+python test_runner.py --scenario 1 --monitor --level 5
 ```
 
 ## 실행 방법

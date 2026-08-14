@@ -9,7 +9,7 @@ A classic **Sokoban Level 1** game project built with the Godot 4 engine. It rep
    - **Gamepad**: Move with the D-pad or the left analog stick.
    - **Mouse**: Click on any empty floor or goal cell to pathfind and walk there automatically using `AStarGrid2D`. Mouse drag swipes are also supported.
    - **Touch Screen**: Swipe gestures and a translucent on-screen virtual D-pad.
-   - **Seamless Focus Switching**: Clicking HUD buttons with the mouse will not steal controller/keyboard focus. We disable button focus-grabbing (`Control.FOCUS_NONE`) and release active UI focus instantly in `_input(event)` when keyboard/gamepad inputs are detected.
+   - **Seamless Input Switching**: Keyboard, mouse, gamepad, and touch inputs can switch instantly. Clicking HUD buttons with the mouse will not steal focus from controller/keyboard navigation.
 
 2. **Xbox Gamepad Button Prompts & Mappings**
    - Xbox-style colored button prompts (`[Y]`, `[X]`, `[A]`) are rendered inside buttons for controller players:
@@ -33,7 +33,7 @@ You can dynamically switch between themes using the `MENU` button at the bottom 
 
 ## Stage Configurations (Original Level 1–50)
 
-This project features the complete set of **all 50 original classic Sokoban stages** designed by Hiroyuki Imabayashi. The full stage data is stored and managed within the [levels_data.gd](file:///d:/source/repos/little_sokoban/levels_data.gd) file, which is loaded dynamically as the player progresses. (Source: [XSokoban.xsb](https://raw.githubusercontent.com/x-hgg-x/sokoban-go/master/levels/XSokoban.xsb) from [x-hgg-x/sokoban-go](https://github.com/x-hgg-x/sokoban-go) repository)
+This project features the complete set of **all 50 original classic Sokoban stages** designed by Hiroyuki Imabayashi. The full stage data is stored and managed within the [levels_data.gd](./levels_data.gd) file, which is loaded dynamically as the player progresses. (Source: [XSokoban.xsb](https://raw.githubusercontent.com/x-hgg-x/sokoban-go/master/levels/XSokoban.xsb) from [x-hgg-x/sokoban-go](https://github.com/x-hgg-x/sokoban-go) repository)
 
 ### Map Character Rules (Standard XSB)
 - `#`: Wall
@@ -59,6 +59,39 @@ This project features the complete set of **all 50 original classic Sokoban stag
     #######
 ```
 
+## Level & Solution Pipeline
+
+This project adopts a Data-Driven Design pattern. It includes a Python utility script to compile the raw Sokoban level data file (`.sok`) into game-ready resources.
+
+- **Source Level Data**: [`levels_data.sok`](./levels_data.sok) (Contains 50 original stages and optimal solution keys)
+- **Compilation Script**: [`convert_sok.py`](./convert_sok.py)
+- **Generated Outputs**:
+  - [`levels_data.gd`](./levels_data.gd): The map data script loaded dynamically by Godot at runtime
+  - [`levels_data_solution.json`](./levels_data_solution.json): JSON dataset mapping level indices to the optimal solving paths used by the test automation
+
+### How to Compile Level Data
+To compile the raw SOK level packs, run the following command in your terminal:
+```bash
+python convert_sok.py levels_data.sok
+```
+*Note: To prevent losing existing solution progress, the compilation script implements a merge fallback logic that safely preserves solutions in `levels_data_solution.json` if new ones are omitted in the `.sok` file.*
+
+## Test Automation
+
+To ensure the robustness and reliability of in-game logic, a **Test Automation System** has been built utilizing Godot 4's native virtual input injection API (`Input.parse_input_event`).
+
+- **GDScript Test Runner**: [`test_runner.gd`](./test_runner.gd) (Instantiated dynamically to run sequence steps inside Godot)
+- **Python Wrapper**: [`test_runner.py`](./test_runner.py) (Launches the Godot subprocess headlessly or headfully, collects logs, and asserts success exit codes)
+
+For detailed architectures and usage instructions (including scenarios, monitoring options, and Docker environments), please refer to the [Test Automation Specification (test_runner.md)](./test_runner.md).
+
+### Quick Test Execution Example
+Run the python script specifying scenario options:
+```bash
+# Verify stages starting from Level 5 visually in headful mode (Scenario 1)
+python test_runner.py --scenario 1 --monitor --level 5
+```
+
 ## How to Run
 
 ### 1. Running from Source (Godot Editor)
@@ -82,11 +115,11 @@ To run the Web build, you must run a local HTTP server inside the `build/web` fo
    ```bash
    cd build/web
    ```
-2. Run Python's built-in HTTP server directly (without writing any script files):
+2. Run Python's built-in HTTP server directly:
    ```bash
    python -m http.server 8000
    ```
-3. Open Google Chrome or any modern browser and navigate to `http://localhost:8000`.
+3. Open a browser and navigate to `http://localhost:8000`.
 
 > [!NOTE]
 > If the game fails to load due to `SharedArrayBuffer` being missing (common in Godot 4 multi-threaded builds), you can launch a server with security headers using a single-line Python command directly in your terminal:
@@ -141,4 +174,3 @@ Then run the export commands (replace `godot` with the path to your Godot execut
 ## License
 
 This project is licensed under the [MIT License](LICENSE). Feel free to modify, build, and redistribute.
-
