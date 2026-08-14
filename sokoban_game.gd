@@ -81,6 +81,7 @@ func _ready():
 	var test_mode = false
 	var scenario = 1
 	var start_level = 1
+	var language = "" # Empty means not specified
 	for arg in args:
 		if arg == "--test-mode":
 			test_mode = true
@@ -88,6 +89,13 @@ func _ready():
 			scenario = arg.split("=")[1].to_int()
 		elif arg.begins_with("--level="):
 			start_level = arg.split("=")[1].to_int()
+		elif arg.begins_with("--language="):
+			language = arg.split("=")[1].to_lower()
+	
+	if language != "":
+		TranslationServer.set_locale(language)
+	elif test_mode:
+		TranslationServer.set_locale("en") # Force English for tests
 	
 	if test_mode:
 		var test_runner = load("res://test_runner.gd").new()
@@ -116,7 +124,7 @@ func _ready():
 	$TouchControls/Dpad/Right.text = ""
 	
 	# Initialize HUD hearts container
-	lives_label.text = "LIVES:"
+	lives_label.text = tr("KEY_LIVES") + ":"
 	hearts_container = HBoxContainer.new()
 	hearts_container.name = "HeartsContainer"
 	hearts_container.size = Vector2(150, 30)
@@ -180,11 +188,11 @@ func _ready():
 	$GameOverOverlay/VBox/RetryButton.pressed.connect(func(): open_highscore_entry_dialog())
 	
 	# Setup button Xbox prompts
-	setup_button_xbox_prompt($HUD/Buttons/UndoButton, "Y", Color(0.98, 0.82, 0.08), "UNDO")
-	setup_button_xbox_prompt($HUD/Buttons/RestartButton, "X", Color(0.25, 0.61, 1.0), "RESET")
-	setup_button_xbox_prompt(menu_btn, "START", Color(0.93, 0.28, 0.54), "MENU")
-	setup_button_xbox_prompt($VictoryOverlay/VBox/RestartButton, "A", Color(0.29, 0.85, 0.38), "NEXT STAGE")
-	setup_button_xbox_prompt($GameOverOverlay/VBox/RetryButton, "A", Color(0.29, 0.85, 0.38), "TRY AGAIN")
+	setup_button_xbox_prompt($HUD/Buttons/UndoButton, "Y", Color(0.98, 0.82, 0.08), tr("KEY_UNDO"))
+	setup_button_xbox_prompt($HUD/Buttons/RestartButton, "X", Color(0.25, 0.61, 1.0), tr("KEY_RESET"))
+	setup_button_xbox_prompt(menu_btn, "START", Color(0.93, 0.28, 0.54), tr("KEY_MENU"))
+	setup_button_xbox_prompt($VictoryOverlay/VBox/RestartButton, "A", Color(0.29, 0.85, 0.38), tr("KEY_NEXT_STAGE"))
+	setup_button_xbox_prompt($GameOverOverlay/VBox/RetryButton, "A", Color(0.29, 0.85, 0.38), tr("KEY_TRY_AGAIN"))
 	
 	# Prevent UI buttons from capturing keyboard/gamepad focus
 	disable_all_button_focus(self)
@@ -569,7 +577,7 @@ func open_menu_dialog():
 	
 	var title = Label.new()
 	title.name = "Title"
-	title.text = "SOKOBAN MENU"
+	title.text = tr("KEY_MENU_TITLE")
 	title.add_theme_color_override("font_color", Color(0.93, 0.28, 0.54))
 	title.add_theme_font_size_override("font_size", 18)
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -587,22 +595,22 @@ func open_menu_dialog():
 			child.queue_free()
 			
 		var theme_btn = Button.new()
-		theme_btn.text = "Theme"
+		theme_btn.text = tr("KEY_MENU_THEME")
 		theme_btn.custom_minimum_size = Vector2(0, 36)
 		content_area.add_child(theme_btn)
 		
 		var leaderboard_btn = Button.new()
-		leaderboard_btn.text = "Leaderboard"
+		leaderboard_btn.text = tr("KEY_MENU_LEADERBOARD")
 		leaderboard_btn.custom_minimum_size = Vector2(0, 36)
 		content_area.add_child(leaderboard_btn)
 		
 		var license_btn = Button.new()
-		license_btn.text = "License"
+		license_btn.text = tr("KEY_MENU_LICENSE")
 		license_btn.custom_minimum_size = Vector2(0, 36)
 		content_area.add_child(license_btn)
 		
 		var close_btn = Button.new()
-		close_btn.text = "Close"
+		close_btn.text = tr("KEY_MENU_CLOSE")
 		close_btn.custom_minimum_size = Vector2(0, 36)
 		content_area.add_child(close_btn)
 		
@@ -626,17 +634,17 @@ func open_menu_dialog():
 				child.queue_free()
 				
 			var def_btn = Button.new()
-			def_btn.text = "Default" + (" (Active)" if current_theme == "default" else "")
+			def_btn.text = tr("KEY_THEME_DEFAULT") + (" " + tr("KEY_ACTIVE") if current_theme == "default" else "")
 			def_btn.custom_minimum_size = Vector2(0, 36)
 			content_area.add_child(def_btn)
 			
 			var kenney_btn = Button.new()
-			kenney_btn.text = "Kenney" + (" (Active)" if current_theme == "kenney" else "")
+			kenney_btn.text = tr("KEY_THEME_KENNEY") + (" " + tr("KEY_ACTIVE") if current_theme == "kenney" else "")
 			kenney_btn.custom_minimum_size = Vector2(0, 36)
 			content_area.add_child(kenney_btn)
 			
 			var back_btn = Button.new()
-			back_btn.text = "Back"
+			back_btn.text = tr("KEY_MENU_BACK")
 			back_btn.custom_minimum_size = Vector2(0, 36)
 			content_area.add_child(back_btn)
 			
@@ -692,7 +700,7 @@ func open_menu_dialog():
 			scroll.add_child(score_list)
 			
 			var loading_lbl = Label.new()
-			loading_lbl.text = "Loading Leaderboard..."
+			loading_lbl.text = tr("KEY_LEADERBOARD_LOADING")
 			loading_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			loading_lbl.add_theme_font_size_override("font_size", 14)
 			score_list.add_child(loading_lbl)
@@ -700,7 +708,7 @@ func open_menu_dialog():
 			get_leaderboard_data(Callable(self, "_on_leaderboard_loaded"))
 			
 			var back_btn = Button.new()
-			back_btn.text = "Back"
+			back_btn.text = tr("KEY_MENU_BACK")
 			back_btn.custom_minimum_size = Vector2(0, 36)
 			content_area.add_child(back_btn)
 			
@@ -729,21 +737,13 @@ func open_menu_dialog():
 			content_area.add_child(scroll)
 			
 			var text_lbl = Label.new()
-			text_lbl.text = "LICENSE INFORMATION\n\n" \
-				+ "XSokoban Map Data:\n" \
-				+ "Public Domain / Benchmark Set\n\n" \
-				+ "Kenney Sokoban Assets:\n" \
-				+ "CC0 1.0 Universal\n" \
-				+ "Free to use in personal/commercial work\n\n" \
-				+ "Little Sokoban Game:\n" \
-				+ "MIT License\n" \
-				+ "Copyright (c) 2026 Ringos"
+			text_lbl.text = tr("KEY_LICENSE_TEXT")
 			text_lbl.add_theme_font_size_override("font_size", 12)
 			text_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			scroll.add_child(text_lbl)
 			
 			var back_btn = Button.new()
-			back_btn.text = "Back"
+			back_btn.text = tr("KEY_MENU_BACK")
 			back_btn.custom_minimum_size = Vector2(0, 36)
 			content_area.add_child(back_btn)
 			
@@ -1119,7 +1119,7 @@ func open_highscore_entry_dialog():
 	popup.add_child(vbox)
 	
 	var title = Label.new()
-	title.text = "NEW HIGH SCORE!"
+	title.text = tr("KEY_HIGHSCORE_TITLE")
 	title.add_theme_color_override("font_color", Color(0.98, 0.75, 0.14))
 	title.add_theme_font_size_override("font_size", 16)
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -1127,14 +1127,14 @@ func open_highscore_entry_dialog():
 	
 	var final_score = total_score + current_level_score
 	var score_lbl = Label.new()
-	score_lbl.text = "Final Score: %d" % final_score
+	score_lbl.text = tr("KEY_HIGHSCORE_FINAL_SCORE") % final_score
 	score_lbl.add_theme_color_override("font_color", Color.WHITE)
 	score_lbl.add_theme_font_size_override("font_size", 14)
 	score_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	vbox.add_child(score_lbl)
 	
 	var line_edit = LineEdit.new()
-	line_edit.placeholder_text = "Enter your name..."
+	line_edit.placeholder_text = tr("KEY_HIGHSCORE_PLACEHOLDER")
 	line_edit.alignment = HORIZONTAL_ALIGNMENT_CENTER
 	line_edit.max_length = 10
 	vbox.add_child(line_edit)
@@ -1256,7 +1256,7 @@ func _on_leaderboard_loaded(entries: Array):
 		
 	if entries.is_empty():
 		var no_score_lbl = Label.new()
-		no_score_lbl.text = "No High Scores Yet"
+		no_score_lbl.text = tr("KEY_LEADERBOARD_NO_SCORES")
 		no_score_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		no_score_lbl.add_theme_font_size_override("font_size", 14)
 		score_list.add_child(no_score_lbl)
@@ -1268,7 +1268,7 @@ func _on_leaderboard_loaded(entries: Array):
 			score_list.add_child(row)
 			
 			var name_lbl = Label.new()
-			var stage_text = " (Stage %d)" % item["stage"]
+			var stage_text = tr("KEY_LEADERBOARD_STAGE") % item["stage"]
 			name_lbl.text = "%d. %s%s" % [i + 1, item["name"], stage_text]
 			name_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			name_lbl.add_theme_font_size_override("font_size", 14)
@@ -1291,13 +1291,14 @@ func check_victory():
 		victory = true
 		walking = false
 		path_to_walk.clear()
-		victory_score_label.text = "Score: %d | Time Left: %ds" % [score, int(time_remaining)]
+		victory_score_label.text = tr("KEY_VICTORY_SCORE") % [score, int(time_remaining)]
+		$VictoryOverlay/VBox/Subtitle.text = tr("KEY_VICTORY_SUBTITLE") % (current_level_idx + 1)
 		
 		# Set text in the next stage button dynamically
 		if current_level_idx < 49:
-			setup_button_xbox_prompt($VictoryOverlay/VBox/RestartButton, "A", Color(0.29, 0.85, 0.38), "NEXT STAGE")
+			setup_button_xbox_prompt($VictoryOverlay/VBox/RestartButton, "A", Color(0.29, 0.85, 0.38), tr("KEY_NEXT_STAGE"))
 		else:
-			setup_button_xbox_prompt($VictoryOverlay/VBox/RestartButton, "A", Color(0.29, 0.85, 0.38), "PLAY AGAIN")
+			setup_button_xbox_prompt($VictoryOverlay/VBox/RestartButton, "A", Color(0.29, 0.85, 0.38), tr("KEY_PLAY_AGAIN"))
 			
 		victory_overlay.visible = true
 
@@ -1341,12 +1342,12 @@ func load_next_level():
 		open_highscore_entry_dialog()
 
 func update_hud():
-	score_label.text = "SCORE: %d" % score
-	time_label.text = "TIME: %ds" % int(time_remaining)
+	score_label.text = tr("KEY_SCORE") + ": %d" % score
+	time_label.text = tr("KEY_TIME_FORMAT") % int(time_remaining)
 	
 	# Update stage indicator title
 	if title_label:
-		title_label.text = "SOKOBAN - STAGE %d / 50" % (current_level_idx + 1)
+		title_label.text = tr("KEY_STAGE_FORMAT") % (current_level_idx + 1)
 	
 	# Update hearts inside hearts_container
 	if hearts_container:

@@ -29,3 +29,7 @@ window/stretch/aspect="expand"
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://translations.en.translation", "res://translations.ko.translation")
