@@ -1,0 +1,2187 @@
+Collection: XSokoban
+Author: XSokoban
+Date of Last Change: 2026-08-14  11:12:44
+
+
+"XSokoban 1", by XSokoban
+
+    #####
+    #   #
+    #$  #
+  ###  $##
+  #  $ $ #
+### # ## #   ######
+#   # ## #####  ..#
+# $  $          ..#
+##### ### #@##  ..#
+    #     #########
+    #######
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 264/99 (YASS 2.153 Solver)
+ullluuuLUluurDldlDDuRllldddrRRRRRRRRRRRRurDllllllllllllllulldRRRRRRRRR
+RRRRRRllllllllllllluuurrdDuulldddrRRRRRRRRRRRllllllluuuLLulDDDuulldddr
+RRRRRRRRRRdrUluRRlldlllllluuulluurDllddddrrruuuLLulDDDuulldddrRRRRRRRR
+RRdrUluRdllllllluuulluuulDDDDDuulldddrRRRRRRRRRRurDldR
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:52:05
+
+
+"XSokoban 2", by XSokoban
+
+############
+#..  #     ###
+#..  # $  $  #
+#..  #$####  #
+#..    @ ##  #
+#..  # #  $ ##
+###### ##$ $ #
+  # $  $ $ $ #
+  #    #     #
+  ############
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 541/131 (YASS 2.153 Solver)
+rdrRllullddddllluRdrruuuurrdrrdddrruuLUUruulLulllldDuurrrrdrrddldlllul
+LLLLLulDrrrrruuurrdLulDDuurrrrdrrddldlllulLLLLLrrrrddddlluRdrUUUUrrdrr
+ruruullulllldDuurrrrdrrddldlllulLLLdlUruLLdrrrrrrdrrrdrddlllluLLdlluRd
+rUUUddrrdrrrruululllulLLLdlUUruLLddrrrruuurrrrdLLLulDDurrrrrrddldlllul
+LLLdlUUUruLLdddrrrrdddrrdrruLLLLdlluRdrUUUddrrrrdrruululllulLLLLulDrrr
+rrrdrrruUruLLLLLulDDurrrrrdddlllulLLLLrrrrrdrDurrdrddlluLLLLdlluRdrUUU
+ddrrruululLLLdlUruLdrrrrrdrrrdLulDrdLLLLdlluRdrUUUddrrruululLLLdlUUruL
+ddrrrrrdrrrdrdLLLLLLdlluRdrUUUddrrruululLLLdlUUUruL
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:52:25
+
+
+"XSokoban 3", by XSokoban
+
+        ########
+        #     @#
+        # $#$ ##
+        # $  $#
+        ##$ $ #
+######### $ # ###
+#....  ## $  $  #
+##...    $  $   #
+#....  ##########
+########
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 386/136 (YASS 2.153 Solver)
+ldDDullddddlLLLLLdlUruLLLdrrrrrrrrrurRdrruLLdLLLLLLLLLLulDrdLurrrrrrrr
+ruuuurrdDDrdLLLLLLLLLLLdlUrrrrrrrrrrruLruuullddDrdLLLLLLLLLrrrrrruRdrr
+ruuuullddDrdLLLLLLLLulDrdLurrrrrrrrrruuuLulDDDrdLLLLLLLLdlUrrrrrrrrrru
+uuuuulDDrdLulDDDrdLLLLLLLLrrrrruuRdrrruullDurrddlLLulDrdLLLLLulDrdLurr
+rrrrruuuuruulllddRDDrdLulDrdLLLLLdlUrrrrrruuuuluurDDDDrdLulDrdLLLLLrrr
+rrruuuruLruulldDDDrdLulDrdLLLLulDrdL
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:52:34
+
+
+"XSokoban 4", by XSokoban
+
+           ########
+           #  ....#
+############  ....#
+#    #  $ $   ....#
+# $$$#$  $ #  ....#
+#  $     $ #  ....#
+# $$ #$ $ $########
+#  $ #     #
+## #########
+#    #    ##
+#     $   ##
+#  $$#$$  @#
+#    #    ##
+###########
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 953/359 (YASS 2.153 Solver)
+llulLLLLuluuluurRRRRRurRuRRRRRRRurDDulllllllldlluRRRRRRRRRurDlllllllll
+lddddrruUUluRRRRRRRRlllllllddrUluRRRdrUluRRRRdlllllllddddrUUUluRRRdrUU
+luRRRRddlllllllllddRlddrruUUluRRRRRRRurDDullllllllldddRdrUUUluRRRRRRRu
+rDlllllllllddlllllluurrrDulllddrrRRRRdrUUluRRRRRRRRllllllllddlllddLruu
+uulDullddrRRRRRdrUUluRRRRRdrUluRRRdllllllllddlllddlUruuulllddrRRRRRdrU
+UluRRRRRdrUUluRRRddllllllllddlllllldRurrddlUluRRRRRdrUUluRRRRRRRurDDul
+lllllllddlllllluRurDldRRRRRdrUUluRRRRRRRurDlllllllllDrdLLLulldRRRRurrd
+dlUUluRRRRRRRRlllllllddddlUruLLLulldRRRRdrUUluRRRRRRdrUluRdrUluRddllll
+llllddlllllddRddlddrUUUUUluRRRRRdrUUluRRRRRRdrUluRRdllllllllddlllldddd
+dddrrUdlluurRRRurrdLLLLdLdlUUUUUUluRRRRRdrUUluRRRRRRRdrUllllllllddlldd
+LulDDDlddrUUUUUluRRRRRdrUUluRRRRRRurDldRurDluuurDDllllllllddlllldddddd
+rUruLdlUUUUluRRRRRdrUUluRRRRRRdrUluRdrUdllllllllddlllldddddrrrrrrddllU
+drruulLLLdlUruLdlUUUUluRRRRRdrUUluRRRRRRdrUluRdlllllllddlllldddddrrrrr
+rdLdlUruLLLdlUruLdlUUUUluRRRRRdrUUluRRRRRRR
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:52:37
+
+
+"XSokoban 5", by XSokoban
+
+        #####
+        #   #####
+        # #$##  #
+        #     $ #
+######### ###   #
+#....  ## $  $###
+#....    $ $$ ##
+#....  ##$  $ @#
+#########  $  ##
+        # $ $  #
+        ### ## #
+          #    #
+          ######
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 437/153 (YASS 2.153 Solver)
+luUUdllDlLLLLLLLLdlUrrrrrrrrrddlUruLLLLLLLLrrrrrrrrrurrdLLLLLLLLLLulDr
+dLurrrrrrrrrrrddlUruLLLLLLLLLLdlUrrrrrrrrrrdLullddrUruLLLLLLLLrrrrrrrr
+rrdddrddllluuUUruLLLLLLLLulDrdLurrrrrrdddRurrrdrddllluUUUruLLLLLLLLdlU
+rrrrrrrrrrdddLrrddllluUUUruLLLLLLLLrrrrrrrrruurruulDrdLuLLLrrDDDDDlldd
+drrruuLLrrddllluUUUruLLLLLLLulDrdLurrrrruuuRRRRddllLrrruulllldDrdLLLLL
+dlUrrrrruuuuurrDullddddrrrruulLLruulldDDDrdLLLLLrrrrrrrruurruLLLLLruul
+ldDDDrdLLLLulDrdL
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:52:39
+
+
+"XSokoban 6", by XSokoban
+
+######  ###
+#..  # ##@##
+#..  ###   #
+#..     $$ #
+#..  # # $ #
+#..### # $ #
+#### $ #$  #
+   #  $# $ #
+   # $  $  #
+   #  ##   #
+   #########
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 328/110 (YASS 2.153 Solver)
+drddLrddlDruuulDruuulDLLLLLLLulDDurrrrrrrrrddlUruLLLLLLLLulDrrrrrrrrdd
+lUruLLLLLLLrrrrrrrrddddllUUUruLLLLLdlUruLLdrrrrrrrrdddLdlUUUruLLLLLLul
+DDurrrrrrrrddddddllUUUUUruLLLLLdlUUruLLddrrrrrrdddddllUUUUddddrruuuuul
+LLLLulDrrrrddddlluRdrUUUddddrruuuuulLLLLrrrddddllddrUUluRdrUUUddddrruu
+uuulLLLdlUruLdrrrrrrrdddddLdlUUUUUruLLLLLdlUUruL
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:52:41
+
+
+"XSokoban 7", by XSokoban
+
+       #####
+ #######   ##
+## # @## $$ #
+#    $      #
+#  $  ###   #
+### #####$###
+# $  ### ..#
+# $ $ $ ...#
+#    ###...#
+# $$ # #...#
+#  ### #####
+####
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 405/110 (YASS 2.153 Solver)
+ldRRRRuurrDrddllDDDDldRuuuuurruulDrdLuuullddRluurrdDlDDDDldRuuuuurrdLu
+lDDDDDuuuuuluurDDDDDldRuuuullllllldRddddlluuRlddrruUUUluRRRRRRurDDDDDu
+uuulllllldddlldRdrUUUUluRRRRRRurDDDDuuulllllldddddllddrUUrrdLullddrUlu
+RluurrrDrRRlllluuuurrrrrrdddlDDulllllulldddrrrUdllluuurrdRRRRlllluuuur
+rrrrrdddlDllllddlluRuuuuurrdLurrrrrdddldllllluuUluRRRRRRurDDDuulllllld
+dddrrrrruRldlllllddrUluRRRRllllulldRdrUUUUluRRRRRRurDDD
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:52:43
+
+
+"XSokoban 8", by XSokoban
+
+  ####
+  #  ###########
+  #    $   $ $ #
+  # $# $ #  $  #
+  #  $ $  #    #
+### $# #  #### #
+#@#$ $ $  ##   #
+#    $ #$#   # #
+#   $    $ $ $ #
+#####  #########
+  #      #
+  #      #
+  #......#
+  #......#
+  #......#
+  ########
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 697/238 (YASS 2.153 Solver)
+drrruRDDDDDDDldRRRluuuuuurrUUruuluuLLLLrrddLLrruurrddrddlddlllulldRurD
+DDDDDldRRuuuuuurruuruuluulldddDDDDDDDDuuuuuuuuuuurrrrdrdrrrddlldlldLLL
+LulDDDDDDuuuuurrruuLrruuluulldddDDurrddlLulDDDrdLulDDDrruuuuuuuuullDDD
+ldRurDDDrdLLulDDDrrruuuuuuurrruulLruulldDDDDDDDDDrdLLLruuuuuuululDDldR
+RurDDDDDrdLruuuuuuuuurrDrdLLruulldDDDDDDDrdLuuuuurrrrurrdLLLLLruulldDD
+DDDuuuuuuuuuurDrdLulDDDDDDDDldRurDluuuurrrrrruurrddLLLLLLLruulldDDDDld
+RRurDlluuuuuuuuuullDDDDDldRurDDDDldRRRluuuuuuuullulDDDDldRRurDDDDldRRu
+uuuuuuuuullulDDDDDDldRRurDDDDldRuuuurrrrrrrrruuuuulLuLLLLLLLrddllluuur
+DDDDDDldRurDDDrdLulDrdLruuuurrrrrrrrruuuulllUruLLLLLLLrddllluuurDDDDDD
+ldRurDDDrdLulDrruuurrrrrrrruuuuuuLLLLLLLLLrddllluuurDDDDDDldRurDDDD
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:52:45
+
+
+"XSokoban 9", by XSokoban
+
+          #######
+          #  ...#
+      #####  ...#
+      #      . .#
+      #  ##  ...#
+      ## ##  ...#
+     ### ########
+     # $$$ ##
+ #####  $ $ #####
+##   #$ $   #   #
+#@ $  $    $  $ #
+###### $$ $ #####
+     #      #
+     ########
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 640/237 (YASS 2.153 Solver)
+rurrdrRRRRlluulDDrrrddllUUrruuLUUUUluRRRRRRRdrUUdllllllldddddrddlUUUUU
+UluRRRRurDldRRRurDullllllldddddddlluuuRldddrruuUUUUluRRRRdrUluRRRdllll
+llddddlldRlddrruUUUUUluRRRRurDldRRRullllllddddddrrruLLdlUUUUUluRRRRRRd
+rUUdlllllldddddrruLdlUUUUluRRRRRRdrUlllllldddddddlddrUUUUUUUUluRRRRurD
+ldRRurDulllllldddddddlUUluRdrUUUUluRRRRurDldRRullllldddddddddrrruLdlUU
+UUruLdlUUUUluRRRRRRRllllllddddddddrrUUruLdlUruLdlUUUUluRRRRRurDDulllll
+dddddddllllulldRRRRurrddlUUUluRdrUUUUluRRRRRdrUUdllllldddddddddllUruLL
+LulldRRRRdrUUUluRdrUUUUluRRRRRdrUlllllddddddrrrDrrurrdLLLLullddrUUruLd
+lUruLdlUUUUluRRRRurDldRulllldddddddddrrrUluRRRurrdLLLLdlUUruLdlUruLdlU
+UUUluRRRRR
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:52:47
+
+
+"XSokoban 10", by XSokoban
+
+ ###  #############
+##@####       #   #
+# $$   $$  $ $ ...#
+#  $$$#    $  #...#
+# $   # $$ $$ #...#
+###   #  $    #...#
+#     # $ $ $ #...#
+#    ###### ###...#
+## #  #  $ $  #...#
+#  ## # $$ $ $##..#
+# ..# #  $      #.#
+# ..# # $$$ $$$ #.#
+##### #       # #.#
+    # ######### #.#
+    #           #.#
+    ###############
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 1627/582 (Festival Solver)
+DlddRRdrdddrddddddrrrrrrrrrruuuullllluuLrddrddlllluurRRRRRllluulDrdLrr
+ruuLuuurruuluRRRRurDDDDDDDDDDDDuuuuuuuuuuullllullldRRRRRRurDDDDDDDDDDD
+uuuuuuuuuullllllldddLrrdddDrdLuuuuulldRurDDDrddlUUUUluuuurrrdddlLrruuu
+lllldDulldRRuuullDllDDuulLDDDDrdLulDDDDldRuuuuruuuuurrrrRRRRRRRRRurDDD
+DDDDDDDuuuuuuuuullllllllllllddLruulldDDDrdLulDDDDuuuruuulluuRRRRRRRRRR
+RRRRRurDDDDDDDDDuuuuuuuulllllllllllllllDldRurDDDrdLulDDDldRuuurruuuruu
+rrrrrrrdLLullddrUluRRRRRRRRurDDDDDDDDuuuuuuulllldddlUUluRRRRurDrdLulll
+ldddlUUluRRRRRurDDrdLuullllldddddddlluRdrUUUUUUluRRRRRurDDDrdLuuulllll
+llddRRRdrUUluRRRurDDDDrdLuuuulllllddddlUUUluRRRRRRurDDDDDrdLuuuuulllll
+lllddlUruLLLddlluuRRRRRRRRRRRRurDDDDDDrdLuuuuuullllllddddlUUUluRRRRRRR
+urDDDDDDDuuuuuulllddddLulDDDrddlUUUUUUUluRRRRRurDDDDDDuuuuullllllllldd
+dRRRRRdrUUUluRRRurDDDDDuuuulllllllllddddRRRurDDDrddlUUUUUUUluRRRRRurDD
+DDuuulllllllllllddlddrUUUdlluurRRRRRRRRRRRurDDDuulllllddddddddddlllluu
+uuRRRdrUUUUUUluRRRRRurDDulllllllllllddlddddrddddddrrrrrrrrrruuuuLLLuul
+llllddddrrrruUUUUUUUUluRRRRRurDlllllddddddddddrrUdlluuuuuuuuuulllllldd
+lddddrddddddrrrrrrrrrruuuulLLrddlluUUUUUUUUluRRRRRRurDDDDDDDuuuuuullll
+llddddddllddRurrdrddlluUUUUUUUUluRRRRRRurDDDDDDuuuuullllllddddddlllldR
+RRdrUUUUUUUluRRRRRRurDDDDDuuuullllllddddddddddlUUUluRdrUUUUUUluRRRRRRu
+rDDDDuuulllllllllllldLulDDDDrdLulDDDuurruruuuurrrrrrddddddrrDulluuuuuu
+lllllllddddddrddddddrrrrrrrrrruuuulLLrddlluUUUUUUUUruLLLLLLLrrrrrrdddd
+ddlddddlUUUluRRdrUUUUUUluRRRRRRurDDDuullllllddddddllllddRRRdrUUUUUUUUl
+uRRRRRRurDDulllllllllllldlluRRRRRRRRRRRRRurDllllllddddddlllldddRRRdrUU
+UUUUUUUluRRRRRRlllllddddddrrdddLdlUUUUUUUUUluRRRRRllllddddddrrddrrdLLL
+dlUUUUUUUUUluRRRR
+
+Solver: Festival 3.1
+Solver time: 00:00:09
+Solver date: 2026-08-14  11:08:08
+
+
+"XSokoban 11", by XSokoban
+
+          ####
+     #### #  #
+   ### @###$ #
+  ##      $  #
+ ##  $ $$## ##
+ #  #$##     #
+ # # $ $$ # ###
+ #   $ #  # $ #####
+####    #  $$ #   #
+#### ## $         #
+#.    ###  ########
+#.. ..# ####
+#...#.#
+#.....#
+#######
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 969/243 (YASS 2.153 Solver)
+dllldldlddrrdrrrdRRdrUluuuurrddDuuuuuruulDDDDDDuullddddllulllulluururu
+rrrrrRlllllldldlddrrdrrrdrruuuurruUddlllUdrrruullLddrddlUUrddddlluluuR
+lddlluuRlddrruLulDDDDrdLulDDurrddlLLuuurruuulluurururrdLDDlddrruLulDDD
+DrdLulDDldRuuuruuulluuruRurDDDlddrruLulDDDDrdLLulDDuurruurrrdrruuuurru
+ulllLrrrrddlllULLrrdrddddllulllulluurururDDDlddrruLulDDDDrdLLLdlUrrruu
+uuuruurruulDrdLulDDDlddrruLulDDDDrdLLulDrdLuurruurrrdrruuuurruullLLulD
+rdLulDDDlddrruLulDDDDrdLLLrruuurrrdrruulUlLdlllluururrdDrdLulDDDDrdLLu
+lDrruuuuuruurrrDrdLLLrruullldDrdLulDDDDldRurDDuuluuuurrrruuurrrruulDrd
+LLLLLulDrdLulDDDrdLulDDDDrdLulDDuuruurrrdrrrRRRRRurrdLLLLLLLdlUUUUluuu
+rrrddlLrruullldDrdLLLrruullldDrdLulDDDDldRurDluuurrrdrrrrULdlUUUluuurr
+rddlLrruullldDrdLLLrruullldDrdLulDDDDrdLLruuurrrdrrrrrruLLLdlUUUluuurr
+rddlLrruullldDrdLLLrruullldDrdLulDDDDrdLulDruuuuurrrrrurrdDuullddddrrr
+uLLdlUUUddrruuulLrruullldDrdLLLrruullldDrdLulDDDDldRuuurrrdrrrrrruuLdl
+lluuurrdDrdLLdlUUUddrruuulLrruullldDrdLLLrruullldDrdLulDDDD
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:55:39
+
+
+"XSokoban 12", by XSokoban
+
+################
+#              #
+# # ######     #
+# #  $ $ $ $#  #
+# #   $@$   ## ##
+# #  $ $ $###...#
+# #   $ $  ##...#
+# ###$$$ $ ##...#
+#     # ## ##...#
+#####   ## ##...#
+    #####     ###
+        #     #
+        #######
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 1183/224 (YASS 2.153 Solver)
+RlLdRluuLrddrdDrRurDDDuullluulLdlluuuuurrrrrrrrrrrddddddddlddlllluRdrr
+ruuuuuuruuullllddrUluRRRurDDDuuullllllllllldddddrrurrddrrrddddrrruuuuu
+uRlddddddllluRRdrUUUUUddddllluuullluuuruRRdrUluRRRurDDDDuuulllldlldldd
+drrrdddrrruuuuRlddddllluuullluRluuluRRRRdrUluRRRurDDDDDldRuuuuulllldll
+dDDldRuullldlluuuuulldddddddrrrrdrrUdllulllluuuuuuurrdddddrrRRlllluuuu
+ulldddddddrrrrUdlllluuuuuuurrdddddrRdddrruUrUdlddlluuuurruurrrrurrrddd
+ddddldllluuuuLrddddrrruuuuruuuulllldllllddlddddrruurRurDDDuulllddlluuu
+urruurrrrurrrdddddddlddlllluRRRdrUUUUdddllluuulllddlluuRRRRurDDDuullll
+luurruurrrrurrrdddddddlddlllluRRRdrUUUruuuuuulllldlldRllldlddrrrruUUlu
+RlllddldlluuuuurrrrrrrrdddLruuulllllllldddddrrurruurrRdrUluRRRurDDDDDD
+uuuuulllldllllddlddrrrrrdddrrruuRuuuuuulllldlllddRDulllddrrRRurDDDuuul
+luuurrrurrrdddddddlddlllluRRRdrUUdllluuulllllulluuuRRRRRRRdrUluRRRurDD
+DDDDDuuuuuulllldllddddrrdddrrruRldllluuuullulDullddrRRRurDDDuuulluuurr
+rurrrdddddddlddlllluRRRdrUllluuuullluuullldRdrUluRRRRRdrUluRRRurDDDDDD
+DuuuuuulllldlldRlddrUUluRlllllluurrrrrrrrdddLruuullllllllddrrrrrrRdrUl
+uRRRurDDDDDDuuuuulllldllddrUluRRdrUluRRRurDDDDDuuuullllddlllllddRdrUUU
+luRRRRdrUluRRRurDDDDuuullllddllllllldRdrUUluRRRRRRdrUluRRRurDDD
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:55:42
+
+
+"XSokoban 13", by XSokoban
+
+   #########
+  ##   ##  #####
+###     #  #    ###
+#  $ #$ #  #  ... #
+# # $#@$## # #.#. #
+#  # #$  #    . . #
+# $    $ # # #.#. #
+#   ##  ##$ $ . . #
+# $ #   #  #$#.#. #
+## $  $   $  $... #
+ #$ ######    ##  #
+ #  #    ##########
+ ####
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 934/256 (YASS 2.153 Solver)
+DDlluUUdddldlldRdRluuluRluuurRdrddrruuUdddlluuluuRldlldddddrdrddlUruUl
+luuuuurrururrDDuulldlddrddrrurUdldlluuluururrddDrdrdLdddrrurUdldRuurRR
+luurrdDlllldddrruUddlluuurRRlddRRRllluuuurrrrrdddddlUUUUruLLruulldDlld
+dllddRdrUUUUdrRRlllddrrrruUUUUruLLulDlldDDurrrrddddlllllluurRRRRlllddr
+rrruUUUUruLLrddllllllDDDldRRdrUUUUdlluurRRRRlllddrrrruUUruLddddddlllll
+llllulldRRRRRRdrUUUUdlluurRRRRlllddrrrruUUdddddllllllllluuuuuluuulldld
+lldddddrrdRRRRRRRRdrUUUUdlluurRRRRlllddrrrruUddddlllllllllllllulluuuuu
+rrdrddrRlluuluururrdddrdDDDldRRRRRdrUUdlluurRRRRlllddrrrruUddlllllllll
+uuulDDldRRRRRRRRRRllluurrrrrdddlUllllllllluuuuulDDDDldRRRRRRRRRRllllll
+llluuuuuuurDDDDDDldRRRRRRRRllllllllllldlUrrrruuulluululldddrRRRluuluur
+urrddddDDDldRRRRRRdrUUdlluurRRRRlllllddlllluuulllDDulldRdRRRRRRRRRdrUU
+UUdlluurRRRRlllllddddlllllllluurDldRRRRRRRRRRRllllllluuuuuuuulldDDDuul
+lldddrrRRluuuuurrddddDDDldRRRRRRdrUUdlluurRRlllddlllluuulluuuuRurDDDDD
+DDldRRRRRRdrUUUUdlluurRR
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:55:45
+
+
+"XSokoban 14", by XSokoban
+
+       #######
+ #######     #
+ #     # $@$ #
+ #$$ #   #########
+ # ###......##   #
+ #   $......## # #
+ # ###......     #
+##   #### ### #$##
+#  #$   #  $  # #
+#  $ $$$  # $## #
+#   $ $ ###$$ # #
+#####     $   # #
+    ### ###   # #
+      #     #   #
+      ########  #
+             ####
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 1156/283 (Festival Solver)
+ulldddrddddrRlluuuulullullllDDDDDDurrDrrrDDDrrRRdrrdrruuuuuUddddddllul
+lulllluurruuurrrrruurrddLLLLrrrdddddddllullulllluuulllulluurrRRRRRurDl
+ddddllddrrrrdrrdrruuuuuuullddLLLrrruurrdddddddllullulllluurrUUUluRRldd
+ddllddrrrrUUdddrrdrruuuuuuullddlLLrdddlllluurrUUUluurrdLulDrdddrrddddr
+ruuLrddlluUUdrrdddrruuuuuuullddlLLrdddlllluurrUUUUruLLulDDrrdddrrrDldd
+drruuLrddlluUUruLLrdddlllluurrUUUUruLLLulDDrrrdddrrrddrdLdlUUUruLLrddd
+lllluurrUUUUruLLulDrdrddddllddlluRdrrrrruuulldllDldRRRRRdrUruLdlUUruLL
+rdddlllluurrUUUUruLLLulDrrrddddrrdddddllllUUrrrruuulldllDldRRRRRdrUruL
+dlUUruLLrdddlllluurrUUUUruLLLrrdddddllulDDldRRRRRRdrUruLdlUUruLLrdddll
+lluurrUUUUruLLullullllddddddlddrrRRRurDldRRRRRdrUruLdlUUruLLrdddlllluu
+rrUUUdddllulllulluuuuurrrrdrrddRuluuurrdLulDDDrdddddllulllDuulldlddrrR
+RRurDldRRRRRdrUruLdlUUruLLrdddlllluurrUUUUddddllulllulluuuuurrrrdrrdRR
+llullullllddddddDldRRRRRurDldRRRRRdrUruLdlUUruLLrdddlllluurrUUUUddddll
+ulllulluuuuurrrrdrrdRlullulldLulDDDDDDDldRRRRRurDldRRRRRdrUruLdlUUruLL
+rdddlllluurrUUUUddddllldlllluRluurrdDldRRRurDldRRRRRdrUruLdlUUruLLrddd
+lllluurrUUUdddllulllulluuuurrurrdrrurrurrdLLLulDDllulllldddddrrddRRurD
+DldRRRRRdrUruLdlUUruLLrdddlllluurrUU
+
+Solver: Festival 3.1
+Solver time: 00:00:03
+Solver date: 2026-08-14  11:09:45
+
+
+"XSokoban 15", by XSokoban
+
+   ########
+   #   #  #
+   #  $   #
+ ### #$   ####
+ #  $  ##$   #
+ #  # @ $ # $#
+ #  #      $ ####
+ ## ####$##     #
+ # $#.....# #   #
+ #  $..**. $# ###
+##  #.....#   #
+#   ### #######
+# $$  #  #
+#  #     #
+######   #
+     #####
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 974/208 (YASS 2.153 Solver)
+drrDuruUUdrrrDDLdRRlluLLLLulldRRuRDrrruullDurrddlLLrrrrdrdrruLLdddllUU
+UddlluLLLrrDrdLLrrurrdrruuuLuLLruulldldDuururrrdddrdddllulluLLruuulldR
+urDDDuuururrddlLuuuluurDDullLDDDrrrdrrrdrdddlluuUruLdddllullDDDDrddlUU
+UUrruullDDDDuuullLLddllddrUluRururrrrdddrddllulluLrrdrdrruLLruuuulldRu
+rDDDuuullllUUUluurDDuuRRdrrrrdRlulldRullldRurrdddrdLulDrdLLrruuuuulllu
+luuurrddrrrDuulllulldddrddrRurDDuullluluuurrddrrrdrrrdddlddlllluRuuull
+luluuurrddDDldRRurDDDlddrruLdlUlllluUUddddldlddrUrUUUUddddlluRururrrrr
+uuuullluluuRurDDDDldRRurDDDDrdLLurrrruuruulDlLrruullulllddrrDDDuurrrrd
+rdddlluuUruLLLrruullulllddrrDDurrruullDllllulllddrUluRRRluurrdDDldRurr
+rurrdddddlldllulllluUUUluRRRluurrdDurrrdrrdddddllLLrrrruuuuulldlddDuuu
+rurrdddddlldlluRuuuuruullldlddrRurDDDDldRlddrddlUUUUruuuullluulldddddd
+lddrUUUUddddrdRRdrruuluuruuuullluullddDDDDuuuuuurrrurrrdrrddlLulDDDDuu
+ullluullddddddlddrrrdrdrUUUddlllulluuruuuuuurrrDldRRurDDDuuulllulldddd
+ddlddrUUUUUUUluRRRluurrdDDldRRurDDuulllullddddlDDrddlluRdrUUluRR
+
+Solver: YASS 2.153
+Solver time: 00:00:02
+Solver date: 2026-08-13  17:56:04
+
+
+"XSokoban 16", by XSokoban
+
+#####
+#   ##
+#    #  ####
+# $  ####  #
+#  $$ $   $#
+###@ #$    ##
+ #  ##  $ $ ##
+ # $  ## ## .#
+ #  #$##$  #.#
+ ###   $..##.#
+  #    #.*...#
+  # $$ #.....#
+  #  #########
+  #  #
+  ####
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 1024/298 (YASS 2.153 Solver)
+UUdlluurDrruLddddlddrUUUUUddddrrDDrRRdRRllullluulluuuulldRurDDDldRuuuu
+lluurrDulDlddrrdrUrRRdrruurDldllulllllluurrDDrrrrddlUruLLLLrrrrdrrdLdD
+rDDrdrruuuuluLUlllldRurrrdrdrddddlluluuluUddrddrdrruuuulululLrrdLrrdrd
+dddlluluuluUruuurDDldlddrddrdrruuuuluLrdrddddlluRdrUUUddllluuluulluurR
+llllluurDldDDlddrUUUUUruLdddrUluuulldddRluuurrddDDDuulluRdrUdrrrddrrUd
+ddrddldRuuuluuurrdLLddrddlUUUUdddlllldDuurrddLUluRRRRurDldRRRdrUUdllll
+uuuurruuulDLLLLLLrrrrrDDDDDuuurruLulDDDDrdLLLrrrddlUUUUUdddlldlluRRRRu
+rDldRRRdrUllldRRllluuuuuruulDDDDrdLLLdlluRRRRurDDldRRlluuuuuuullddRluu
+rrdDDDrdLLLdlluRRRRurDldRRRllluuuuuulDldRurDDDrdLLLdlluRRRRurDDldRuull
+llldldRlddrUUluRurrddLUluRRRRurDldRRllulllldlddrUluRdrUluRRRRurDDluuuu
+uulllllulldRRRRRRRdrruulDrdLulDDDDrdLLLdlluRRRRurDldRluuuuuullllllluuu
+rrDDldRRRRRRdrruulDrdLulDDDDDDuuuuuullllluurDldRRRRRdrruulDrdLulDDDDrd
+LLLdlluRRRRurDluuuuulllllddlddrUUUruulldRRRRRRdrruulDrdLulDDDDDllluuLr
+ddrrruuuuulllllddlddrUUUruulldRRRRRRdrruulDrdLulDDDDuuuullllldddrrddrr
+RuuuuullllllluuRurDDldRRRRRRdrruulDrdLulDDDD
+
+Solver: YASS 2.153
+Solver time: 00:00:01
+Solver date: 2026-08-13  17:56:09
+
+
+"XSokoban 17", by XSokoban
+
+   ##########
+   #..  #   #
+   #..      #
+   #..  #  ####
+  #######  #  ##
+  #            #
+  #  #  ##  #  #
+#### ##  #### ##
+#  $  ##### #  #
+# # $  $  # $  #
+# @$  $   #   ##
+#### ## #######
+   #    #
+   ######
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 579/225 (YASS 2.153 Solver)
+luurRdRdddrrruuLuLrdrddllluuRurRlldlLuullddRluurrdRRldddrrruuLLulDrrru
+LLdrrrruLdllllLuullddRRRRuuLuuurrrrrrrrrdddddlluRdrUUUUruLLLdlUUUluurr
+dLLLLLLulDrrrrrdddllllldddrddlUUUUluRRRRRRRRRurDDDDrdLdlluRdrUUUUruLLL
+dlUUUluurrdLLLLLLrrrrdddlllllddddrrRdrruLLLLdlUUUUluRRRRRRRRRurDDDDrdL
+dlluRdrUUUUruLLLdlUUUluurrdLLLLLrrrdddlllllddddrrrdddlllUUUUUUluRRRRRR
+RRRurDDDDrdLdlluRdrUUUUruLLLdlUUUluurrdLLLLdlUruLLrrdrrdddlllllddddrrr
+dLLrrddllluUUUUUluRRRRRRRRRurDDDDrdLdlluRdrUUUUruLLLdlUUUluurrdLLLLdlU
+ruLdrrrdddllllldddddllluurRdrUUUluRRRRRRRRRurDDDDrdLdlluRdrUUUUruLLLdl
+UUUluurrdLLLLulDrdL
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:56:13
+
+
+"XSokoban 18", by XSokoban
+
+     ###########
+     #  .  #   #
+     # #.    @ #
+ ##### ##..# ####
+##  # ..###     ###
+# $ #...   $ #  $ #
+#    .. ##  ## ## #
+####$##$# $ #   # #
+  ## #    #$ $$ # #
+  #  $ # #  # $## #
+  #               #
+  #  ###########  #
+  ####         ####
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 1060/212 (Festival Solver)
+lllulllldddlddlDDDldRRRlluuuurrrurrrdrdDuulullluluuurrrrdrrdddLLLLLdlU
+luRdldlddddrruurrddrrrUUUUlulllluuuurrrrdrrdddLLLLLLrrrrrrurrdddlDlldd
+rrrrrruuuuuLLullllddddrruruUruLLrdddldlluuurUUdldllllluuuurrrrdrRurrdL
+LLLrrddldddddldlluulUUddrddrrruurrurrdLuuurrrdddddlllUUUUUruLLrddddddl
+lluuuuurUUdldddddldlluuluuluuuuurrrrdrRlldlUruLLrrdrrurrdLLLLulldRurDr
+rddldddddldlluuluuluuuuuRRdrrrrddlddddrRllddrrruUUUUruLLrdddldlluuurUU
+dldddddldlluuluuluuuuurrdrrrRlluLLrrdrrurrdLLLLulDrrrddldddddldlluuluu
+luuuuuRRlldddddrddlddRRRRRRRllllllllluRdrrrrrrrrRlllllluuluuluRRRRdrdd
+rrruuuulllDDDDDurrrddllLLLLLLLrrruuruRurDDuuullllldllluulDldRRRRRurrrr
+ddldlluUluRRRRdrddrrruuuulllDlllllulDrdLLLulldRRRRRurrrrddldlluUddrrur
+uullLdddrddrrrrrUdllllluururrdrRdrUUUUruLLrdddldlluluurrUUdldlllldlluu
+ruuurrdrrrRddldlllldlUldldddlddrUUUUddrdrrruuluullLLulldRRRRRurrrrddld
+lluUluRdddlDurrddlLLullddrUUUUddrruruullLLulldRRRRurrdddrruruurrurrrdr
+rdddddlLLLLLLLLLLLullddrUUUUddrruruuulldLLulldRRRdddrrurrruruurruuullu
+LrdrrurrdLLLLLrrrddldllLLLrrrrddrUddrrruuuulldLLLLLdddrddrrrUUUUddrrru
+uuulldLLLL
+
+Solver: Festival 3.1
+Solver time: 00:00:03
+Solver date: 2026-08-14  11:10:11
+
+
+"XSokoban 19", by XSokoban
+
+  ######
+  #   @####
+##### $   #
+#   ##    ####
+# $ #  ##    #
+# $ #  ##### #
+## $  $    # #
+## $ $ ### # #
+## #  $  # # #
+## # #$#   # #
+## ###   # # ######
+#  $  #### # #....#
+#    $    $   ..#.#
+####$  $# $   ....#
+#       #  ## ....#
+###################
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 936/316 (YASS 2.153 Solver)
+DrrrddrrrdddddddddlLUUUUdddllllLulLrrdddrrUluRRRRRRRdrruulDldRRRdrUlll
+llllulllllulldRRRRRRRRRRRdrUluRRlldlllllllllddlUruulldRRRRRRRRRRdrruul
+DDldRRRulllllldlUruLLLdlluRRRRRRRRRurDDldRuullllluuullulLuUllLrrrrrrrd
+DDDDDldRRRRRRRlllllluuuuuuullllllluuullddRluurrdDlDDDDuuuRRddRRuurrrrd
+dddddllllllllluRdrrrrrrrruuuuuullllddlluulldddDDldRRRRRRRRRRRRRdrUluRd
+llllllllllluLdrrrrrrruuuuuullllddlluullddddDldRRRRRRRRRRRRRurDldRlllll
+uuuuuuullllddlluLulDDDDDldRRRRRRRRRRRRRurDDullllllllllllluuuuuuuluurDD
+DDDDDDldRRRRRRRRRRRRRdrUllllluuuuuulllldLLLulDDDDDldRRRRRRRRRRRRRllllu
+uuuuullllLLLulDDDDDDldRRRRRRRRllllllluuuuuurrrrrrrrdddddDldRRRRRlllluu
+uuuuullllluurDlddllldddddrrrrrrrruuuuuulllLLLLulDDDDDDldRRRRRRRRllllll
+luuuuuurrrrrrrrdddddDldRRRRurDlllluuuulldllUUUdddrrurruuulllLLLLulDDDD
+DDldRRRRRRRRRRRRdrUlllluuulluLrddlluUUdrrdrruuulllLLLLulDDDDDDldRRRRRR
+RRllllllluuuuurrrrdrrdrrddDldRRRRluuuuuuuuullluulllDDDldddrrrdrruuulll
+LLLLulDDDDDDldRRRRRRRRRRRR
+
+Solver: YASS 2.153
+Solver time: 00:00:02
+Solver date: 2026-08-13  17:56:25
+
+
+"XSokoban 20", by XSokoban
+
+    ##########
+#####        ####
+#     #   $  #@ #
+# #######$####  ###
+# #    ## #  #$ ..#
+# # $     #  #  #.#
+# # $  #     #$ ..#
+# #  ### ##     #.#
+# ###  #  #  #$ ..#
+# #    #  ####  #.#
+# #$   $  $  #$ ..#
+#    $ # $ $ #  #.#
+#### $###    #$ ..#
+   #    $$ ###....#
+   #      ## ######
+   ########
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 2161/546 (Festival Solver)
+rdddddlllullllddddLLrrdRulllullddllluuuuuuuuurrrrurrrrdDDDldRRRdrUdrrr
+ddlUruLLLdlUruLLLulDDDDuuuruuuuulllldlllldddddddddrrruurrdrRdrUluuuurr
+ruurDDldRRRdrrruullDldRRlddrruUUUlldlllulllulllullldRRRRRdddddllullddl
+lluuuuuuuuurrrrurrrrdddDldRRRurDldRRRdrrruullDldRRlddrruUlluuulDrdLLLd
+lUruLLLuuuuulllldlllldddddddddrrruurrdrruuuUruLLLulldRRRRdddddllullddl
+lluuuuuuuuurrrrurrrrdddDldRRRurDldRRRdrUluRRldddddlUUUruLLLdlUruLLLuuu
+uulllldlllldddddddddrrruurrdrruuuUruLLLulldRRRRdddddllullddllluuuuuuuu
+urrrrurrrrdddDldRRRurDldRRRurDldRRldddddlUUUUUruLLLdlUruLLLuuuuulllldl
+llldddddddddrrruurrdrruuuUruLLLulldRRRRdddddllullddllluuuuuuuuurrrrurr
+rrdddDldRRRurDldRRRdrUluRuuulDDDrdLLLdlUruLLLuuuuulllldlllldddddddddrr
+ruurrdrruuuUruLLLulldRRRRdddddllullddllluuuuuuuuurrrrurrrrdddDldRRRurD
+ldRRRurDDDldRuuulllullluuuuurrdLulDDDDldRRRurDldRRRurDDDDDldRRdrUUUddl
+luuuuulllulllullllllddrUluRRRRRdddddllullddllluuuuuuuuurrrrurrrrdddDld
+RRRurDldRRRurDDDDDldRRdrUUdlluuuuulllullllddddrddrrruulLLdlUUUUUruLLLu
+lldRRRRdddddllullddllluuuuuuuuurrrrurrrrdddDldRRRurDldRRRurDDDDDldRRdr
+UlluuuuulllullllddddllulldRRRRdrdrrruullLdlUUUUUruLLLulldRRRRdddddllll
+dllluuuuuuuuurrrrurrrrdddDldRRRurDldRRRurDDDDDDldRRuluuuuulllullllddrD
+lddrdrrruullLdlUUUUUruLLLulldRRRRdddddlllldllluuuuuuuuurrrrurrrrdddDld
+RRRurDldRRRurDDDDDlddrruLdlUUUUUUUUUdddllullllddddlllldddrrrdrrUUUdrrr
+uullLdlUUUUUruLLLulldRRRRdddddlllldllluuuuuuuuurrrrurrrrdddDldRRRurDld
+RRRurDDDDDDldRuuuuuulllullllddddlldLrurrrddddllullluUrrurrrddrUdrruulL
+LdlUUUUUruLLLulldRRRRdddddllldlllluuuuuuuuurrrrurrrrdddDldRRRurDldRRRu
+rDldRuuuuuulDDDDDDDDDDuuuuullullllddrddrddrUruLLLdlUUUUUruLLLulldRRRRd
+ddddllldlllluuuuuuuuurrrrurrrrdddDldRRRurDldRRRdrUUUluRRlldddllulllldd
+rddddddlluRdrUUUruLdlUUUUUruLLLulldRRRRdddddllldlllluuuuuuuuurrrrurrrr
+dddDldRRRurDldRRRdrUUUluRldddllullllddddllldDldRRRRdrUUUruLdlUUUUUruLL
+LulldRRRRdddddllldlllluuuuuuuuurrrrurrrrdddDldRRRurDldRRRurDDDDDldRRlu
+uuuulllullllddddllulllDurrrdrruuuuruuuuulllldlllldddddddddrRRluurrdDDl
+dRRRRdrUUUruLdlUUUUUruLLLulldRRRRdddddllldlllluuuuuuuuurrrrurrrrdddDld
+RRRurDldRRRurDDDDDldRuuuuulllullllddddllullldRRRRRdrruLdlUUUUUruLLLull
+dRRRRdddddllllldlluuuuuuuuurrrrurrrrdddDldRRRurDldRRRurDDDDDD
+
+Solver: Festival 3.1
+Solver time: 00:00:03
+Solver date: 2026-08-14  11:10:22
+
+
+"XSokoban 21", by XSokoban
+
+#########
+#       #
+#       ####
+## #### #  #
+## #@##    #
+# $$$ $  $$#
+#  # ## $  #
+#  # ##  $ ####
+####  $$$ $#  #
+ #   ##   ....#
+ # #   # #.. .#
+ #   # # ##...#
+ ##### $  #...#
+     ##   #####
+      #####
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 614/165 (YASS 2.153 Solver)
+DrRllDDDDllddrrUUUddrrddRdrruLuuuruUrDldRRdrruulDDDrdLuuullluulDDrruuu
+ULulluulllllddDuuurrrrrddrrdDDldRurDldRRdrruulDDDuullluuuuuurDDDDDldRR
+drruulDDrdLuulllluuluRdrruulDDldRurDldRRdrruulDDlluuuuuullDDldRurDldRu
+rDldRRdrruulDldRurDDuullllluuuuuluullllldddRRRllluuurrrrrddDuuullllldd
+drrrRRRurDDDDldRRRdrruulDrdLulllluulUruuluullllldddrrrrRurDDldRurDDldR
+RRRurDDullllluuuulllllllddrUluRRRRRRurDDldRurDDldRRRRurDllllluuuulllld
+DDDllddrrUUUUUddddrrddRdrruLuUUUruulldRurDDldRRRRlllluuuuuluullllldddr
+RRRRurDDldRurDldRurDldRRllluuuulllldddddrrddRdrUUUUUruulldRurDDldRRlll
+UruuulllldddrRRdrruulDldRRurDuuulllDuullldddrrRurDldRR
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:56:35
+
+
+"XSokoban 22", by XSokoban
+
+######     ####
+#    #######  #####
+#   $#  #  $  #   #
+#  $  $  $ # $ $  #
+##$ $   # @# $    #
+#  $ ########### ##
+# #   #.......# $#
+# ##  # ......#  #
+# #   $........$ #
+# # $ #.... ..#  #
+#  $ $####$#### $#
+# $   ### $   $  ##
+# $     $ $  $    #
+## ###### $ ##### #
+#         #       #
+###################
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 1598/398 (YASS 2.153 Solver)
+uLurRRddRRuRurrddldDDlDDullllllllLLrrrrrrrrrrdrDDldlLrruruululllllllll
+luuluUdddrdrrrrrrrrrrdrddlUUrULLLdlUUluRddllllllldDlddrUUUUddlLuuRRRRd
+rUUdlllluurDldRRRdrUruLdlUdrrrrrrrrddddlluRdrUUUruLLLdlUUdlllllllddlUl
+uRRRRdrUlllluuuurrruulDldlddddrrrrrrrrrrrdddlllldddrrrrrruuLLulldLurrr
+dLLrruuuuuuruuruulldldlluullldLLdLrurrrurrddrrururrddlddlddlllllllllll
+uulUlUUddlddddddRRdrUUUluRRRRRdrUUdlllllldddlluRRdrUUluRRRRRdrruulDrdL
+LullllldddlldRRlddrrrrrrruuuRUdldddllllllluuuurrruurrrrdRRRulllllllddd
+drrRllluuuurrrrrrrrrrrddddrddlllllluLUUUUUluRRRdrrrdddlllLrrrrrdrddlll
+llluluUUUUruLddddddrUluuuurrrrrdddlllLdlUUdrrrrruuulllldLLullllddddrrr
+RurrddlUUUddllllluuuurrrrdRRullllllllddddlddrrrrrrrUruuuuulllllddddrrr
+RdrUUUUluRdrUluRlddddrrrdLullddrUruLdlUUUluRdrUUdllllllllddddRRRRRRdrU
+UUdrrrrruuulllldLulllllluuulluRluluurrdDDldldddddrrruuuuuLuulluRurDDDu
+RDDDDrddlluRRRRRRRdrUllllllluuuuuluurDDDDDDrddlluRRRRRRRdddrrrrruuuuur
+uuruulldldlluullldlldlLrrurrrurrddrrururrddlddldddddllllluuulllllluuuU
+luurDDDDDrddlluRRRRRRllllddddrrrrruuuUUdlllllluuuurrruulDrdLLruLLDDDDr
+ddlluRRRRRlllluuuulluRurDDDDDrddlluRurDDDDldRRRRRdrUluRRRRRdrUUUruLLLr
+rddddllllllllllluuuuuulUruulldRurDDDDrddlluRurDllddlluuuuuRRurDDDuulll
+dddddrruuRRRRlllddddrrrrrrrrrrruuuuuurDDDDDllllldddrrrrrruuLLLLLullddr
+UruLdlUUUUddddlllllluuuurDDDldRRRRRdrUUUUddrrrrrruuuuuuuruulDDDDDDDDDl
+lllldddrrrrrruuLLLLLullddrUluRRRRdrUUUruLLrruuuuulldRurDDDDDDDDllllldd
+drrrrrruuLLLLLullddrUluRRRRdrUUUruLruuuulllluRRdrruulDldRurDDDDDDDDlll
+lldddrrrrrruuLLLLLLLLLLLLLLrrrrrrddllllllluUUluRRdrUUluRRRlluuuuurrrrr
+rurrurDDldRRRurDDDDDDDDllllldddrrrrrruuLLLLLullddrUruLdlUU
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:56:40
+
+
+"XSokoban 23", by XSokoban
+
+    #######
+    #  #  ####
+##### $#$ #  ##
+#.. #  #  #   #
+#.. # $#$ #  $####
+#.  #     #$  #  #
+#..   $#  # $    #
+#..@#  #$ #$  #  #
+#.. # $#     $#  #
+#.. #  #$$#$  #  ##
+#.. # $#  #  $#$  #
+#.. #  #  #   #   #
+##. ####  #####   #
+ ####  ####   #####
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 1321/472 (YASS 2.153 Solver)
+urrurrrrdddlDDuurrrrururrrdddddlUUruuullldlddrUUlUlUUddrddllluuuuulDru
+uulDrddddddlddrUluRRRDulluulDDruuuulDDrddrrdrruululDurRRRurDDDDlddrruL
+uuuullllluurDuuulDrddrddddlUdlUlluuuulUddllluurDldRRRdrddlUruUluurDDDD
+ldRRRlluuullllddrUluRRRlllddddrUldddrUluuuuurrrDrddlUUrULLLulDrdLLLLul
+DDDDDuuuurrrrrurrrdddddlUUUUruLLLulDrdLLLulDDDDDDuuuuurrrrurruuruulDDD
+urDDDDDuuuLLLulDrdLLLLulDDDDuuurrrrrurrdddddrddlUUUUUUruLLLulDrdLLLulD
+DDDDuuuurrrddrUUluRRRurDDulllluuuurDlddddddddrUUluuurrrdddrrrdrruLLLLD
+lUUUruLLLulDrdLLLLdlUUUddrrrrrurrdddrrrrdddlUUruLLLdlUUUruLLLulDrdLLLu
+lDDDDuuurrrrurrddddddrUUluRRRdrruLLLLdlUUUruLLLulDrdLLLLulDDDuurrrrrur
+rrdDldRRRdrruLLLLdlUUUruLLLulDDDDrddlUUUdrUULLLulDrdLulDurrrruuuurDldd
+RRRurDDDldRRRdrruLLLLdlUUUruLLLdlUUUruulDDDDrdLLLulDDDuurrruuurDldRRRu
+rDDDldRRRdrruLLLLdlUUUruLLLulDrdLLLdlUUruLddrrrrurrrdddrrrruuulldDuurr
+dddlLLLdlUUUruLLLulDrdLLLdlUUUddrrrrurrrdddrrrruLruulldDrdLLLdlUUUruLL
+LulDrdLLLulDrdLurrrrurrrdddrruuurDrdLulDrdLLLdlUUUruLLLulDrdLLLdlUUdrr
+rrurrrdddrrruuuuulDDDDrdLLLdlUUUruLLLulDrdLLLulDDurrrrurrrdddrrrruurrr
+dddlUUruLLLLulDDrdLLLdlUUUruLLLulDrdLLLdlUruLdrrrrurrrdddrrrruurrrdddd
+dlUUUUruLLLLulDDrdLLLdlUUUruLLLulDrdLLLLrrrrurrrdddrrruuuuurDDldRRRurD
+DDDlddrruLdlUUUUruLLLLulDDrdLLLdlUUUruLLLulDrdLLLulDrrrrurrrdddrrrdddr
+UUUUluRRRurDDDDlddrruLdlUUUUruLLLLulDDrdLLLdlUUUruLLLulDrdLLL
+
+Solver: YASS 2.153
+Solver time: 00:00:02
+Solver date: 2026-08-13  17:56:49
+
+
+"XSokoban 24", by XSokoban
+
+###############
+#..........  .####
+#..........$$.#  #
+###########$ #   ##
+#      $  $     $ #
+## ####   #  $ #  #
+#      #   ##  # ##
+#  $#  # ##  ### ##
+# $ #$###    ### ##
+###  $ #  #  ### ##
+###    $ ## #  # ##
+ # $  #  $  $ $   #
+ #  $  $#$$$  #   #
+ #  #  $      #####
+ # @##  #  #  #
+ ##############
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 1877/584 (YASS 2.153 Solver)
+luuuRurrrRdrRRlllulldddrRRRRRRuruRRlldldllllllluuurrdDuullllddRluurrrr
+ddldlUrddrUUUddrrrUdrruLUUUruulDDDDDuLLLrrrdrruLdlUUUddrrrrdrruLLLLrrr
+uuuuuuUlllluUruLLLLLLLLLLLrrrrrrrrrrdLLLLLLLLLLrrrrrrrrrrddlUruLLLLLLL
+LLrrrrrrrrrddrrddlUruLdlUUUruLLLLLLLLLLrrrrrrrrrdddrrrrdddddddllldlluR
+RRRdrUUUUUUUruLLLLdlUUluurrdLdlUruLLLLLLLLrrrrrrrrdddrrrrdddddddlllldd
+drUUluRRRdrUUUUUUUruLLLLdlUUluurrdLLLLLLLLLrrrrrrrrddrrrrdddddddlllllu
+uruulDDDDlDRurrddlUluRRRRdrUUUUUUUruLLLLdlUUluurrdLdlUruLLLLLLLrrrrrrr
+dddrrrrdddddddllllluuulldlDLDDuRRRRRRRRdrUUUUUUUruLLLLdlUUluurrdLLLLLL
+LLrrrrrrrddrrrrdddddddllllllllldlddrUUdrrdrUUruuuulldlddrRRRRRRdrUUUUU
+UUruLLLLdlUUluurrdLdlUruLLLLLLrrrrrrdddrrrrdddddddllllllddlUrruuuulldl
+ddRRRRRRRdrUUUUUUUruLLLLdlUUluurrdLLLLLLLrrrrrrddrrrrdddddddllllllddRu
+rrddlUUluRRRRdrUUUUUUUruLLLLdlUUluurrdLdlUruLLLLLrrrrrdddrrrrdddddddll
+llllllulDDldRRluurrrdddlUUdlluurRRRRRRRdrUUUUUUUruLLLLdlUUluurrdLLLLLL
+rrrrrddrrrrdddddddllllllllldlllluurrRRdrrrruuulldlDldRRRRRRRRdrUUUUUUU
+ruLLLLdlUUluurrdLdlUruLLLLrrrrdddrrrrdddddddllllllllldllUdlluurRRRdrrr
+ruuulldlDldRRRRRRRRdrUUUUUUUruLLLLdlUUluurrdLLLLLrrrrddrrrrdddddddllll
+lllllulllldRdrUluRRRdrrrruuulldlDldRRRRRRRRdrUUUUUUUruLLLLdlUUluurrdLd
+lUruLLLrrrdddrrrrdddddddllllllllluluLUUruLLLDDDDrddlluRdrUluRRRRdrrrru
+uulldlDldRRRRRRRRdrUUUUUUUruLLLLdlUUluurrdLLLLrrrddrrrrdddddddllllllll
+lulllluRluuurrddDldRRRdrrrruuulldlDldRRRRRRRRdrUUUUUUUruLLLLdlUUluurrd
+LdlUruLLrrdddrrrrdddddddlllllllllulllluuulldRurDDDrddlluRdrUluRRRRdrrr
+ruuulldlDldRRRRRRRRdrUUUUUUUruLLLLdlUUluurrdLLLrrddrrrrdddddddllllllll
+lulllluuulluRuurrrrRdrruRldllulllllddddrddrrrrrdrrrrrrrruuuuuuulllldlU
+UruLddlldlluRRRllllllllddddrddrrrrrdrrrrrrrruuuuuuulllldlUUUruLdddrrrr
+uurDlldllllllllllllddddrddrrrrrdrrrrrrrruuuuuuruLLLLdlUUUluRdddlllllll
+lllddddrdrruuulLddddrrrrrdrrrrrrrruuuuuuulllllllllllllldDDldRurDDDrddl
+luRdrUluRRRRdrrrruuulldlDldRRRRRRRRdrUUUUUUUruLLLLdlUUluR
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:56:52
+
+
+"XSokoban 25", by XSokoban
+
+####
+#  ##############
+#  #   ..#......#
+#  # # ##### ...#
+##$#    ........#
+#   ##$######  ####
+# $ #     ######@ #
+##$ # $   ######  #
+#  $ #$$$##       #
+#      #    #$#$###
+# #### #$$$$$    #
+# #    $     #   #
+# #   ##        ###
+# ######$###### $ #
+#        #    #   #
+##########    #####
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 1563/392 (YASS 2.153 Solver)
+ddllllldlllUUlulUUlluurrDullddrRRRRRRRurrddlUUruLLLrddllllllddrdrddrDu
+rrDLddrrrruulLLuurrDullddrddrruuLrddlllUdllluLLLrrrdrrrrrruuluurrDulld
+drdrruLddllllllluRRlllluullllldddddrrrrrrrUUddllllllluuuuurrrrrddrRdrr
+rrrrruuuulllldllluululldRDDllllldddddrrrrrrruuullUUUUUUUlluurrDullddrR
+RRRRRRurrddlUluRRdlllllllldddddddrrdrrrrrrruuuulllldllluuruLLrdddrrrur
+rrrddddlllllllulluuuuUUUlluurrDullddrRRRRRRRurrddlUUruLLddllllllddrrdL
+rddrrrurrrrddddlllllllulluuuUUUUlluurrDullddrRRRRRRRurrddlUUluRRddllll
+lllldddrrdLrdrrrurrrrddddlllllllulluuUUUUUlluurrDullddrRRRRRRRurrddlUU
+ruLddllllllldddddddrrUUUUruLLdlUUUlluurrDullddrRRRRRRRurrddlUUdlllllll
+dddddddrrdrruUddrrrrruuuulllldLLrdddlluuUUUruLLdlUUUlluurrDullddrRRRRR
+RRurrddlUluRdrUdllllllllddddrrdrrdLrddlluUUUUruLLdlUUUlluurrDullddrRRR
+RRRRurrddlUlllllllddddrrddrrdLdlUUUUUruLLdlUUUlluurrDullddrRRRRRRRRdrU
+lllllllldddddddrrrrdrruLdlUUddrrrrruuuulllldLLdlUUUruLLdlUUUlluurrDull
+ddrRRRRRRRRRlllllllldddddddldlluRRRRluuurrddrddlUUUUUruLLdlUUUlluurrDu
+llddrRRRRRRRRlllllllddddrrdrrrDlddrruLdlUUruLLdlUUUruLLdlUUUlluurrDull
+ddrRRRRRRRllllllddddrrdrrrurrddLLdlUruLLdlUUUruLLdlUUUlluurrDullddrRRR
+RRRlllllddddrrdrrrurrrrddLLLLdlUruLLdlUUUruLLdlUUUlluurrDullddrRRRRRll
+lldddddddrrrrrrdrrrddrruLdlUUUruLLLLLdlUruLLdlUUUruLLdlUUUlluurrDulldd
+rRRRRllldddddlluLuuulUUddldRurDDDrdrrddrrdddllllllluuuuurRRRlllldddddr
+rrrrrruuulluUUUUUUUdlluurRRldddddddllllluRUruulDDDldRRRRlllldddddrrrrr
+rruuulluUUUUUUlluurrDullddrRRRlldddddlllluurDldRRRlllldddddrrrrrrruuul
+luUUUUUUUdlluurRdddddddlllluuuuuuluurDDDDDDDldRRRRlllldddddrrrrrrruuul
+luUUUUUUlluurrDullddrRR
+
+Solver: YASS 2.153
+Solver time: 00:00:01
+Solver date: 2026-08-13  17:56:56
+
+
+"XSokoban 26", by XSokoban
+
+ #######
+ #  #  #####
+##  #  #...###
+#  $#  #...  #
+# $ #$$ ...  #
+#  $#  #... .#
+#   # $########
+##$       $ $ #
+##  #  $$ #   #
+ ######  ##$$@#
+      #      ##
+      ########
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 559/199 (YASS 2.153 Solver)
+ulluLLLLLrrDullUluURRRurrdLdlUUdlllddrUluRRRurrdLdlUllddddRurrrrdrruLL
+LLLLdlUUUluRRRdrruulDrdLulllddddrddrrrrUUruLLLLLdlUUUluRRRRurrdLdlUUdl
+lldddrrrdLurrrdddlllluUruLdlUUUluRRRRurrdLdlUlllddddrddrUUruLLdlUUUluR
+RRRdrruulDrdLulllldddrrrrrrrddLdlUUruLLLLLdlUUUluRRRRRurrdLdlUUdlllldd
+ddlUllulluuurDrUlldddrUdrddlUUluuurrdDDldRRRdrUUUluRRRRRurrdLdlUlllldd
+dlllluluRluurrdDDldRRRdrUUUluRRRRRdrruulDrdLullllldddlllluuluRurDDDldR
+RRdrUUUluRRRRRRurDllllllldDrdLLLdlUruulldRurDldRRRdrUUUluRRRRlllldddll
+luuuuuurDDDDDldRRRdrUUUluRRRlluulDDDDrdLLLdlUruulldRurDldRRRdrUUUluRR
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:56:59
+
+
+"XSokoban 27", by XSokoban
+
+ #################
+ #...   #    #   ##
+##.....  $## # #$ #
+#......#  $  #    #
+#......#  #  # #  #
+######### $  $ $  #
+  #     #$##$ ##$##
+ ##   $    # $    #
+ #  ## ### #  ##$ #
+ # $ $$     $  $  #
+ # $    $##$ ######
+ #######  @ ##
+       ######
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 1382/363 (YASS 2.153 Solver)
+rUrUruUlUUluuLLdlUrrrddrddrrrrUUddlllddlLLrrruuluuluuruulllDurrrddllLu
+LLLLLLulDDrdLuurrrrrrrddlUruLLLLLLulDrdLurrrrrrrdrrddrddrddllluulUUUlu
+ururrrddllLdlUruLLLLLLulDDurrrrrrrdrrddLrrddrddllluuluUUdrruulLdlUruLL
+LLLLdlUrrrrrrrdddrrrddrrrruuruulllddLLLLrrddrddllluuluUUdrruulLdlUruLL
+LLLulDrdLurrrrrrdrrrDldllddrddrrruurrruuruulllddlLLLrrddrddllluuluUUdr
+ruulLdlUruLLLLLulDDurrrrrrdddrrrddrUdrrruuruulllddLLLLrrrddddllluuluUU
+drruulLdlUruLLLLLdlUrrrrrrdddrrrrddrrruuLLLLLLrrrddddllluuluUUdrruulLd
+lUruLLLLulDrdLurrrrrdddddrddrrUUUruLLLrrddddlluuluUUdrruulLdlUruLLLLul
+DDurrrrrdddrrrrruurrDrdLLLLLLLrrddddlluuluUUdrruulLdlUruLLLLLLrrrrrrdd
+drrrrruuuurrDrdLLruulldDDurrddlLLLLLrrddddlluuluUUdrruulLdlUruLLLLdlUr
+rrrrdddrrrrrrrddrddlLLLuuuullllddrddrdrUUUUruLLLrrddddlluuluUUdrruulLd
+lUruLLLulDrdLurrrrdddddrddrrrrrrUUUdllluuruurrrddLLLLLLLrrddddlluuluUU
+drruulLdlUruLLLulDDurrrrdddddllullllddlddRRRRUrrRRRdrUUUUruLLLrrddddll
+uuluUUdrruulLdlUruLLLLLrrrrrdddddrddrddlllUdrrruuluulllullllddlddrrrru
+rRRRRdrUUUUruLLLrrddddlluuluUUdrruulLdlUruLLulDDurrrdddddrddlllldRurrr
+rddlllUluRRRRdrUUUUruLLLrrddddlluuluUUdrruulLdlUruLLLLrrrrdddddrddllll
+dlluRRRRRRRdrUUUUruLLLrrddddlluuluUUdrruulLdlUruLLLulDrrrrdddddllullll
+ddldRRRRRRRRRdrUUUUruLLLrrddddlluuluUUdrruulLdlUruLLLrrrdddddllulldRDu
+lllddrrRRRRRRdrUUUUruLLLrrddddlluuluUUdrruulLdlUruLLulDrrrdddddlLulDDu
+lllddrrRRRRRRdrUUUUruLLLrrddddlluuluUUdrruulLdlUruLL
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:57:03
+
+
+"XSokoban 28", by XSokoban
+
+         #####
+     #####   #
+    ## $  $  ####
+##### $  $ $ ##.#
+#       $$  ##..#
+#  ###### ###.. #
+## #  #    #... #
+# $   #    #... #
+#@ #$ ## ####...#
+####  $ $$  ##..#
+   ##  $ $  $...#
+    # $$  $ #  .#
+    #   $ $  ####
+    ######   #
+         #####
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 1081/318 (YASS 2.153 Solver)
+rUUUluRRRRuRuRRdRDDDuurrUdllddlddDDuuuuruuululldldllldddrrrddRldddrUlu
+uuullluuurrrururrdrdddlddddRRurDllddRluurrRRdrUUUUUluRdrUUddddddllllll
+ddrUluRRRRRdrUUdllllllluuuuruuululldldllldddrrrdddddrrRUdllluuurRllddd
+rrrurrddrruLdlUUluRRRRRdrUlllllddrUluRRRdrUUUluurrdLLrdddllllldldRurrd
+dlUUluRRRRdrUUUluurrdLulDrdddlllllddllluRRRdrUluRRRRdrUUUUUluRdrUldddd
+dllllldlllluurrDullddrRRRdrUluRRRRdrUUUUruLdlUrddddllllldlluRRRRRRdrUU
+UUruulDrdLdddlllllllulldRRRRRRRRdrUUUUruulDDDDDldRullllllllluuullluuur
+rrururrdrdddlddDldRRRRRRdrUUUUUUdddddlllluLdlllluuullluuurrrururrdrddd
+lddDldRRRRRRdrUUUUruLLrddddlllllluuuurrdLulDDDldRRRRRRdrUUUUUddddlllll
+llllulUdrrrruuuruuululldldllldddrRurDDldRRRllluulluuurrrururrdrddddldD
+ldRRRRRRdrUUUUruLddddlllllluuuuruurruLrruullDDuLDDDDrdLulDDDldRRRRRRdr
+UUUUdddlllllluuuuruuurrdLulDDDrdLulDDDldRRRRRRdrUUUddllllllllluuullluu
+urrrurRRllldllldddrrrddrrruuuruuruulDDDDrdLulDDDldRRRRRRdrUUdlllllluuu
+uruuulldRurDDDrdLulDDDldRRRRRRdrUlllllluuuuruuulllldRRRurDDDrdLulDDDld
+RRRRRRRlllllluuuuruuuururDrdLLulDDDDrdLulDDDldRRRRRRllllluuuuruuulluRR
+drruulDrdLulDDDDrdLulDDDldRRRRR
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:57:06
+
+
+"XSokoban 29", by XSokoban
+
+#####
+#   ##
+# $  #########
+## # #       ######
+## #   $#$#@  #   #
+#  #      $ #   $ #
+#  ### ######### ##
+#  ## ..*..... # ##
+## ## *.*..*.* # ##
+# $########## ##$ #
+#  $   $  $    $  #
+#  #   #   #   #  #
+###################
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 1119/308 (Takaken7.4 Solver)
+ulllllddddrdRRurrrrrdLddllLdlluLLrrdrrurrruuulllldlluluuulluululDDDDl
+ddrdDuuluuruuurrdddrrddldRRRlluuuuurrrrrrdrdrrurrdLLrdddDrddlUUUddLLd
+lluRRluuullllLdlluuuuurrrrrddLLLLLdddrruLdlUUUrrrrruulllllDDDDldRRulu
+urrrrrurrdRRurrdLLrdDDDrddlUUUddLLdlUUUruLLLLLLLdlluRuurrrrrurrdRRurr
+dLLrdDDDrdLLLdlluRRluuulllllLdlluRRRlluurrrrrurrdRRurDDDDDrddlUUUUUdd
+ddLLdlluRRluuulllLrrrrdddllldlluRRRRlllllldlluRRRRdrrurrdrruLLruuulll
+lLLdlluRRRlluurrrrrurrdrrurDDDDDuuuulllullullllldlluulldddlddrUUUUddd
+dddlddrUUUUdddRRdrruLLLrrrrrdrruLLLLLLrrrrrrRRdrruLLLLLLLLrrrrrrruuul
+llLLLdlluRRluurrrrrurrdrrrddddrddlUUUUUddddLLLLLLrrruuullllLLdlluRRlu
+urrrrrurrdrrurDDDDDrdLLLdlluRRluuullllLLdlluRuuulldRurDDDldRuuurrrrru
+rrdrrrdddddLLdlUUUruLLLLLrrrrdddllldlluRRRRdrUUUruLLLLrrrdddllllllldl
+luRRRRRRRRdrUUUruLLLrrdddrrruuuuulllullullDurrddlLLLrruullldDDDuuullu
+ululldRdddlddrddlddrUUdRRRRRRRRRRdrUUUruLLrdddrrruuuuulllullullllldll
+uuLulldRdddlddrDDldRRRRRRRRRRRdrUUUruLdddrrruuuuulllullullllldlluuLrd
+drrurDurrddlLLrrrrrurrdrrrdddddlllllllllllllluuuluurDDDDldRRRRRRRRRRR
+drUUUddrrruuuuulllullullllldlluululDDDDuuurrdddRurDDuulluulldddDDDDld
+RRRRRRRRRRRdrUU
+
+"XSokoban 30", by XSokoban
+
+       ###########
+       #   #     #
+#####  #     $ $ #
+#   ##### $## # ##
+# $ ##   # ## $  #
+# $  @$$ # ##$$$ #
+## ###   # ##    #
+## #   ### #####$#
+## #     $  #....#
+#  ### ## $ #....##
+# $   $ #   #..$. #
+#  ## $ #  ##.... #
+#####   ######...##
+    #####    #####
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 1641/497 (YASS 2.153 Solver)
+lluullddRddddlddrUrrrddrruuLLLrruurrRddrruuLLLLLddrdLuuuuurruulDulDDDD
+DDuuuuullLuullddRRRRRllllluRddddDlddrUUUUUUrrrrdddrrrruuuuUdddddDrdLuu
+uuuuuluurDDDDDDDuuuuuurrurrdLLLLrrrrurrdLddrddDDDllddrUUruLLdddrrruLLL
+dlUrrruuuuuuluuullldllddddddllllddllLrrruurrrruuuuuurrrurrdddrddlllUUd
+drrruuluuulldRllllulldRdrdddddrddlUlulllddrddllUdrruuluuulldRurDrrrdrr
+uLLLLLrrrruuuuuluurDDDDDDDuuuuuurrrrurrdLLLLLLrrrrrddrddllluuUdddrrruu
+luuullldRurrdddDuuuulldddddrRurDDDDlddrruLLLrruuuullluRdrruulDldRurDDD
+DlddrruLdlUUruLruuullluRluuurrddDDldRurDDDDlddrruLLdlUrruuuuuullluuRur
+DDDDldRurDDDDlddrruLLruuuuuullluulllulldRRRRRRurDDDDldRurDDDDlddrruLul
+DDrdLruuuuuuuullluulllddddddrddlUUUUUUUluRRRRRurDDDDldRurDDDDlddrruLul
+DrdLLrruuuuuuullluulllddddddllllulldRRRRRdrUUUUUUluRRRRRurDDDDldRurDDD
+DlddrruLdlUUruuuuullluulllddddddlllluuuurrddLruulldDDldRRRRdrUUUUUUluR
+RRRRurDDDDldRurDDDDlddrruLulDrdLruuuuuuullluulllddddddlllluuuurDrdLulD
+DldRRRRdrUUUUUUluRRRRRurDDDDldRurDDDDlddrruLulDDruuuuuuullluullldddddd
+lllluuullllddddlddrUrrRddrruuLLrUUUUruulDDDldRRRRdrUUUUUUluRRRRRurDDDD
+ldRurDDDDlddrruLdlUruuuuuullluulllddddddlllluuulllldddDuuuurrrrdddddld
+drUUUUUUruulDDDldRRRRdrUUUUUUluRRRRRurDDDDldRurDDDDDDuuuuuuullluullldd
+ddddlllluuullllddddlddrUrRRdrUUUUUruulDDDldRRRRdrUUUUUUluRRRRRurDDDDld
+RurDDDDDrdLuuuuuuullluulllddddddlllluuulllldddDldRRRRdrUUdlllluuuuurrr
+rddldRRRRdrUUUUUUluRRRRRurDDDDldRurDDDDDuuuuuullluullldddddddddlUUruLL
+LLulldRRRRRdrUUUUUUluRRRRRurDDDDldRurDDDDuuuuullluulllddddddlllluuulll
+lluurrDullddrRRRllldddddrrrruuuuruulDDDldRRRRdrUUUUUUluRRRRRurDDDDldRu
+rDDDuuuullluulllddddddlllluuullllluRurDldRRRllldddddrrrruuuuruulDDDldR
+RRRdrUUUUUUluRRRRRurDDDDldRurDD
+
+Solver: YASS 2.153
+Solver time: 00:00:03
+Solver date: 2026-08-13  17:57:19
+
+
+"XSokoban 31", by XSokoban
+
+  ####
+  #  #########
+ ##  ##  #   #
+ #  $# $@$   ####
+ #$  $  # $ $#  ##
+##  $## #$ $     #
+#  #  # #   $$$  #
+# $    $  $## ####
+# $ $ #$#  #  #
+##  ###  ###$ #
+ #  #....     #
+ ####......####
+   #....####
+   #...##
+   #...#
+   #####
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 1171/314 (YASS 2.153 Solver)
+ulDDDulLLDDuuUddlldlddRdrUlluururrdrdrRDDrddlluRurDrdLLulDrdLulDrdLulD
+rruuurrrrrrruuuULuUddrRlddddlllllluuulluluurrrdDDDDrdLuuuuuuurRRldRddl
+dLruruuullldddDDDrddlUrrrrrruuuulLruuLrddrddddlllllldlluRRRRRlllUUUllu
+luurrrdDDDDDrdLLulDDDuuurruuurruUddlluuuurrrDulllddddlldLruuluuuluurDD
+DrrrdddllulUlURRRurDDDDDDDrdLLulDDrdLuuurruuuuuullluulDrdrrrurrrdrrddl
+LrruullDurrddrruLdllUdrrrurrdLulldlluluuurrDLLLLulDDDDDDDDrdLLulDDrruu
+uuuuuuurrrddlUruLLulDDDDDDDDrdLLulDrdLrruuuuuuuuurrrddrdrruLULLdlUruLL
+ulDDDDDDDDrdLulDDDuuuruuuuuuurrrrdrdrrrdLLulLuuurDlllllddddrrUUUruLLul
+DDDDDDDDrdLLulDrruuuurruuurrddLruuullllddddrrUUUruLLulDDDDDDDrdLLruuur
+ruuurDrdLuuulllddddrrUUrruurDldRRdrruLLLLulDrdLuuulllldlldlldDDuuurruu
+llDDDuuRRRRurDDDDDDDrdLulDDruuuuullululldlddrUUUrrdrddlUrrruuulllldldd
+RRRRlllluurrurrrddDDDDldRRRlluuuuuuullldDullddrRRRlluuurrrddDDDDrdLulD
+ruuuuuuullllulDDDldRRRRRlluuurrrddDDDDrdLLruuuullllldRddlUUluRRRRRlluu
+urrrddDDDDldRRluuuulldLullddrUluRRRRlluuurrrddDDDDrdLuuuuuuuurrrrrddrd
+ddddlLLLrrrruuuuullluulllddddddrDluuurrdrUllluuuurrrddlDurrdLdLLrruuuu
+llldddDDDDDuuuurrruulDrdLLrruuuullldddDDDrdLuuuuuuurrDDDrdLLruuuullddd
+DDDDrrrrrruulDrdLLLLrrrruuuuLLLulDrdLLruuuulldddDDD
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:57:21
+
+Solution 1171/314 (YASS 2.153 Solver)
+ulDDDulLLDDuuUddlldlddRdrUlluururrdrdrRDDrddlluRurDrdLLulDrdLulDrdLulD
+rruuurrrrrrruuuULuUddrRlddddlllllluuulluluurrrdDDDDrdLuuuuuuurRRldRddl
+dLruruuullldddDDDrddlUrrrrrruuuulLruuLrddrddddlllllldlluRRRRRlllUUUllu
+luurrrdDDDDDrdLLulDDDuuurruuurruUddlluuuurrrDulllddddlldLruuluuuluurDD
+DrrrdddllulUlURRRurDDDDDDDrdLLulDDrdLuuurruuuuuullluulDrdrrrurrrdrrddl
+LrruullDurrddrruLdllUdrrrurrdLulldlluluuurrDLLLLulDDDDDDDDrdLLulDDrruu
+uuuuuuurrrddlUruLLulDDDDDDDDrdLLulDrdLrruuuuuuuuurrrddrdrruLULLdlUruLL
+ulDDDDDDDDrdLulDDDuuuruuuuuuurrrrdrdrrrdLLulLuuurDlllllddddrrUUUruLLul
+DDDDDDDDrdLLulDrruuuurruuurrddLruuullllddddrrUUUruLLulDDDDDDDrdLLruuur
+ruuurDrdLuuulllddddrrUUrruurDldRRdrruLLLLulDrdLuuulllldlldlldDDuuurruu
+llDDDuuRRRRurDDDDDDDrdLulDDruuuuullululldlddrUUUrrdrddlUrrruuulllldldd
+RRRRlllluurrurrrddDDDDldRRRlluuuuuuullldDullddrRRRlluuurrrddDDDDrdLulD
+ruuuuuuullllulDDDldRRRRRlluuurrrddDDDDrdLLruuuullllldRddlUUluRRRRRlluu
+urrrddDDDDldRRluuuulldLullddrUluRRRRlluuurrrddDDDDrdLuuuuuuuurrrrrddrd
+ddddlLLLrrrruuuuullluulllddddddrDluuurrdrUllluuuurrrddlDurrdLdLLrruuuu
+llldddDDDDDuuuurrruulDrdLLrruuuullldddDDDrdLuuuuuuurrDDDrdLLruuuullddd
+DDDDrrrrrruulDrdLLLLrrrruuuuLLLulDrdLLruuuulldddDDD
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:57:25
+
+
+"XSokoban 32", by XSokoban
+
+      ####
+  #####  #
+ ##     $#
+## $  ## ###
+#@$ $ # $  #
+#### ##   $#
+ #....#$ $ #
+ #....#   $#
+ #....  $$ ##
+ #... # $   #
+ ######$ $  #
+      #   ###
+      #$ ###
+      #  #
+      ####
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 535/177 (Festival Solver)
+RuRurrrrurDllllldRDDDldRuuuulldRurDDDlddrUluRddrrrurrDLLLLLdlUUrdrrrrr
+rddLdllUUddrruruullLLLLdlUrrrrruuurDDllddddrruruuLLLLLLLdlUUdrrrrrruuu
+lDDrdLLLLLdlUrrrrrrrrddlUruLLLLLdlUUUUUluurDDDDDDrdLLrrurrrruurDDlddrr
+uLdlUruLLLLLdlUUUUUluurDDDDDDrdLrurrrruuuurDDDDDuuuullluRlddddllluuuuu
+urrrrDDldRuuullllddrUluRRRurDDDDDDrdLLLLdlUUUUUruLrurrrddddrruuLrddlll
+ddllluuuuruurrrdDDDDrdLLLLdlUUUUUddddrrrrrdLrddlluUruLLLrrruuuuuullldd
+ldddDuuuuruulDDDDuulluRurDDDuruurrrddddrddddLdlUUruLLLLLrrrrruuuurDDDr
+dLLLLLLrrrrrrdrdLLLdlUUruLLLrrrdddddlUUUUruLL
+
+Solver: Festival 3.1
+Solver time: 00:00:02
+Solver date: 2026-08-14  11:11:50
+
+
+"XSokoban 33", by XSokoban
+
+ ###########
+ #     ##  #
+ #   $   $ #
+#### ## $$ #
+#   $ #    #
+# $$$ # ####
+#   # # $ ##
+#  #  #  $ #
+# $# $#    #
+#   ..# ####
+####.. $ #@#
+#.....# $# #
+##....#  $ #
+ ##..##    #
+  ##########
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 1040/190 (YASS 2.153 Solver)
+dddllluuUUUUUUUddddddlllullluuuuurDlddddrrruuruuuLrdddldddrrruuuuuurrr
+uuLLrrddllldddddddddrrruLdlluuuuurrruLdllddllluuuruuuluuurrdLLddrdddld
+dllluuuuurRlldddddrrruurDDlllluurDldRRlluuuurDDDldRuuurURUUdrDDDldDDDr
+dLLruuuuuruulllddddRluuuurrrddldDDDrdLdlUruLLrruurDrruuuuuurrruullLLrr
+rrddlllddddddllluuurDlddrrruuuuuurrruullllullDDDrddddldlluuuurRurDDull
+lddddrrdddrUluulluuuurruuuurrdrrrrddlllddddddlLrruuuuuurrruullllullddd
+dllddddrrDDrdLulDruuuurDllluuuurruuuurrdrrrrddlllddddddlLulDDDuuulluuu
+urrrdDDDuuuuuluuurrdrrrrddlllddddddlLulDrdLLrrurrdddrruLdlUUUrDlddrruL
+dlUUruLLLulDDrdLruuuuuuuuluuurrdrrrrddlllddddDDrddlUruLLLulDDuulluuuuu
+RdrrdddddrruuuuuurrruullllullddDldRurDDDDDuuuuuluuurrdrrrrddlllddddddl
+LulDrdLurrruurruLdlddlluuuuuuluuurrdrrrrddlllddDDDDrddlUruLLLulDrrruuu
+rruLddlddlluuuuuuluuurrdrrrrddllldDDDDDrddlUruLLruuuuuurrruullllullddd
+drddddDDuuuuuuuluuurrdLulDDDldRurDDDDDuuuuuluurrrrrrddlllddddddlLuuuuu
+uluuulldRurDDDldRurDDDDDDuuuuuuluurrrDDDDDDDDrddlUruLLruuuuuurUdrruulL
+LLLulDDDldRurDDDDuuuuluurrrrrrdLdlUruLLLLulDDDrdLLulDDDDldRR
+
+Solver: YASS 2.153
+Solver time: 00:00:01
+Solver date: 2026-08-13  17:57:34
+
+
+"XSokoban 34", by XSokoban
+
+ #########
+ #....   ##
+ #.#.#  $ ##
+##....# # @##
+# ....#  #  ##
+#     #$ ##$ #
+## ###  $    #
+ #$  $ $ $#  #
+ # #  $ $ ## #
+ #  ###  ##  #
+ #    ## ## ##
+ #  $ #  $  #
+ ###$ $   ###
+   #  #####
+   ####
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 960/202 (YASS 2.153 Solver)
+luLulllllldddddDDDrddlUUUUUUluRdrUluRluurrdDllddddrrdrRuLLLrrrurRuuluU
+ruLLLLLrddlldddDDDrddlUUUUUUluRdrUluRRuurrrrdrdrdrDrddddlddlLrruuruuuu
+lululullddrdddLLLLrrruUUUUruLLLLrrrrdrdrdrdrddlUlLLdlUruuluurrdrdrDrdL
+LLLdDrUluuuluurrdrdrddlLdlUdlluRdrrurruulululllullddlldddddddrrrdLullu
+uuuuuurruurrrdddDDuuuurrdrdrddlldlLLrrrurrrdddlddlldlluRuUlUluurDuuuuu
+ulllddlldddddddrrrdddlUruullluuuuuuurruurrrddddddrruLdlUrrrrrdddlddlLr
+ruuruuuulululullddrDuluurrdrdrddllLdDDuuuuuluuulllddlldddddddrrrddRRll
+uullluuuuurrUUlldddddddrrrddrruRUUUUUdddlUllluLrdrrrrdddldlluullluuUUU
+luRdrUluRlddddrrdrruLLLrrrdrrdddldlluullluuUUUluRRRllddddddrrrddlUruLd
+drrruruuullllullddddRluuuurrrrdrrdddldlluulLdlUUUUUUluRdrUlddddddrrrdd
+lUruLLdlUUUUUUUUddddrrrrdrruLLLLLrrrrrddddldllluulluuUUUluRRldddrrrrrr
+rurruululullddrDDrdLLLLLLrrrrrddddldllluulluuUUUUdddrrrruRUUUUruLLLrrd
+dddddrruLulDrdLLLLLrrrrrddddldllluulluuUUUluRdddrrrrrrrurrrdddlddlLdLL
+LLdlUUruLLdlUUUUUUddddddrrrdrrrUUUUUruLdlUUUUUruLL
+
+Solver: YASS 2.153
+Solver time: 00:00:02
+Solver date: 2026-08-13  17:57:38
+
+
+"XSokoban 35", by XSokoban
+
+############ ######
+#   #    # ###....#
+#   $$#   @  .....#
+#   # ###   # ....#
+## ## ###  #  ....#
+ # $ $     # # ####
+ #  $ $##  #      #
+#### #  #### # ## #
+#  # #$   ## #    #
+# $  $  # ## #   ##
+# # $ $    # #   #
+#  $ ## ## # #####
+# $$     $$  #
+## ## ### $  #
+ #    # #    #
+ ###### ######
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 1680/410 (YASS 2.153 Solver)
+lllullDDuLLulldRRlddddrRdddDuuuuuRRRRRdrUUUluRRRRdrruulDDDDDDDuuuuuull
+llldddllllldlluRRRRRRRdrUUUluRRRRdrruulDDDDDrrrddlllUdrrruullLuuuullll
+ldddlllllddddRluuuurrrrruuullullddDuuurrrdrdddlllLLdlluRRRRRRllluuuurr
+rdrrddddlUUUddlllluuuurrrdRRRRRdrruulDDDDDuuuullllldddllllllluuurRlldd
+drrrrrrruuullullDDDuullldddrrRRRRllluuuurrrdrrddddlUUUddlllluuuurrrdRR
+RRRdrruulDDldRRRuullllllldddllllldddddrRRuuulUdrdddllluuuuurRRRllluuuu
+rrrdrrddddlUUUddlllluuuurrrdRRRRRdrruulDDldRRuulllllldddllllldRlddddrr
+ruuulUluRRRllluuuurrrdrrddddlUUUddlllluuuurrrdRRRRRdrruulDldRRRullllll
+ldddlllddrdrrddLLuuululldddrRlluuurrdrdrrddllUlUUUluRRRllluuuurrrdrrdd
+ddlUUUddlllluuuurrrdRRRRRRdrUluRRdllllllldddlllddddrdddllddllluUluuuRR
+drUUUUluRRRRRllluuuurrrdrrddddlUUUddlllluuuurrrdRRRRRdrruulDDldRuullll
+ldddlllddddrdddlllUUUUUUluRRRRRllluuuurrrdrrddddlUUUddlllluuuurrrdRRRR
+RRdrUluRdlllllldddlllddddrdrruulLdlUUUluRRRllluuuurrrdrrddddlUUUddllll
+uuuurrrdRRRRRRurDldRulllllldddlllddddldRllddrrruUUdrruulLdlUUUluRRRlll
+uuuurrrdrrddddlUUUddlllluuuurrrdRRRRRRdrUllddldddddddddlLrruuuuuuuuurr
+ddrrrddlllUUUUluRullllldddllllldddddddLUruulllddRRdrUUUUUUluRRRRRllluu
+uurrrdrrddddlUUUddlllluuuurrrdRRRRRdrUllllldddllldddddrrrrdDLLLLLLrddl
+lluUluRRldddrrruulUUUUUddrruuuullldRdddddlUdlluurRRRdrUrdddrrrrddllUdr
+ruulLLLrrrrdLdlUruLruullllllddLrrddllluUluRdrUUdlluurRdrUUUUluRRRRRlll
+uuuurrrdrrddddlUUUddlllluuuurrrdRRRRRRRRllllllldddlllddrddlUUUdddlluuu
+urRRRllluuuurrrdrrddddlUllldddddrddLLLLrrddllluUluRdrUUdlluurRdrUUUUlu
+RRRRRRdrUUUluRRRRRRllddlddddddddlllLLLLLLrrddllluUluRdrUUdlluurRdrUUUU
+luRRRRRRdrUUUluRRRRRddddddrddlUUUUUUluullldddlllllldRldddrruuUluRRRRdr
+UUUluRRRRddlddRRddrrruulLrrddllluUUdlluuruullldddlUUddlllluuuurrrdRRRR
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:57:41
+
+
+"XSokoban 36", by XSokoban
+
+            #####
+#####  ######   #
+#   ####  $ $ $ #
+# $   ## ## ##  ##
+#   $ $     $  $ #
+### $  ## ##     ##
+  # ##### #####$$ #
+ ##$##### @##     #
+ # $  ###$### $  ##
+ # $  #   ###  ###
+ # $$ $ #   $$ #
+ #     #   ##  #
+ #######.. .###
+    #.........#
+    #.........#
+    ###########
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 1881/565 (Festival Solver)
+luuurrRRdrUdrDDuulullllldddDDDDDldRRRRluluululldLdlllluuuRldddrrrrurur
+ruuuuullLrrrdddddlldldlllluuurUUUUlluurrDDDRURRRRRRRRdrruLLLLLLLLLLdlU
+rrrrrrdddddlldldllUdrrururruuuuurrrrrdrruLLrdddrUldllddrUdddlUruuluRRl
+dddlLLLrrrruuuruulllullldddddDDDldRRRuluurrrruulDrdLLLLrrrruuuruulllul
+lldddddDDDldRRuuurrrruuururrdLLuulllulllddddddrrrruuuRldddlllluuuuuurr
+rdrrrdrddLLulDDrdLLLLrrrruurruululllullldddddDDDldRuruurrrruurruulDrdL
+LulDDrdLLLLrrrruuruuulllullldddddDDDDldRRRRllluuruurrrruuruuuuuuulldRu
+rDDDDDDrdLLulDDrdLLLLrrrruuruuulllullldddddDDDDldRRRlluuuuuuuuuurruuRR
+RurDDDDDDrdLLulDDrdLLLLrrrruuruuulllullldddddDDDDldRRluuuuuuuuuurrrRRl
+lluurrrrdDDDDrdLLulDDrdLLLLrrrruuruuuulllllldddddDDDDldRuuuuuuuuuullll
+lllluurrDullddrRRRRRRRRRRRRllluurrrrdDDDDrdLLulDDrdLLLLrrrruuruuuullll
+lldddddDDrdLulDDrdLLLrrruuuuulldldlllluuuruUUruLuullddRRRRRRRRRRRRRlll
+uurrrrdDDDDrdLLulDDrdLLLLrrrruuruuuulllllldddddDDrdLulDDrdLLrruuruurrr
+ruuruuuurDDrdLulDrdLLulDDrdLLLLrrrruuruuuulllllldddddDDrdLulDDrdLruuuu
+uuuuuurruurrrDDldRurDDDrdLLulDDrdLLLLrrrruuruuuulllllldddddDDDDuuuuuuu
+uuluurRRRRRurDDDDDDrdLLulDDrdLLLLrrrruuruuuulllllldddddDDrdLulDrdLLLrr
+ruuuuuuuuulllllluulDldRRRRRRRRRRRRRurDDDDrdLLulDDrdLLLLrrrruuruuuullll
+lldddddDDrdLulDrdLLrruuuuuuuuulllluLLulDldRRRRRRRRRRRRRurDDDDrdLLulDDr
+dLLLLrrrruuruuuulllllldddddDDrdLulDrdLruuuuuuuuullldLLrrurrrdddddlldld
+lllluuuruuUruulldRRRRRRRRRRRRurDDDDrdLLulDDrdLLLLrrrruuruuuulllllldddd
+dDDDuuulldldlluRldlluRUUUUUruulldRRRRRRRRRRRRurDDDDrdLLulDDrdLLLLrrrru
+uruuuulllllldddddDDrdLulDDuruuuuuuuulllllldddddddrruuuLrdddlluuUUUUruu
+lldRRRRRRRRRRRRurDDDDrdLLulDDrdLLLLrrrruuruuuulllllldddddDDldRRuuluuuu
+uullllllddddrrdLrddlluUUUUUruulldRRRRRRRRRRRRurDDDDrdLLulDDrdLLLLrrrru
+uruuuulllllldddddDDrdLulDruuuuuuuullllllddddrrddLdlUUUUUUruulldRRRRRRR
+RRRRRurDDDDrdLLulDDrdLLLLrrrruuruuuulllllldddddDDrdLuuulldLLLdlUUUUUUr
+uulldRRRRRRRRRRRRurDDDDrdLLulDDrdLLLLrrrruuruuuulllllldddddDD
+
+Solver: Festival 3.1
+Solver time: 00:00:06
+Solver date: 2026-08-14  11:12:02
+
+
+"XSokoban 37", by XSokoban
+
+###########
+#......   #########
+#......   #  ##   #
+#..### $    $     #
+#... $ $ #   ##   #
+#...#$#####    #  #
+###    #   #$  #$ #
+  #  $$ $ $  $##  #
+  #  $   #$#$ ##$ #
+  ### ## #    ##  #
+   #  $ $ ## ######
+   #    $  $  #
+   ##   # #   #
+    #####@#####
+        ###
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 1243/396 (YASS 2.153 Solver)
+uuLLLdlUUdrruLdrrruLuullLrrrdddrrRllluuulllUlluuuluurrrrddLLLLulDuurrr
+rrrrddLLLLLrrruulllldDrrrrrruLdlUruLLLLLulDrrrrrrrrdrrRRRRurrdLLLLLLLL
+ullddrUruLLLLLLrrrddlllluUruLrrrrrrrddrrrrrrrrddddlUUUruLLLLLLLLullddr
+UruLLLLLLLrrrrrrrdrrrrrrrrddddddlUUUUUruLLLLLLLLullddrUruLLLLLLulDrrrr
+rrrdrrrddrdDllLrrUUUluRRRRurrdLLLLLLLLullddrUruLLdlUruLLLLrrrrrrddrrrd
+dddDDrUUUruLdlUUluRRRRurrdLLLLLLLLullddrUruLLLLLLrrrddllldddrrdrrrdddr
+rrdrruLLrUUUUUUUluRRRRurrdLLLLLLLLullddrUruLLdlUruLLLrrdddllldddrrdrrr
+dddrRRdrUUUUUUUUluRRRRurrdLLLLLLLLullddrUruLLLLLrrddlllddddRluuuurrrrr
+urrrrddddddddlllluuuluLuLLdlUrrrddrrdddrrrruuuuuuuulllllldlDurrrurrrrd
+dddddddlllluuulluLLrUUddrrdrdddrrrruuuuuuuulllllldLLLLrrrrrrurrrrddddl
+lullDRRRlllllluuurrrurrrrdddrddlUUUUluRRRRurrdLLLLLLLLullddrUruLLdlUru
+LLrrrrddrrrddddddllUdrruuuuuulllllldldddrrrrRRlddrruUUUUluRRRRurrdLLLL
+LLLLullddrUruLLLLrddlddllUdrruulLddrddlUUUddrrrrrrrrrddddlllluuUluRRRR
+lddrruUUUUluRRRRurrdLLLLLLLLullddrUruLLdlUruLdddldddldRRRurrrrrddddlll
+luuUluRRRRlddrruUUUUluRRRRurrdLLLLLLLLullddrUruLLLddlddddrrrdddlluRdrU
+UUdddrrrruuuulllLLLLLdlUUddrrrrrdddlllluRUUUruLdddddrruLdlUUUluRRRRRRR
+lddrruUUUUluRRRRurrdLLLLLLLLullddrUruLLdlUddldddlluRdrrrrrrrruuuulllll
+ldldDldRRRRRRRlddrruUUUUluRRRRurrdLLLLLLLLullddrUruLL
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:57:51
+
+
+"XSokoban 38", by XSokoban
+
+      ####
+####### @#
+#     $  #
+#   $## $#
+##$#...# #
+ # $...  #
+ # #. .# ##
+ #   # #$ #
+ #$  $    #
+ #  #######
+ ####
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 410/117 (Festival Solver)
+ldLLLLrDDrrdrruUlulllldlDDuuluRRRddrddldllUUUdddrruruuluullldRddddrddl
+UUrrurrddLLullddrUruuruulDDuuuulldddRRRdrUdddllUUruuluulldddrRurDldRul
+lluuRurDDullddrRdrUldddlluUUUdrruuullldRddrrrrrruululLLLrdddlluuRlddrr
+uUddrrrrdDrdLLLLLuuullddRluurrrrrrdddllllUUdlluurRRlllddddrUluRdrUUUdd
+drrrruuuuuluurDDDDDDrdLLLLLullddrUluRdrUUdlluurRlluuruRRRRurDDDDDDrdLL
+LLLullddrUluRdrUUdlluuuuluRRRRRRurDDDDDDrdLLLLLullddrUluRdrU
+
+Solver: Festival 3.1
+Solver time: 00:00:02
+Solver date: 2026-08-14  11:12:09
+
+
+"XSokoban 39", by XSokoban
+
+             ######
+ #############....#
+##   ##     ##....#
+#  $$##  $ @##....#
+#      $$ $#  ....#
+#  $ ## $$ # # ...#
+#  $ ## $  #  ....#
+## ##### ### ##.###
+##   $  $ ##   .  #
+# $###  # ##### ###
+#   $   #       #
+#  $ #$ $ $###  #
+# $$$# $   # ####
+#    #  $$ #
+######   ###
+     #####
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 1892/726 (Festival Solver)
+lLdDLDuruuulldRRddlULLLLLrddLruurrrrruurrdLulDullddlllddlUlldRddDlddrU
+UUddrRRRDDurRdrrUdlluRuRRRRRdrUUUUUluRurDldddddllllllddrUluRRRRRdrUUUU
+UluRRurDlldddddlllllldllluurDldRRRdrUluRRRRRdrUUUUUluRRldddddlllllldll
+ulllllldddrrrUUddllluururRRRurDldRRRdrUluRRRRRdrUUUUUUUluRdddddddlllll
+ldllullllldRllddrrruUluRRRurDldRRRdrUluRRRRRdrUUUUUUUUluRRurDllddddddd
+dlllllldllullldddlUUluRRRRurDldRRRdrUluRRRRRdrUUUUUUUUluRRlddddddddlll
+llldllulllldddlUUluRRRRRurDldRRRdrUluRRRRRdrUUUUUUUUluRddddddddlllllld
+llldRddlUUUruLLLdlluRRRRurDldRRRdrUluRRRRRdrUUUUUUUUUluRRldddddddddlll
+lllddLullddrUluRRRdrUluRRRRRdrUUUUUUUUUluRdddddddddlllllldlldddrUUluRR
+drUluRRRRRdrUUUUUUruLdlUUUrddddddddllllldddLLdlUUluRRRdrUluRRRRRdrUUUU
+UUruLdlUUrdddddddlllllluuLrdddllullllluuUUluRluurDDDDDDldRRRRRurDldRRR
+drUluRRRRRdrUUUUUUruLdlUrddddddlllllluulUUlUUlllLrrrrddrddrdddllulllll
+uuuuuluurDDDDDDldRRRRRurDldRRRdrUluRRRRRdrUUUUUluurrdLulDrdLrddddlllll
+ldlluuluLLLrrrddlllluUUUluurDDDDDldRRRRRurDldRRRdrUluRRRRRdrUUUUUUruLL
+rddddddlllllluuluuluulllddLruulldDDDDldRRRRRurDldRRRdrUluRRRRRdrUUUUUl
+uRdddllluuRlddrrrddlllllluuluuluullldLulDDDDDldRRRRRurDldRRRdrUluRRRRR
+drUUUUUUluRRlddddddlllllluulLLLLLrrrrruuluullllldddDDldRRRRRurDldRRRdr
+UluRRRRRdrUUUUUUluRddddllluuuuRlddddrrrddlllllluuluuluurDDDuuulllllldd
+ddrrrrrdddrruuuLLLLLLrrrrruuuulllllldddDDldRRRRRurDldRRRdrUluRRRRRdrUU
+UUUUUUUddddddddlllllluuluuurrULLLLLLLdlluurDDDDDDldRRRRRurDldRRRdrUluR
+RRRRdrUUUUUUUUdddddddlllllluuluuuulllllluurDldRRRRRlllluurDlldddddrrrr
+rruuulullLLulDDDDDDldRRRRRurDldRRRdrUluRRRRRdrUUUUUUUddddddlllllluuluu
+uruLLLLLLulDDDDDDldRRRRRurDldRRRdrUluRRRRRdrUUUUUUdddddlllllluuluuuruu
+ullDurrddlLLLLLulDDDDDDldRRRRRurDldRRRdrUluRRRRRdrUUUUUddddlllllluuluu
+uruuLulDrdLLLLLulDDDDDDldRRRRRurDldRRRdrUluRRRRRdrUUUUdddlllllluuluuur
+uuurrdLLLulDrdLLLLLulDDDDDDldRRRRRurDldRRRdrUluRRRRRdrUUUddlllllluuluu
+urrdLuulllllllddddrrrrrruUUruLLLLLLulDDDDDDldRRRRRurDldRRRdrUluRRRRRdr
+UU
+
+Solver: Festival 3.1
+Solver time: 00:00:02
+Solver date: 2026-08-14  11:12:18
+
+
+"XSokoban 40", by XSokoban
+
+    ############
+    #          ##
+    #  # #$$ $  #
+    #$ #$#  ## @#
+   ## ## # $ # ##
+   #   $ #$  # #
+   #   # $   # #
+   ## $ $   ## #
+   #  #  ##  $ #
+   #    ## $$# #
+######$$   #   #
+#....#  ########
+#.#... ##
+#....   #
+#....   #
+#########
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 1528/342 (YASS 2.153 Solver)
+luullllllllldDDDldRuuuuurrrdDDDuuuurrDulllllddddddddrDDDlddrruLLLLLdlU
+UdrrrrruuuuluuuuuuuurrrrrrrrrdddddddLLrrddllUdrruuuuuuuuullllllllldddd
+ddddrruuLrddlluUUUUUddddddrddrUrrruRUUddldlllluluurrdDlluuuurDldddrruu
+LrddlluUddrddrUrrruruullLLLrdDuurrrrddldllLulDDDlddrruLLLLLdlUrrrrruuu
+uruuluulldRurDlDDldRRdrrrruruulllldDuurrrrddldllLulDDDlddrruLLLLLrrrru
+uuuruuLulDDldRRluurrdDuurrrrddldllLulDDDlddrruLdlUruLLdlUruLdrrruuuluu
+uuuuruurrddddLLrruuuullddldDDDDldRRluurrdDuurrrrddldllLulDDDlddrruLLLL
+rrruuuuluuuurrrDullddrdddrrruruullLLLulDDldRRluurrdDuurrrrddldllLulDDD
+lddrruLdlUruLLulDDrdLLrrrruuuuuluuuuuuruulDDDDDDDldRRluurrdDuurrrrddld
+llLulDDDlddrruLdlUruLLdlUrrruuuruurrruLdllluurrDrdLLLulDDldRRluurrdDuu
+rrrrddldllLulDDDlddrruLLLdlUrrruuuuruuruuuuuurrrrrrdddddddlLrruuuuuuul
+llllldddddddlddrrrurUrrrddllUdrruuuuuuuuulldRullldRdDlDDuurrddLLLdlllu
+urrDrdLLLulDDldRRluurrdDuurruruurDrdLLLdllluurrDrdLLLulDDurrddlddrUUdr
+rruruUUllldllldldRuurrDDuurrurrdddldllLuuullddRluurrdDlDDDlddrruLLLrru
+uuuruurrurrdddldllLulDDDlddrruLdlUruLdlUrruurrrruruuLLLLLulDDldRRluurr
+dDuurrrrddldllLulDDDlddrruLLulDrdLLrrruuuuuruurrruuurDrdLLLdllluurrDrd
+LLLulDDldRRluurrdDuurrrrddldllLulDDDlddrruLLulDrdLrruuuurrrruruuuuuuul
+DDDrdLLdllluurrDrdLLLulDDldRRluurrdDuurrrrddldllLulDDDlddrruLLdlUrruuu
+rrrrurrdrruulLdlUUluurrdLLLdllluurrDrdLLLulDDldRRluurrdDuurrrrddldllLu
+lDDDlddrruLLruuurrrruruuuuuuuurrdLLulDDDDrdLLdllluurrDrdLLLulDDldRRluu
+rrdDuurrrrddldllLulDDDlddrruLulDrdLruuuurrrrurrurruuuuuruLLLLulDDDDrdL
+LdllluurrDrdLLLulDDldRRluurrdDuurrrrddldllLulDDDlddrruLdlU
+
+Solver: YASS 2.153
+Solver time: 00:00:01
+Solver date: 2026-08-13  17:58:05
+
+
+"XSokoban 41", by XSokoban
+
+           #####
+          ##   ##
+         ##     #
+        ##  $$  #
+       ## $$  $ #
+       # $    $ #
+####   #   $$ #####
+#  ######## ##    #
+#.            $$$@#
+#.# ####### ##   ##
+#.# #######. #$ $##
+#........... #    #
+##############  $ #
+             ##  ##
+              ####
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 789/271 (Festival Solver)
+ullDLLLLLLLLLLLLLrrrrrrrrruUluRUrrUruulldRllDDDDDDDDrdLLLLLLLLLuuululD
+DDuurrrrrrrrrrrrrrurrdLLLLLLdddlllllllluuurrrrrrRllllllldddrrrrrrrruuU
+UUUUrruullDDDDDDDurrrdDuullluullluRdrruurUluRlddddlluuRlddrruUluRldDrd
+LruurrdLLdlUrdddrrrddrUruLLLLLLLLLLLLLLulDDurrrrrrrrrrrrrrddddlUUUruLL
+LLLLLLLLLLLulDrrrrrrrrrrrrrrdddrUUluurrdLLLLLLLLLLLLLLLrrrrrrrrruuuuuu
+rurrDulldldddlluRRRdrUllddddlllllllldddrrrrrrrrUUUUUUruLddddrrrrrdddrd
+LdlUUUUruLLLLLdddlllllllluuurrrrrrRllllllldddrrrrrrrruuUUUluRurrdLulDD
+DDDDrdLLLLLLLLrrrrrrruuuuuurrdLulDDDDDrdLLLLLLLrrrrrruuuuuullldRRurDDD
+DDrdLLLLLLrrrrruuuuuulluRurDDDDDDDrdLLLLLrrrruuuuuuuuurDDDrdLulDDDDDrd
+LLLLrrruuuuuruuuuurrdrdddLLLulDDDDDDrdLLLrruuuuuruuuuurrdLulDDDDrdLulD
+DDDDrdLLruuuuuruuuurDDuurrdddlLLulDDDDDDrdLuuuuurrurruuLLLulDDDDDDDDuu
+uurrurruLLLulDDDDDD
+
+Solver: Festival 3.1
+Solver time: 00:00:03
+Solver date: 2026-08-14  11:12:26
+
+
+"XSokoban 42", by XSokoban
+
+     ########
+  ####      ######
+  #    ## $ $   @#
+  # ## ##$#$ $ $##
+### ......#  $$ ##
+#   ......#  #   #
+# # ......#$  $  #
+# #$...... $$# $ #
+#   ### ###$  $ ##
+###  $  $  $  $ #
+  #  $  $  $  $ #
+  ######   ######
+       #####
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 976/256 (YASS 2.153 Solver)
+lldLrDrddrdLuLrdddLLdlLLulLrrddllUllLrrrdrrurrruulUUUdddrddllldllulUUU
+UUruLdlUdllllldddrrUUddlluuurRdrUrrrdddddrdrruulLdlUUUruLLLrrddddrdrUr
+uLLdlUUUluRdllllddrRRdrUUUUUruLLrddddddrrrrrruuluLLLLrrrrdrddlllllluuU
+UdrruulLulDrdLdrrrrrruulDrdLLLLrrrrdrddlllllluuUUUluRdlllluuurrrurrrdD
+DDDulldddddrrrrrruulullLLrrrrdrddlllllluuUUdrruulLulDllluuurrrDuurrrdd
+ddddrrrdrddlULLLLdlUUdlllluuuurrrrrrddlLLLrrddrrrrUdrruLuLLLLLLrddrrrr
+UruLLLLrrrddlllluUUdddlllluuuurrrRddddrrrrrrrruuulLLulDrdLLLLrrrddllll
+uUUUddrruuuuuurrdLulDDDDuuuullldllldddddddrrrrrrrrrrrruLLLdlUruLLLLLdd
+lllldRRRRurrddlUruLdlUUUUdddlllluuuuuuurrrurrrrrdDDDDrdLLLLrrrddlllluU
+rrrrrurrDrdLLLdlUruLLLrrrurrruululLrrdrdddddlllllllllllluuuuuuurrrurrr
+rrdDDDDrdLLruuuurDDldddrrruulLulDDDrdLLLLLLLLdlUUUUddlluuurRRRlluuurrr
+urrrrrddrrrdDrdLLLulDDDrdLLLLLLLLdlUUUUddlluuurRRluuurrrurrrrrddrrrdLu
+lDDurrddlLulDuuurruLLLulDDDuurrrrrdddddddrdLLLLullddrUruLLLdlUUdrrrruU
+UUUUruLLulDDurrrrrrDDlddrruLulDrdLLLulDDDrdLLLLLLLLdlUUUUddlluuurR
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:58:14
+
+
+"XSokoban 43", by XSokoban
+
+        #######
+    #####  #  ####
+    #   #   $    #
+ #### #$$ ## ##  #
+##      # #  ## ###
+#  ### $#$  $  $  #
+#...    # ##  #   #
+#...#    @ # ### ##
+#...#  ###  $  $  #
+######## ##   #   #
+          #########
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 736/152 (YASS 2.153 Solver)
+llluuurDulluurrDullddrdddrrruUrrurDrrRuuullulDDDldRlllddrdrdrrurRllLuU
+UUdlllddrdRdrUUdrrrdrruLLLLrrruuluuuulllllldDDDuuuurrrrrrddddrddllldll
+uluLLLLdlUruLLLdlluurDDldRuuuurrruurrdRlullddrdddrrrrdrdrrurrruuluuuul
+lllllDDDDuuuurrrrrrddddrddllldlluluLLLLdlUruLLLdlluurDldRurrrrurDluulu
+urrdrrddddlLullddrUruLLLLLulDDruuurrruurrdDDDuuurrddddlLullddrUruLLLLr
+rruulllldDDuuurrrrrurrurrrrrrdddlLLLLrrrrruuullllllddDDurrrrrrdrddllld
+lluluLLLullddrUruLLLLLulDrrrrrruuurrurrrDDuurrrdddllLLLrruuulllddDDurr
+rrrrdrddllldlluluLLLullddrUruLLLLLrrrrrdrruurrrrrrdrruLLLLLLLrruuullld
+dDDurrrrrrrdddllldlluluLLLullddrUruLLLLrrruulllldDrrrrrdrrrdrRuUruLLLr
+ruuulllddDDurrrdddlluLLLullddrUruLLLLrrrrdrruurrrrrrrdddllLdlUUUruLLLr
+ruuulllddDDurrrdddlluLLLullddrUruLLL
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:58:17
+
+
+"XSokoban 44", by XSokoban
+
+ #####
+ #   #
+ # # #######
+ #      $@######
+ # $ ##$ ###   #
+ # #### $    $ #
+ # ##### #  #$ ####
+##  #### ##$      #
+#  $#  $  # ## ## #
+#         # #...# #
+######  ###  ...  #
+     #### # #...# #
+          # ### # #
+          #       #
+          #########
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 822/189 (YASS 2.153 Solver)
+LLLLLrrrrdDDDDrdLuuuuuulllluullddddddddrrrruRlldllluuuuuuuurrddrrrrddr
+rrrRurDDDDDldRRluuulUruulldRurDDDDDDldRurDulllluuUUluRRurDDullddrRurDD
+ullldddrrrruLuuuulllllluulllluullddddddddrrrrdrUrUdlluRdllllluurDldRRR
+llluuuuuuuurrddLruulldDDDDDrddlluRuuuuurrrrrrddlUruLLLLuullddddddddrrr
+urrdrruLUUUluurDldRRRRRurDDullddrRurDDDrddlluRdrUlllluuuuulllluullluul
+lddddddddrrrurRdrUUUddllldllluuuuuuuurrddrrrddRRRRRurDDullddrRurDDDuul
+lldddrrdrruLuuuuulllllldddllldRdrUluRdrUUUdddlllllluuuuuuuurrddrrrddRR
+RRRurDDullddrRurDDDDrdLuuuurrrdddLruuulllllluulllluulllLruulldDDDDDDld
+RRRRurrddlUluRRdrUUUdddlllllluuuuuurrrrrddRRRRRurDDullddrRurDDDDuuurrr
+ddddddllUdlllluuuuuuuulllluulllllddddrDldRRRurrddlUluRRdrUUUdddllllllu
+uuuuurrrrrddRRRRRurDDullddrRurDDDuuuullllllluullldLulDDDDDldRRRRurrddl
+UluRRdrUUUdddlllllluuuuuurrrrrddRRRRRurDDullddrRurDD
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:58:20
+
+
+"XSokoban 45", by XSokoban
+
+##### ####
+#...# #  ####
+#...###  $  #
+#....## $  $###
+##....##   $  #
+###... ## $ $ #
+# ##    #  $  #
+#  ## # ### ####
+# $ # #$  $    #
+#  $ @ $    $  #
+#   # $ $$ $ ###
+#  ######  ###
+# ##    ####
+###
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 943/302 (YASS 2.153 Solver)
+rRRllllLrrrrrurRdrRllulldllluuurrdDrdLurrrdLrddlUruulllddRRULuluullddd
+dRRUrrruLdllLdlUUUUruLdlUruLdlUruLdlUUruLdddrrrdddddlldlluRRRRdrruLdlU
+UUUruLdlUruLdlUruLdlUUddrrrdddddlllluurDldRRRRdrruLdlUUUUruLdlUruLdlUr
+uLdlUruLddrrrdddddrrrrrrrurrdLLLLLLLLdlUUUUruLdlUruLdlUruLLdrrrdddddrr
+rrddrUlulldRururRuUlluulUluurDldRdrddrrddlldlllluuurrdDuullddddrrruLLd
+lUUUUruLdlUruLdlUUUdddrrddddrrrruLdllluuurrdDrdLLdlUUUUruLdlUruLdlUruL
+dlUrrdddrrrddrrrrdLLLLLdlUUUUruLdlUruLdlUruLddrrddddrrrrrddlUruLLLLdlU
+UUUruLdlUruLdlUUddrrddddrrrrrrrdLullddrUruLLLLLdlUUUUruLdlUruLLrrddddd
+rrrrrrrruLLLLLdllluuurrdDrdLLdlUUUUruLdlUruLdlUrrddrrddrrrruulluurDuRD
+DDDrdLLLLLLdlUUUUruLdlUruLddrrrddrrrruuulldRurDDDrdLLLLLLdlUUUUruLdlUU
+ddrrrddrrrruurruLdlluurDDDDrdLLLLLLdlUUUUruLLdrrrddrrrruuuuluurDDDDDDr
+dLLLLLLdlUUUUruLdlUdrrrddrrrruuurruLdlluurDDDDDrdLLLLLLdlUUUUruLdrrddr
+rrruuuullluRdrruulDDDldRurDDDrdLLLLLLdlUUUUUdrrddrrrruuuuuulLdlluurDld
+RurDldRurDDldRurDDDrdLLLLLLdlUUUU
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:58:22
+
+
+"XSokoban 46", by XSokoban
+
+##########
+#        ####
+# ###### #  ##
+# # $ $ $  $ #
+#       #$   #
+###$  $$#  ###
+  #  ## # $##
+  ##$#   $ @#
+   #  $ $ ###
+   # #   $  #
+   # ##   # #
+  ##  ##### #
+  #         #
+  #.......###
+  #.......#
+  #########
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 1215/289 (YASS 2.153 Solver)
+lLLDlLrrruuuruuurDlddldddllddrrULdlUrrrrdddllllllluuuuUUUruLrrrDLLulDD
+DDDDDrddlluRuuuuuuuurrruRuullllllldddrRRRldddddddddrrrrrurruuullllluLr
+drrrrrdddllllldlluuuuUddddRRlluuuurrdrruLLrrurDllluRUUlllullluuurrrrrr
+rddlDDDDuullldDDDDDDDldRRRRRlllluuuuuuuuurrrddldLruruulllddDDDDDDldRRR
+RllluuuuuurrdrruLLLrruuulllddDDDDDldRRRRRlllluuuuurrrrruLdlllluuurrrdD
+rdLLLrruuulllddDDDDDldRRRRllluuuuuuulUrrrruuruullllllldddrRdrruRdlllul
+luuurrrrrrrddlDDDDrdLLLrruuulllddDDDDDldRRRlluuuuuuuuluRRRllllluuurrrr
+rrrddlDDDDrdLLLrruuulllddDDDDrddlluRurDDrdLLuuuuuurrrrddrUlluuuuulluRd
+drddddrrrrdddlllLLLuluuurrrrurDllllldddrdrrrrrruuulLLulllldddrddlluRRR
+RRRllllluuuuuuuullluuurrrrrrrddLdddddlllddddrrrDllluuuuurrrrddlUruLLLr
+ruuulllddDDDDDldRurDldRluuuuuurrrrruuuruurrdLulLDDDDDuuuuurrdLdlddrUUd
+dllluuuuRRRurDlllldddddddrrUUUruulDrdLLdlllluuurrrdDrdLLLrruuulllddDDD
+DDldRRRlluuuuuuuuurrrurrDDDrdLLruuuulldddDrdLLLrruuulllddDDDDDldRurDlu
+uuuuuuuurrrurrrDurrdLLulDDDrdLLruuuulldddDrdLLLrruuulllddDDDDDldRRluuu
+uurrrrruurUluurrdLulDDDrdLLruuuulldddDrdLLLrruuulllddDDDDDrdLuuuuuuuuu
+ruRRRRdrruulDrdLulDDDrdLLruuuulldddDrdLLLrruuulllddDDDDDDuuuuuuuuuluRR
+RRRRdrruulDrdLulDDDrdLLruuuulldddDrdLLLrruuulllddDDDDDuuuurrrrrdrrdddL
+LLLLrrrrruuulllllulldddrD
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:58:25
+
+
+"XSokoban 47", by XSokoban
+
+         ####
+ #########  ##
+##  $      $ #####
+#   ## ##   ##...#
+# #$$ $ $$#$##...#
+# #   @   #   ...#
+#  $# ###$$   ...#
+# $  $$  $ ##....#
+###$       #######
+  #  #######
+  ####
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 686/211 (YASS 2.153 Solver)
+ldDRdrruRdllluluurrrrDRRRurrddlUruLdllllullllddrdrrrrUdlllluluurrrrdRR
+RRdrUluRdrUUluRdddlllllddlluRdrUluRRRRdrUluRdrUluRddllllllddllluRRRdrU
+luRRRRdrUluRdrUUddlllllluUUrrDDuulldddrRRRdrUluRRdlllluuuluurDDDDuulld
+ddrRRRdrUUUddlllllulluRdrdrruuullDDDrddlluRdrUluRRRRdrUluRdrUdllllllul
+llluRRRdrdrruuullDDDrddlluRdrUluRRRRurDldRRulllllluullluurrRdrruulDldR
+urDDDuulldddrRRRRurDllllllullllllURRdrrrruuullldDldRRRurDDrddlluRdrUlu
+RRRRdrUluRdllllldllllllUlldRRRRRRRRdrUluRRRRdrUUdllllldlllllddlUruLrrr
+dLullddrUluRRRRRRdrUluRRRRurDllllldllllllulluuururRRRRRRdrruulDldRurDD
+DuulldddrRRRRRlllluRRdlllldllllllulldRRRRRRRRdrUluRRRRRllllluullllllDD
+ldRRRRRRRdrUluRRRRlllluuuullllllDDDDldRRRRRRRdrUluRRRurD
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:58:28
+
+
+"XSokoban 48", by XSokoban
+
+  #########
+  #*.*#*.*#
+  #.*.*.*.#
+  #*.*.*.*#
+  #.*.*.*.#
+  #*.*.*.*#
+  ###   ###
+    #   #
+###### ######
+#           #
+# $ $ $ $ $ #
+## $ $ $ $ ##
+ #$ $ $ $ $#
+ #   $@$   #
+ #  #####  #
+ ####   ####
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 897/248 (Festival Solver)
+UlLrrrRlllluUruruuuuUrRlllLuUddrrrruUlLrrddlldddddrrrrrdLdDuuullllldld
+drrdRullldRlllUdrruuururrrrrdddLLLLLrrrrruuullllldRurrrrdddllllldlUdll
+uRdrrurrrrruuullllldllDDuurrrurrrrdddllllldlLuuuulldRurDrrrurrrrdddlll
+lldllulUdrdrrurrrrruuullllldllulldRddrdrrurrrrruuulllluuuuulDrurruullD
+urrddlLdlluRRRluurrdDlllluRdrrruullDldRuRurDllddddlUUUluRRRllluRRRRlld
+ddddddrrrrdddllllldlluluuurRRdrUUUUUUUluRRldddddddrrrrdddllllUUUUUUUUl
+uRdddddddddrruUddrruuulLLrdddlluuUUUUUUdddddrrdLrddlluUUUUruLdlUUUUluR
+RlddrddddddddlUUluRdrUUUruLdlUUUUluRddrdddddrrddLdlUUUUUruLdlUUruLdlUU
+ruLrddrdddddlllldRRRdrUUUUruLdlUUruLdlUUrdrdddddrrrrdLLLdlUUUUruLdlUUr
+uLdlUrrdddddlddddlluUUluRRRdrUUUruLdlUUruLrdddddlllddRRdrUUUUUUUddddrr
+rrddLLLdlUUUUUruLdlUruLrddddlddddlUUUluRRdrUUUruLdlUUUUddrddddrrrddddd
+rUUUUruLLLLdlUUUruLdlUUUdrddddllldddddlUUUUluRRRRdrUUUruLdlUUrddddrddd
+dLLLLdlUUUUluRRRRdrUUUruLdlUrdddrddddRRdrUUUUruLLLLdlUUUU
+
+Solver: Festival 3.1
+Solver time: 00:00:02
+Solver date: 2026-08-14  11:12:42
+
+
+"XSokoban 49", by XSokoban
+
+       ####
+       #  ##
+       #   ##
+       # $$ ##
+     ###$  $ ##
+  ####    $   #
+###  # #####  #
+#    # #....$ #
+# #   $ ....# #
+#  $ # #.*..# #
+###  #### ### #
+  #### @$  ##$##
+     ### $     #
+       #  ##   #
+       #########
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 865/164 (YASS 2.153 Solver)
+RdRUdRRRdrruLLLLrrrUUUUULLLLdllLLLrruuurrruUddllldddllulllddrRUruLdrrr
+rrrrdLuurrrrdddddlllulUdrdrrruuuuulllldllllllddrUluRRRRRRurDurrrdddddl
+lluluUddrdrrruuuuullldLLLLLLrrrrrrruruuuLuLrddLLrruuluLrdrddrddlllddRl
+ddlddrUUUUruurruurDDDDDDuuuulllddldddrrrdrruLLLLrrruuuuuuulluulDldRRur
+DDrddddddllluluuruulDllluuurRRRRurDrdddddddllluluUddrdrrruuuuuuullllll
+ldddrrRurDldddlddrUUUUdddrrrruuuuuuullllllldddrrRRlddddrrrruuuuuLLLrrr
+uulDulllllldddrrrrurRurDDDDDuuuullldlddddrrrdrruLLLLrrruuuuuuullluuulD
+lDurrrddrddlldlllluuurRRRRurDDulllllldddrrrrurRlldldddrdrrruuuuUluulll
+luRdrUluuulDDDrrrrdddlldlllluuurRRRRurDDulllllldddrrrdddrdrrruuuuuLLrr
+dddddlllullddrUUUUdddrrrruuuuuluulllllldddrrRllllldllluuRRurDDulllddrr
+UruLdrrruuurrruuurDDldRRurDDulllllldddrrrddddrrrruuuuuLuurDDDDDDuuuuuu
+llllllldddrrrddddrrrdrruLLLLullddrUUUddrrrruuuuuuullllllldddlllddrUluR
+RRRRllllldlluuRRurDldRRRR
+
+Solver: YASS 2.153
+Solver time: 00:00:01
+Solver date: 2026-08-13  17:58:39
+
+
+"XSokoban 50", by XSokoban
+
+      ############
+     ##..    #   #
+    ##..* $    $ #
+   ##..*.# # # $##
+   #..*.# # # $  #
+####...#  #    # #
+#  ## #          #
+# @$ $ ###  #   ##
+# $   $   # #   #
+###$$   # # # # #
+  #   $   # # #####
+  # $# #####      #
+  #$   #   #    # #
+  #  ###   ##     #
+  #  #      #    ##
+  ####      ######
+
+Author: XSokoban
+
+Solution/Pushes (Built-in)
+
+Best Solution 1198/422 (YASS 2.153 Solver)
+RdrrUUUrUrUrUrurrrdrrdDDurrddlLulDDDDDDldRurDldRRlluuuuuuuuuruuurrdLul
+DDDDurrddlLulDDDDDDldRurDluuuuuuuuruurDldddrruuLulDDurrddlLulDDDDDDldR
+uuuuuuuuruulllulldRRRRRurrdLulDDDDurrddlLulDDDDDDDuuuuuuuuruulllllldld
+ldlluRuRuRRRRRRRRurrdLulDDDDurrddlLLruuuullllllluRRRdlllldlddrUrUdlluR
+uRRRRRRRRurrdLulDDDDldRuuuullllllllddrUluRRRRRRRRurrdLulDDDDDDuuuuulll
+llllldddldddlluRdrUUUluRdrUluRdrUluRdrUluRddlllddddddrruLdlUUUUluRdrUl
+uRdrUluRRRRRRRRurrdLulDDDDuuulllllllldddldddddlUUluRdrUUUluRdrUluRdrUl
+uRRRRRRRRurDllllllllldddlddlllldRRurrddlUluRdrUUUluRdrUluRdrUluRRRRRRR
+RlllllllldddldddddlldDrddlUUrrruUUruLdlUUUUluRdrUluRdrUlldddddddllUUlu
+RRdrUUUruulDDDDlddrUUUUruulDrdLdddddllDDrUUluRdrUUUUUruLddddddlddddlUU
+UUUUluRRdrUUUruulDurrruulDrdLulDrdLuurrrrrrrrurrdLLLLLLLLulDDurrrrrrrd
+drUluurrdLLLLLLLLulDrdLLurrrrrrrrdddlddrUUUUruLLLLLLLulDrdLulDDuurrrrr
+rrrrddrddLdlUUUUruLLLLLLLulDrdLulDurrrrrrrrdddllldRurrddlUluRdrUUUruLL
+LLLLLulDrdLurrrrrrrdddddlddddrrdddllUUUUUUUUluRdrUUUruLLLLLLLulDrrruLL
+drrrrrrdddddlddddrrdLrddlluUUUUUUUluRdrUUUruLLLLLLulDrrrruLLLdrrrrrddd
+ddldddddrrdLdlUUUUUUUUluRdrUUUruLLLLLLLLrrrrrrrdddddrdLulDDDDrddlUUUUU
+UUluRdrUUUruLLLLLLLrrrrrrddddddldddrrrrddLdlUUdrruulLLdlUUUUUUluRdrUUU
+ruLLLLLL
+
+Solver: YASS 2.153
+Solver time: 00:00:00
+Solver date: 2026-08-13  17:58:42

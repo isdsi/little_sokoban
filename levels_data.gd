@@ -1,4 +1,5 @@
 # levels_data.gd
+# Generated automatically from levels_data.sok. Do not edit manually.
 class_name LevelsData
 
 const LEVELS = [

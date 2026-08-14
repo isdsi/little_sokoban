@@ -77,6 +77,24 @@ var player_style = StyleBoxTexture.new()
 @onready var game_over_overlay = $GameOverOverlay
 
 func _ready():
+	var args = OS.get_cmdline_user_args()
+	var test_mode = false
+	var scenario = 1
+	var start_level = 1
+	for arg in args:
+		if arg == "--test-mode":
+			test_mode = true
+		elif arg.begins_with("--scenario="):
+			scenario = arg.split("=")[1].to_int()
+		elif arg.begins_with("--level="):
+			start_level = arg.split("=")[1].to_int()
+	
+	if test_mode:
+		var test_runner = load("res://test_runner.gd").new()
+		test_runner.scenario = scenario
+		test_runner.start_level = start_level
+		add_child(test_runner)
+
 	if OS.has_feature("web"):
 		api_host = JavaScriptBridge.eval("window.location.origin")
 		
