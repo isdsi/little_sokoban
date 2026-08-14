@@ -1,0 +1,55 @@
+keys,en,ko
+KEY_LIVES,LIVES,생명
+KEY_SCORE,SCORE,점수
+KEY_TIME,TIME,시간
+KEY_UNDO,UNDO,되돌리기
+KEY_RESET,RESET,초기화
+KEY_MENU,MENU,메뉴
+KEY_STAGE,STAGE,스테이지
+KEY_PLAY_AGAIN,PLAY AGAIN,다시 플레이
+KEY_NEXT_STAGE,NEXT STAGE,다음 단계
+KEY_TRY_AGAIN,TRY AGAIN,다시 시도
+KEY_MENU_TITLE,SOKOBAN MENU,소코반 메뉴
+KEY_MENU_THEME,Theme,테마
+KEY_MENU_LEADERBOARD,Leaderboard,리더보드
+KEY_MENU_LICENSE,License,라이선스
+KEY_MENU_CLOSE,Close,닫기
+KEY_MENU_BACK,Back,뒤로
+KEY_THEME_DEFAULT,Default,기본
+KEY_THEME_KENNEY,Kenney,케니
+KEY_ACTIVE,(Active),(사용 중)
+KEY_LEADERBOARD_LOADING,Loading Leaderboard...,리더보드 불러오는 중...
+KEY_LEADERBOARD_NO_SCORES,No High Scores Yet,아직 고점수 기록이 없습니다
+KEY_LEADERBOARD_STAGE," (Stage %d)"," (%d단계)"
+KEY_HIGHSCORE_TITLE,NEW HIGH SCORE!,새로운 고점수 달성!
+KEY_HIGHSCORE_FINAL_SCORE,"Final Score: %d","최종 점수: %d"
+KEY_HIGHSCORE_PLACEHOLDER,Enter your name...,이름을 입력하세요...
+KEY_TIME_FORMAT,"TIME: %ds","시간: %d초"
+KEY_STAGE_FORMAT,"SOKOBAN - STAGE %d / 50","소코반 - 스테이지 %d / 50"
+KEY_VICTORY_SCORE,"Score: %d | Time Left: %ds","점수: %d | 남은 시간: %d초"
+KEY_VICTORY_SUBTITLE,"Sokoban Level %d Cleared!","소코반 스테이지 %d 클리어!"
+CONGRATULATIONS!,CONGRATULATIONS!,축하합니다!
+"GAME OVER",GAME OVER,게임 오버
+KEY_LICENSE_TEXT,"LICENSE INFORMATION
+
+XSokoban Map Data:
+Public Domain / Benchmark Set
+
+Kenney Sokoban Assets:
+CC0 1.0 Universal
+Free to use in personal/commercial work
+
+Little Sokoban Game:
+MIT License
+Copyright (c) 2026 isdsi (Open Game Studios)","라이선스 정보
+
+XSokoban 맵 데이터:
+퍼블릭 도메인 / 벤치마크 셋
+
+Kenney 소코반 에셋:
+CC0 1.0 Universal
+개인 및 상업적 목적으로 무료 이용 가능
+
+Little Sokoban 게임:
+MIT 라이선스
+Copyright (c) 2026 isdsi (Open Game Studios)"
