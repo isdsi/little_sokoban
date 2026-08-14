@@ -94,6 +94,11 @@ func _ready():
 	
 	if language != "":
 		TranslationServer.set_locale(language)
+	elif OS.has_feature("web"):
+		var js_locale = JavaScriptBridge.eval("navigator.language || navigator.userLanguage")
+		if js_locale:
+			var cleaned_locale = (js_locale as String).replace("-", "_")
+			TranslationServer.set_locale(cleaned_locale)
 	elif test_mode:
 		TranslationServer.set_locale("en") # Force English for tests
 	
